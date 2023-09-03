@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-03 03:15:30
+# @Last Modified time: 2023-09-03 04:25:58
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -23,10 +23,13 @@ class DataSync:
         #self.num_rows = self.__work_sheet.row_count()
         
     def sync(self):
-        if self.config_manager['first_load']:
-            self.update_sync(self)
-        else:
-            self.initial_sync(self)
+        num_row_last_register = self.config_manager.data['num_row_last_register']
+        num_rows = len(self.__work_sheet.get_all_values())
+        first_load = self.config_manager.data['first_load']
+        if first_load and num_rows > num_row_last_register:
+            self.update_sync()
+        elif not first_load:
+            self.initial_sync()
         
     def get_filtered_dataframe(self):
         """Obtiene un DataFrame filtrado con solo las columnas necesarias."""
@@ -40,15 +43,17 @@ class DataSync:
         for _, record in df.iterrows():
             db.add_or_update_student(self.row_to_dict(record))
         
-        self.config_manager.add_dict("num_row_last_register", self.__work_sheet.row_count)
+        num_rows = len(self.__work_sheet.get_all_values())
+        self.config_manager.add_dict("num_row_last_register", num_rows) #self.__work_sheet.row_count)
         self.config_manager.add_dict("first_load", True)
 
     def update_sync(self):
         """Realiza una sincronización incremental desde la última fila sincronizada."""
         #total_rows = self.__work_sheet.row_count
-        num_row_last_register = self.config_manager["num_row_last_register"]
+        num_row_last_register = self.config_manager.data["num_row_last_register"]
+        num_rows = len(self.__work_sheet.get_all_values())
         new_records = []
-        for i in range(num_row_last_register + 1):
+        for i in range(num_row_last_register + 1, num_rows, 1):
             row_data = self.__work_sheet.row_values(i)
             new_records.append(self.row_to_dict(row_data))
         
@@ -72,7 +77,7 @@ class DataSync:
 syncer = DataSync("Albert Einstein")
 
 # Para la primera sincronización
-syncer.sync()//syncer.initial_sync()
+syncer.sync()#syncer.initial_sync()
 
 # Para sincronizaciones incrementales
 #LAST_SYNCED_ROW = syncer.num_rows  # Puedes guardar este valor en un archivo o en la base de datos para persistencia entre ejecuciones.

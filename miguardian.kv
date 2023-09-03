@@ -33,3 +33,13 @@ Screen:
         theme_text_color: 'Custom'
         font_size: "64sp"
         text_color: (0, 1, 0, 1)  # verde por defecto, cambiarás esto en el código
+    
+    MDFloatingActionButton:
+        text: "Cambiar pantalla"
+        pos_hint: {'x': 0.02, 'y': 0.02}
+        #pos: '200dp','500dp'
+        size_hint: (None,None)
+        size: '120dp','80dp'
+        md_bg_color: "#FB5252"#app.theme_cls.primary_color 
+        icon: "monitor-multiple"
+        on_press: app.switch_screen()

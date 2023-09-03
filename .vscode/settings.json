@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "dinámicamente",
+        "hdmi",
         "Hernández",
         "nombre",
         "subcarpeta"
@@ -20,6 +21,7 @@
         "datajson",
         "dropna",
         "fakedata",
+        "gpio",
         "gspread",
         "iterrows",
         "megasync",
@@ -32,6 +34,7 @@
         "sqlite",
         "syncer",
         "temppath",
+        "tvservice",
         "yagami"
     ],
     "materialkv.pythonFile": "main.py"
