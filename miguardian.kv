@@ -1,0 +1,35 @@
+Screen:
+    MDTextField:
+        id: barcode_input
+        hint_text: 'Introduce el código de barras'
+        pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+        size_hint: (0.7, 0.1)
+        opacity: 0.0
+        on_text_validate: app.show_student_info()
+
+    Image:
+        id: student_photo
+        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
+        size_hint: (1, 1)
+        source: 'assets/placeholder.jpeg'  # Imagen por defecto
+
+    MDLabel:
+        id: student_info
+        font_size: 38
+        pos_hint: {'center_x': 0.7, 'center_y': 0.22}
+        theme_text_color: 'Primary'
+
+    MDLabel:
+        id: status_message
+        font_style: 'H6'
+        pos_hint: {'center_x': 0.7, 'center_y': 0.070}
+        theme_text_color: 'Secondary'
+
+    MDIcon:
+        id: status_icon
+        pos_hint: {'center_x': 0.8, 'center_y': 0.070}
+        size_hint: (None, None)
+        icon: 'door-open'  # valor por defecto, cambiarás esto en el código
+        theme_text_color: 'Custom'
+        font_size: "64sp"
+        text_color: (0, 1, 0, 1)  # verde por defecto, cambiarás esto en el código

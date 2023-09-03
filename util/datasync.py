@@ -1,0 +1,80 @@
+# -*- coding: utf-8 -*-
+# @Author: Hugo Rafael Hernández Llamas
+# @Date:   2023-08-22 22:31:42
+# @Last Modified by:   Hugo Rafael Hernández Llamas
+# @Last Modified time: 2023-09-03 03:15:30
+
+import gspread
+from gspread_dataframe import get_as_dataframe
+from util.datajson import DataJson 
+import database.miguardiandb as db  # Asumiendo que miguardiandb tiene las funciones necesarias para interacción con la BD.
+import pandas as pd
+
+class DataSync:
+
+    __service_account = gspread.service_account()
+    __sheet = __service_account.open("8020digital")
+
+    def __init__(self, work_sheet_name: str):
+        self.__work_sheet_name = work_sheet_name
+        self.__work_sheet = self.__sheet.worksheet(self.__work_sheet_name)
+        self.config_manager = DataJson("settings", dict())#{"first_load_completed": False, "total_records": 0})
+        #self.config = self.config_manager.data
+        #self.num_rows = self.__work_sheet.row_count()
+        
+    def sync(self):
+        if self.config_manager['first_load']:
+            self.update_sync(self)
+        else:
+            self.initial_sync(self)
+        
+    def get_filtered_dataframe(self):
+        """Obtiene un DataFrame filtrado con solo las columnas necesarias."""
+        df = get_as_dataframe(self.__work_sheet, header=0)  # Considerando que la primera fila tiene los encabezados
+        required_columns = db.student_column_name()
+        return df[required_columns].dropna(how="all")
+
+    def initial_sync(self):
+        """Realiza la primera sincronización masiva."""
+        df = self.get_filtered_dataframe()
+        for _, record in df.iterrows():
+            db.add_or_update_student(self.row_to_dict(record))
+        
+        self.config_manager.add_dict("num_row_last_register", self.__work_sheet.row_count)
+        self.config_manager.add_dict("first_load", True)
+
+    def update_sync(self):
+        """Realiza una sincronización incremental desde la última fila sincronizada."""
+        #total_rows = self.__work_sheet.row_count
+        num_row_last_register = self.config_manager["num_row_last_register"]
+        new_records = []
+        for i in range(num_row_last_register + 1):
+            row_data = self.__work_sheet.row_values(i)
+            new_records.append(self.row_to_dict(row_data))
+        
+        for record in new_records:
+            db.add_or_update_student(record)  # Función hipotética que agrega o actualiza un registro.
+
+        return self.__work_sheet.row_count
+
+    def row_to_dict(self, row_data):
+        """Convierte una fila de datos en un diccionario."""
+        return {
+        "nombre": row_data[0].lower().capitalize(),
+        "apellidos": row_data[1].lower().capitalize(),
+        "grado": row_data[2],
+        "grupo": row_data[3],
+        "codigo": str(int(float(row_data[4]))),  # Convertir a float, luego a int y luego a str
+        "chat_id": str(int(float(row_data[5])))  # Convertir a float, luego a int y luego a str
+    }
+
+# Código de ejecución
+syncer = DataSync("Albert Einstein")
+
+# Para la primera sincronización
+syncer.sync()//syncer.initial_sync()
+
+# Para sincronizaciones incrementales
+#LAST_SYNCED_ROW = syncer.num_rows  # Puedes guardar este valor en un archivo o en la base de datos para persistencia entre ejecuciones.
+#LAST_SYNCED_ROW = syncer.incremental_sync(LAST_SYNCED_ROW)
+#FIRS_LOAD = True

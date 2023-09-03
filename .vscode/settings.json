@@ -1,0 +1,38 @@
+{
+    "cSpell.words": [
+        "dinámicamente",
+        "Hernández",
+        "nombre",
+        "subcarpeta"
+    ],
+    "workbench.colorCustomizations": {
+        "[Viow Arabian - Mix]": { 
+            "sideBar.background": "#010725",
+            "editor.selectionBackground": "#707e8f"
+    }
+    },
+    "cSpell.ignoreWords": [
+        "Fgovr",
+        "Lgoj",
+        "autoload",
+        "codigo",
+        "dataframe",
+        "datajson",
+        "dropna",
+        "fakedata",
+        "gspread",
+        "iterrows",
+        "megasync",
+        "miguardiadb",
+        "miguardian",
+        "miguardiandb",
+        "nullable",
+        "sessionmaker",
+        "sqlalchemy",
+        "sqlite",
+        "syncer",
+        "temppath",
+        "yagami"
+    ],
+    "materialkv.pythonFile": "main.py"
+}

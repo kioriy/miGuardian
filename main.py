@@ -1,0 +1,97 @@
+# -*- coding: utf-8 
+# @Author: Hugo Rafael Hernández Llamas
+# @Date:   2023-08-19 12:33:12
+# @Last Modified by:   Hugo Rafael Hernández Llamas
+# @Last Modified time: 2023-08-28 01:49:20
+
+#from kivy.support import install_twisted_reactor
+#install_twisted_reactor()
+
+from kivymd.app import MDApp
+from kivymd.uix.screen import Screen
+from kivy.lang import Builder
+from datetime import datetime
+from util.datajson import DataJson
+from util.notification import TelegramNotifier
+from kivy.clock import Clock
+
+#from util.datasync import DataSync
+import database.miguardiandb as db 
+import util.temppath as tp
+import threading
+import util.datasync
+import service.megasync
+#import database.fakedata
+
+class MiGuardianApp(MDApp):
+    def build(self):
+        db.setup_database()# Inicializamos la base de datos al iniciar la app
+        self.photos_path = tp.ensure_photos_dir_exists()
+        self.event_logger = DataJson("eventRegister", {"no_student":[], "no_photo":[]})
+        self.notification = TelegramNotifier()
+        Clock.schedule_once(self.refocus_ti)
+        return Builder.load_file('miguardian.kv')
+
+    def show_student_info(self):
+        barcode = self.root.ids.barcode_input.text
+        student = db.get_student_by_code(barcode)
+        placeholder_path = f"{self.photos_path}placeholder.jpeg" 
+        
+        if student:
+            # Genera la ruta de la foto dinámicamente y actualiza la interfaz
+            photo_path = f"{self.photos_path}{student.nombre} {student.apellidos}.jpeg"
+            file_exist = tp.file_exist(photo_path)
+            status_photo = "" #if file_exist else "FOTOGRAFÍA DEL ALUMNO NO ENCONTRADA"
+            
+            if not file_exist:
+                #Si no existe la foto, registra el evento
+                list_no_photo = self.event_logger.data["no_photo"]
+                list_no_photo.append(barcode)
+                self.event_logger.add_dict("no_photo", list_no_photo)
+                status_photo = "FOTOGRAFÍA DEL ALUMNO NO ENCONTRADA"
+            
+            self.root.ids.student_photo.source = photo_path if file_exist else placeholder_path
+            self.root.ids.student_photo.size_hint:  (1, 1)
+            self.root.ids.student_info.text = (f"Nombre: {student.nombre} {student.apellidos}\n" 
+                                            f"Grado: {student.grado}\n" 
+                                            f"Grupo: {student.grupo}\n\n" 
+                                            f"{status_photo}" )
+            
+            #agregar el registro de asistencia del alumno
+            status = self.register_attendance(student)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
+            
+            if status == "entrada":
+                self.root.ids.status_message.text = "Registro de entrada exitoso"
+                self.root.ids.status_icon.icon = "door-open"
+                self.root.ids.status_icon.text_color = (0, 1, 0, 1)  # verde
+            else:
+                self.root.ids.status_message.text = "Registro de salida exitoso"
+                self.root.ids.status_icon.icon = "door-closed"
+                self.root.ids.status_icon.text_color = (1, 0, 0, 1)  # rojo
+        else:
+            #Si el estudiante no se encuentra en la base de datos, registra el evento
+            list_no_student = self.event_logger.data["no_student"]
+            list_no_student.append(barcode)
+            self.event_logger.add_dict("no_student", list_no_student)
+            self.root.ids.student_photo.source = placeholder_path   # Imagen por defecto
+            self.root.ids.student_info.text = "Estudiante no encontrado"
+        
+        # Reiniciar el valor del MDTextField
+        self.root.ids.barcode_input.text = ''
+        # Mantener el foco en el MDTextField
+        Clock.schedule_once(self.refocus_ti)
+
+    def register_attendance(self, student: db.Student):
+            #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
+            chat_id = 1323264228#student.chat_id
+            current_time = datetime.now().strftime('%I:%M:%S %p')
+            status = db.register_record_es(student.id)
+            message = f"El alumno {student.nombre} {student.apellidos} registro su {status} a las {current_time}"
+            threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
+            #self.notification.send_message(chat_id, message)
+            return status
+    
+    def refocus_ti(self, *args):
+        self.root.ids.barcode_input.focus = True
+
+MiGuardianApp().run()
