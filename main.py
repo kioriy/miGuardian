@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-03 10:50:52
+# @Last Modified time: 2023-09-03 16:06:00
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -146,10 +146,10 @@ class MiGuardianApp(MDApp):
         self.dialog.dismiss()
 
     def switch_to_gpio(self):
-        subprocess.run(['./LCD35-show'], shell=True)
+        subprocess.run(['cd LCD-show/', 'sudo ./MHS35-show'], shell=True)
 
     def switch_to_hdmi(self):
-        subprocess.run(['./LCD-hdmi'], shell=True)
+        subprocess.run(['cd LCD-show/','sudo ./LCD-hdmi'], shell=True)
 
     def revert_to_hdmi(self):
         if self.screen_status == "GPIO":
