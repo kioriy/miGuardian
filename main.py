@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-03 16:24:53
+# @Last Modified time: 2023-09-03 16:27:51
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -147,13 +147,13 @@ class MiGuardianApp(MDApp):
 
     def switch_to_gpio(self):
         try:
-            subprocess.run(["sudo", "./MHS35-show"], cwd="/home/LCD-show/")
+            subprocess.run(["sudo", "./MHS35-show"], cwd="/home/kioriy/LCD-show/")
         except Exception as e:
             print(f"Ocurrió un error al cambiar a la pantalla GPIO: {e}")#subprocess.run(['cd LCD-show/ && sudo ./MHS35-show'], shell=True)
 
     def switch_to_hdmi(self):
         try:
-            subprocess.run(["sudo", "./LCD-hdmi"], cwd="/home/LCD-show/")
+            subprocess.run(["sudo", "./LCD-hdmi"], cwd="/home/kioriy/LCD-show/")
         except Exception as e:
             print(f"Ocurrió un error al cambiar a la pantalla HDMI: {e}")#subprocess.run(['cd LCD-show/ && sudo ./LCD-hdmi'], shell=True)
 
