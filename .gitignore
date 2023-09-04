@@ -7,6 +7,8 @@ __pycache__/
 *.so
 
 miguardian.db
+eventRegister.json
+settings.json
 # Distribution / packaging
 .Python
 build/
