@@ -9,13 +9,13 @@ Screen:
 
     Image:
         id: student_photo
-        pos_hint: {'center_x': 0.5, 'center_y': 0.7}
-        size_hint: (1, 1)
+        pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+        size_hint: (0.5, 0.5)
         source: 'assets/placeholder.jpeg'  # Imagen por defecto
 
     MDLabel:
         id: student_info
-        font_size: 38
+        font_size: 20
         pos_hint: {'center_x': 0.7, 'center_y': 0.22}
         theme_text_color: 'Primary'
 
@@ -27,7 +27,7 @@ Screen:
 
     MDIcon:
         id: status_icon
-        pos_hint: {'center_x': 0.8, 'center_y': 0.070}
+        pos_hint: {'x': 0.9, 'y': 0.02}
         size_hint: (None, None)
         icon: 'door-open'  # valor por defecto, cambiarás esto en el código
         theme_text_color: 'Custom'
