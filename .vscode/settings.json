@@ -28,6 +28,8 @@
         "miguardiadb",
         "miguardian",
         "miguardiandb",
+        "napellidos",
+        "nnombre",
         "nullable",
         "sessionmaker",
         "sqlalchemy",

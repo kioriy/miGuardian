@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-04 21:59:35
+# @Last Modified time: 2023-09-04 22:59:05
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -24,6 +24,8 @@ import util.temppath as tp
 import threading
 import subprocess
 import util.datasync
+import re
+from unicodedata import normalize
 #import service.megasync
 #import database.fakedata
 
@@ -47,7 +49,10 @@ class MiGuardianApp(MDApp):
         
         if student:
             # Genera la ruta de la foto dinámicamente y actualiza la interfaz
-            photo_path = f"{self.photos_path}{student.nombre} {student.apellidos}.jpeg"
+            nnombre = self.normalize_s(student.nombre)
+            napellidos = self.normalize_s(student.apellidos)
+            
+            photo_path = f"{self.photos_path}{nnombre} {napellidos}.jpeg"
             file_exist = tp.file_exist(photo_path)
             status_photo = "" #if file_exist else "FOTOGRAFÍA DEL ALUMNO NO ENCONTRADA"
             
@@ -98,6 +103,21 @@ class MiGuardianApp(MDApp):
             threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
             #self.notification.send_message(chat_id, message)
             return status
+    
+    def normalize_s(self, s):
+        
+        s = s.strip()
+        s = s.lower()
+        # -> NFD y eliminar diacríticos
+        s = re.sub(
+            r"([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+", r"\1", 
+            normalize( "NFD", s), 0, re.I
+            )
+
+        # -> NFC
+        s = normalize( 'NFC', s)
+        
+        return s
     
     def refocus_ti(self, *args):
         self.root.ids.barcode_input.focus = True
