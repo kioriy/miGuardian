@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-03 16:27:51
+# @Last Modified time: 2023-09-04 21:59:35
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -31,6 +31,7 @@ class MiGuardianApp(MDApp):
     def build(self):
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
+        print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
         self.event_logger = DataJson("eventRegister", {"no_student":[], "no_photo":[]})
         self.notification = TelegramNotifier()
         self.settings = DataJson("settings", dict())
@@ -55,13 +56,13 @@ class MiGuardianApp(MDApp):
                 list_no_photo = self.event_logger.data["no_photo"]
                 list_no_photo.append(barcode)
                 self.event_logger.add_dict("no_photo", list_no_photo)
-                status_photo = "FOTOGRAFÍA DEL ALUMNO NO ENCONTRADA"
+                status_photo = "SIN FOTOGRAFÍA DEL ALUMNO"
             
             self.root.ids.student_photo.source = photo_path if file_exist else placeholder_path
             self.root.ids.student_photo.size_hint:  (1, 1)
             self.root.ids.student_info.text = (f"Nombre: {student.nombre} {student.apellidos}\n" 
                                             f"Grado: {student.grado}\n" 
-                                            f"Grupo: {student.grupo}\n\n" 
+                                            f"Grupo: {student.grupo}\n" 
                                             f"{status_photo}" )
             
             #agregar el registro de asistencia del alumno
