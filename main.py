@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-04 23:21:56
+# @Last Modified time: 2023-09-05 02:34:25
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -96,7 +96,7 @@ class MiGuardianApp(MDApp):
 
     def register_attendance(self, student: db.Student):
             #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
-            chat_id = 1323264228#student.chat_id
+            chat_id = student.chat_id#1323264228#student.chat_id
             current_time = datetime.now().strftime('%I:%M:%S %p')
             status = db.register_record_es(student.id)
             message = f"El alumno {student.nombre} {student.apellidos} registro su {status} a las {current_time}"
