@@ -9,6 +9,7 @@ __pycache__/
 miguardian.db
 eventRegister.json
 settings.json
+fotos/
 # Distribution / packaging
 .Python
 build/
