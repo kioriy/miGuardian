@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-04 22:59:05
+# @Last Modified time: 2023-09-04 23:21:56
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -33,7 +33,7 @@ class MiGuardianApp(MDApp):
     def build(self):
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
-        print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
+        #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
         self.event_logger = DataJson("eventRegister", {"no_student":[], "no_photo":[]})
         self.notification = TelegramNotifier()
         self.settings = DataJson("settings", dict())

@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-03 04:25:58
+# @Last Modified time: 2023-09-04 23:21:43
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -27,8 +27,10 @@ class DataSync:
         num_rows = len(self.__work_sheet.get_all_values())
         first_load = self.config_manager.data['first_load']
         if first_load and num_rows > num_row_last_register:
+            print(">>>>>ACTUALIZACION DE DATOS<<<<<<<<<<")
             self.update_sync()
         elif not first_load:
+            print(">>>>>CARGA INICIAL DE DATOS<<<<<<<<<<")
             self.initial_sync()
         
     def get_filtered_dataframe(self):
