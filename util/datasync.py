@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-04 23:21:43
+# @Last Modified time: 2023-09-06 02:16:45
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -67,8 +67,8 @@ class DataSync:
     def row_to_dict(self, row_data):
         """Convierte una fila de datos en un diccionario."""
         return {
-        "nombre": row_data[0].lower().capitalize(),
-        "apellidos": row_data[1].lower().capitalize(),
+        "nombre": row_data[0].lower().title(),
+        "apellidos": row_data[1].lower().title(),
         "grado": row_data[2],
         "grupo": row_data[3],
         "codigo": str(int(float(row_data[4]))),  # Convertir a float, luego a int y luego a str
