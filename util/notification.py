@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-23 23:46:49
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-08-24 21:50:03
+# @Last Modified time: 2023-09-05 21:02:49
 
 import requests
 
@@ -18,4 +18,5 @@ class TelegramNotifier:
             'text': message
         }
         response = requests.post(url, data=data)
+        print(f"RESPUESTA DE MENSAJE:<<<<<<<<<<<<{response.json()}>>>>>>>>>>>>>")
         return response.json()
