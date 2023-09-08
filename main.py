@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-05 21:01:12
+# @Last Modified time: 2023-09-07 21:03:36
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -16,6 +16,7 @@ from kivy.clock import Clock
 from datetime import datetime
 from util.datajson import DataJson
 from util.notification import TelegramNotifier
+from kivy.uix.screenmanager import ScreenManager, Screen
 
 
 #from util.datasync import DataSync
@@ -28,6 +29,12 @@ import re
 from unicodedata import normalize
 #import service.megasync
 #import database.fakedata
+
+class MainScreen(Screen):
+    pass
+
+class StoreScreen(Screen):
+    pass
 
 class MiGuardianApp(MDApp):
     def build(self):

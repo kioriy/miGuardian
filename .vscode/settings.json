@@ -31,6 +31,7 @@
         "napellidos",
         "nnombre",
         "nullable",
+        "screenmanager",
         "sessionmaker",
         "sqlalchemy",
         "sqlite",
