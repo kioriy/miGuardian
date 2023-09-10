@@ -7,6 +7,7 @@ __pycache__/
 *.so
 
 miguardian.db
+miguardian_old.db
 eventRegister.json
 settings.json
 fotos/
