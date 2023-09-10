@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-08-28 00:23:54
+# @Last Modified time: 2023-09-10 11:13:41
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -24,6 +24,18 @@ class Student(Base):
     chat_id = Column(String)
     # Relación con la tabla attendance
     attendances = relationship("Attendance", back_populates="student")
+    breakfasts = relationship("Breakfast", back_populates="student")
+
+class Breakfast(Base):
+    __tablename__ = 'breakfast'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    date = Column(Date, default=datetime.today().date())
+    time = Column(Time,)
+    
+
+    student_id = Column(Integer, ForeignKey('student.id'))
+    student = relationship("Student", back_populates="breakfasts")
 
 # Definición de la tabla Attendance
 class Attendance(Base):
@@ -151,5 +163,57 @@ def register_record_es(student_id):
     db_session.close()
     
     return status
+
+# Funciones relacionadas con la tabla Breakfast
+def register_breakfast(student_id):
+    db_session = SessionLocal()
+    
+    current_time = get_current_time_without_microseconds()
+
+    new_breakfast = Breakfast(time=current_time, student_id=student_id)
+    db_session.add(new_breakfast)
+    
+    db_session.commit()
+    db_session.close()
+
+def get_breakfast_records():
+    db_session = SessionLocal()
+
+    results = db_session.query(
+        Student.nombre, 
+        Student.apellidos, 
+        Student.grado, 
+        Student.grupo, 
+        Breakfast.date,
+        Breakfast.time
+    ).join(Breakfast, Student.id == Breakfast.student_id).all()
+
+    db_session.close()
+    return results
+
+def get_today_breakfast_records():
+    db_session = SessionLocal()
+    
+    # Fecha actual
+    today = datetime.today().date()
+
+    # Busca registros de desayunos del día actual
+    today_records = db_session.query(
+        Student.nombre, 
+        Student.apellidos, 
+        Student.grado, 
+        Student.grupo, 
+        Breakfast.date,
+        Breakfast.time
+        ).join(
+            Student, 
+            Breakfast.student_id == Student.id
+            ).filter(
+                Breakfast.date == today
+                ).order_by(Breakfast.date.desc(), Breakfast.time.desc()).all()
+    
+    db_session.close()
+    
+    return today_records
 
 setup_database()

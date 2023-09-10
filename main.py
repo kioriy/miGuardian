@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-07 21:03:36
+# @Last Modified time: 2023-09-10 14:43:21
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -17,6 +17,7 @@ from datetime import datetime
 from util.datajson import DataJson
 from util.notification import TelegramNotifier
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivymd.uix.list import ThreeLineAvatarListItem, ImageLeftWidget
 
 
 #from util.datasync import DataSync
@@ -27,6 +28,8 @@ import subprocess
 import util.datasync
 import re
 from unicodedata import normalize
+from functools import partial
+
 #import service.megasync
 #import database.fakedata
 
@@ -34,7 +37,44 @@ class MainScreen(Screen):
     pass
 
 class StoreScreen(Screen):
-    pass
+    def on_enter(self, *args):
+        list_items = len(self.ids.breakfast_student_list.children)
+        app = MDApp.get_running_app()
+        Clock.schedule_once(partial(app.refocus_ti, 'store', 'barcode_input_store'))
+        
+        if list_items == 0:
+            self.load_breakfast_records()
+        
+    def load_breakfast_records(self):
+        breakfast_records = db.get_today_breakfast_records()#db.get_breakfast_records()
+        app = MDApp.get_running_app()
+        self.ids.breakfast_student_list.clear_widgets()
+        
+        for record in breakfast_records:
+            list_item = ThreeLineAvatarListItem(
+                text= f"{record.nombre} {record.apellidos}" ,
+                secondary_text=f"{record.grado} - {record.grupo}",
+                tertiary_text=str(f"{record.date.strftime('%d-%m-%y')} {record.time}")
+            )
+            
+            nnombre = app.normalize_s(record.nombre)
+            napellidos = app.normalize_s(record.apellidos)
+        
+            avatar = ImageLeftWidget(source=f"fotos/{nnombre} {napellidos}.jpeg")
+            list_item.add_widget(avatar)
+            self.ids.breakfast_student_list.add_widget(list_item)
+            
+        
+    def register_new_breakfast(self, codigo):
+        student = db.get_student_by_code(codigo)
+        app = MDApp.get_running_app()
+        
+        if student:
+            db.register_breakfast(student.id)
+            self.load_breakfast_records() # Refrescar la lista cada vez que se añade un registro nuevo
+            self.ids.barcode_input_store.text = ''
+            Clock.schedule_once(partial(app.refocus_ti, 'store', 'barcode_input_store'))
+            
 
 class MiGuardianApp(MDApp):
     def build(self):
@@ -44,12 +84,28 @@ class MiGuardianApp(MDApp):
         self.event_logger = DataJson("eventRegister", {"no_student":[], "no_photo":[]})
         self.notification = TelegramNotifier()
         self.settings = DataJson("settings", dict())
-        self.screen_status = self.settings.data['screen_status']
-        Clock.schedule_once(self.refocus_ti)
-        return Builder.load_file('miguardian.kv')
+        self.screen_status = self.settings.get_dict_value('screen_status', 'HDMI')
+        #Clock.schedule_once(partial(self.refocus_ti('main', 'barcode_input')))
+        
+        self.sm = ScreenManager()
+        
+        main_screen = MainScreen(name="main")
+        store_screen = StoreScreen(name="store")
+        
+        self.sm.add_widget(main_screen)
+        self.sm.add_widget(store_screen)
+        
+        #Clock.schedule_once(partial(self.refocus_ti('main', 'barcode_input')))
+        
+        return self.sm#Builder.load_file('miguardian.kv')
+
+    def on_start(self):
+        Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
 
     def show_student_info(self):
-        barcode = self.root.ids.barcode_input.text
+        main_screen = self.root.get_screen('main')
+        
+        barcode = main_screen.ids.barcode_input.text#self.root.ids.barcode_input.text
         student = db.get_student_by_code(barcode)
         placeholder_path = f"{self.photos_path}placeholder.jpeg"
         #self.screen_status = self.settings.data['screen_status']
@@ -70,9 +126,9 @@ class MiGuardianApp(MDApp):
                 self.event_logger.add_dict("no_photo", list_no_photo)
                 status_photo = "SIN FOTOGRAFÍA DEL ALUMNO"
             
-            self.root.ids.student_photo.source = photo_path if file_exist else placeholder_path
-            self.root.ids.student_photo.size_hint:  (1, 1)
-            self.root.ids.student_info.text = (f"Nombre: {student.nombre} {student.apellidos}\n" 
+            main_screen.ids.student_photo.source = photo_path if file_exist else placeholder_path
+            main_screen.ids.student_photo.size_hint:  (1, 1)
+            main_screen.ids.student_info.text = (f"Nombre: {student.nombre} {student.apellidos}\n" 
                                             f"Grado: {student.grado}\n" 
                                             f"Grupo: {student.grupo}\n" 
                                             f"{status_photo}" )
@@ -81,29 +137,29 @@ class MiGuardianApp(MDApp):
             status = self.register_attendance(student)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
             
             if status == "entrada":
-                self.root.ids.status_message.text = "Registro de entrada exitoso"
-                self.root.ids.status_icon.icon = "door-open"
-                self.root.ids.status_icon.text_color = (0, 1, 0, 1)  # verde
+                main_screen.ids.status_message.text = "Registro de entrada exitoso"
+                main_screen.ids.status_icon.icon = "door-open"
+                main_screen.ids.status_icon.text_color = (0, 1, 0, 1)  # verde
             else:
-                self.root.ids.status_message.text = "Registro de salida exitoso"
-                self.root.ids.status_icon.icon = "door-closed"
-                self.root.ids.status_icon.text_color = (1, 0, 0, 1)  # rojo
+                main_screen.ids.status_message.text = "Registro de salida exitoso"
+                main_screen.ids.status_icon.icon = "door-closed"
+                main_screen.ids.status_icon.text_color = (1, 0, 0, 1)  # rojo
         else:
             #Si el estudiante no se encuentra en la base de datos, registra el evento
             list_no_student = self.event_logger.data["no_student"]
             list_no_student.append(barcode)
             self.event_logger.add_dict("no_student", list_no_student)
-            self.root.ids.student_photo.source = placeholder_path   # Imagen por defecto
-            self.root.ids.student_info.text = "Estudiante no encontrado"
+            main_screen.ids.student_photo.source = placeholder_path   # Imagen por defecto
+            main_screen.ids.student_info.text = "Estudiante no encontrado"
         
         # Reiniciar el valor del MDTextField
-        self.root.ids.barcode_input.text = ''
+        main_screen.ids.barcode_input.text = ''
         # Mantener el foco en el MDTextField
-        Clock.schedule_once(self.refocus_ti)
+        Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
 
     def register_attendance(self, student: db.Student):
             #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
-            chat_id = student.chat_id#1323264228#student.chat_id
+            chat_id = 1323264228 #student.chat_id#1323264228#student.chat_id
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
             status = db.register_record_es(student.id)
@@ -127,8 +183,12 @@ class MiGuardianApp(MDApp):
         
         return s
     
-    def refocus_ti(self, *args):
-        self.root.ids.barcode_input.focus = True
+    def refocus_ti(self, screen_name, control_id, dt):
+        screen = self.root.get_screen(screen_name)
+        if screen:
+            control = screen.ids.get(control_id)
+            if control:
+                control.focus = True
         
     def switch_screen(self):
         if self.screen_status == "HDMI":
@@ -192,5 +252,11 @@ class MiGuardianApp(MDApp):
             self.switch_to_hdmi()
             self.settings.data['screen_status'] = 'HDMI'
             self.settings.write_data()
+            
+    def switch_form(self):
+        if self.sm.current == "main":
+            self.sm.current = "store"
+        else:
+            self.sm.current = "main"
 
 MiGuardianApp().run()

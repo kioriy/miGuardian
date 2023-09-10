@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-06 02:16:45
+# @Last Modified time: 2023-09-10 02:19:28
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -23,9 +23,9 @@ class DataSync:
         #self.num_rows = self.__work_sheet.row_count()
         
     def sync(self):
-        num_row_last_register = self.config_manager.data['num_row_last_register']
+        num_row_last_register = self.config_manager.get_dict_value('num_row_last_register', 0)
         num_rows = len(self.__work_sheet.get_all_values())
-        first_load = self.config_manager.data['first_load']
+        first_load = self.config_manager.get_dict_value('first_load', False)
         if first_load and num_rows > num_row_last_register:
             print(">>>>>ACTUALIZACION DE DATOS<<<<<<<<<<")
             self.update_sync()
@@ -45,14 +45,14 @@ class DataSync:
         for _, record in df.iterrows():
             db.add_or_update_student(self.row_to_dict(record))
         
-        num_rows = len(self.__work_sheet.get_all_values())
+        num_rows = len(self.__work_sheet.get_all_values()) - 1
         self.config_manager.add_dict("num_row_last_register", num_rows) #self.__work_sheet.row_count)
         self.config_manager.add_dict("first_load", True)
 
     def update_sync(self):
         """Realiza una sincronización incremental desde la última fila sincronizada."""
         #total_rows = self.__work_sheet.row_count
-        num_row_last_register = self.config_manager.data["num_row_last_register"]
+        num_row_last_register = self.config_manager.get_dict_value("num_row_last_register", 0)
         num_rows = len(self.__work_sheet.get_all_values())
         new_records = []
         for i in range(num_row_last_register + 1, num_rows, 1):
@@ -69,7 +69,7 @@ class DataSync:
         return {
         "nombre": row_data[0].lower().title(),
         "apellidos": row_data[1].lower().title(),
-        "grado": row_data[2],
+        "grado": str(int(float(row_data[2]))), #row_data[2],
         "grupo": row_data[3],
         "codigo": str(int(float(row_data[4]))),  # Convertir a float, luego a int y luego a str
         "chat_id": str(int(float(row_data[5])))  # Convertir a float, luego a int y luego a str

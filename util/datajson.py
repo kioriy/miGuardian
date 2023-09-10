@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-07-23 01:16:34
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-08-23 00:16:14
+# @Last Modified time: 2023-09-09 22:41:46
 import json
 import os
 import numpy as np
@@ -31,6 +31,10 @@ class DataJson:
     def add_dict(self, key, value):
         self.data[f"{key}"] = value
         self.write_data()
+        
+    def get_dict_value(self, key: str, value_if_key_not_exist):
+        value = self.data.get(key, value_if_key_not_exist)
+        return value
     
     def load_data(self):
         with open(f"{self.file_name}.json") as j:
