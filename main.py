@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-11 00:31:11
+# @Last Modified time: 2023-09-11 00:42:19
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -74,6 +74,11 @@ class StoreScreen(Screen):
             self.load_breakfast_records() # Refrescar la lista cada vez que se añade un registro nuevo
             self.ids.barcode_input_store.text = ''
             Clock.schedule_once(partial(app.refocus_ti, 'store', 'barcode_input_store'))
+            chat_id = student.chat_id#1323264228#student.chat_id
+            print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
+            current_time = datetime.now().strftime('%I:%M:%S %p')
+            message = f"El alumno {student.nombre} {student.apellidos} registro un desayuno a las {current_time}"
+            threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
             
 
 class MiGuardianApp(MDApp):
