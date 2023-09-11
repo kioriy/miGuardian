@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-10 02:19:28
+# @Last Modified time: 2023-09-11 00:01:07
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -76,7 +76,7 @@ class DataSync:
     }
 
 # Código de ejecución
-syncer = DataSync("Albert Einstein")
+syncer = DataSync("El castillito")
 
 # Para la primera sincronización
 syncer.sync()#syncer.initial_sync()
