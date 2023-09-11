@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-10 14:43:21
+# @Last Modified time: 2023-09-10 20:18:38
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -78,6 +78,7 @@ class StoreScreen(Screen):
 
 class MiGuardianApp(MDApp):
     def build(self):
+        self.title = "mi Guardian v1.0"
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
