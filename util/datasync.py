@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-11 00:01:07
+# @Last Modified time: 2023-09-11 02:15:07
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -15,10 +15,12 @@ class DataSync:
     __service_account = gspread.service_account()
     __sheet = __service_account.open("8020digital")
 
-    def __init__(self, work_sheet_name: str):
+    def __init__(self):
+        self.config_manager = DataJson("settings", dict())
+        work_sheet_name = self.config_manager.data['school_name']
         self.__work_sheet_name = work_sheet_name
         self.__work_sheet = self.__sheet.worksheet(self.__work_sheet_name)
-        self.config_manager = DataJson("settings", dict())#{"first_load_completed": False, "total_records": 0})
+        #self.config_manager = DataJson("settings", dict())#{"first_load_completed": False, "total_records": 0})
         #self.config = self.config_manager.data
         #self.num_rows = self.__work_sheet.row_count()
         
@@ -76,7 +78,7 @@ class DataSync:
     }
 
 # Código de ejecución
-syncer = DataSync("El castillito")
+syncer = DataSync()
 
 # Para la primera sincronización
 syncer.sync()#syncer.initial_sync()
