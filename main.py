@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-11 00:42:19
+# @Last Modified time: 2023-09-12 00:47:38
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -68,6 +68,7 @@ class StoreScreen(Screen):
     def register_new_breakfast(self, codigo):
         student = db.get_student_by_code(codigo)
         app = MDApp.get_running_app()
+        list_items = len(self.ids.breakfast_student_list.children)
         
         if student:
             db.register_breakfast(student.id)
@@ -79,7 +80,6 @@ class StoreScreen(Screen):
             current_time = datetime.now().strftime('%I:%M:%S %p')
             message = f"El alumno {student.nombre} {student.apellidos} registro un desayuno a las {current_time}"
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
-            
 
 class MiGuardianApp(MDApp):
     def build(self):
