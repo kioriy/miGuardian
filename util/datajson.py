@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-07-23 01:16:34
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-09 22:41:46
+# @Last Modified time: 2023-09-12 01:43:18
 import json
 import os
 import numpy as np
@@ -32,8 +32,10 @@ class DataJson:
         self.data[f"{key}"] = value
         self.write_data()
         
-    def get_dict_value(self, key: str, value_if_key_not_exist):
+    def add_and_get_dict_value_if_not_exist(self, key: str, value_if_key_not_exist):
         value = self.data.get(key, value_if_key_not_exist)
+        if value == value_if_key_not_exist:
+            self.add_dict(key, value)
         return value
     
     def load_data(self):

@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-11 02:15:07
+# @Last Modified time: 2023-09-12 01:37:24
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -25,9 +25,9 @@ class DataSync:
         #self.num_rows = self.__work_sheet.row_count()
         
     def sync(self):
-        num_row_last_register = self.config_manager.get_dict_value('num_row_last_register', 0)
+        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist('num_row_last_register', 0)
         num_rows = len(self.__work_sheet.get_all_values())
-        first_load = self.config_manager.get_dict_value('first_load', False)
+        first_load = self.config_manager.add_and_get_dict_value_if_not_exist('first_load', False)
         if first_load and num_rows > num_row_last_register:
             print(">>>>>ACTUALIZACION DE DATOS<<<<<<<<<<")
             self.update_sync()
@@ -54,7 +54,7 @@ class DataSync:
     def update_sync(self):
         """Realiza una sincronización incremental desde la última fila sincronizada."""
         #total_rows = self.__work_sheet.row_count
-        num_row_last_register = self.config_manager.get_dict_value("num_row_last_register", 0)
+        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist("num_row_last_register", 0)
         num_rows = len(self.__work_sheet.get_all_values())
         new_records = []
         for i in range(num_row_last_register + 1, num_rows, 1):

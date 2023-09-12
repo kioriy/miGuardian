@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-12 00:47:38
+# @Last Modified time: 2023-09-12 01:49:19
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -68,7 +68,8 @@ class StoreScreen(Screen):
     def register_new_breakfast(self, codigo):
         student = db.get_student_by_code(codigo)
         app = MDApp.get_running_app()
-        list_items = len(self.ids.breakfast_student_list.children)
+        total_desayunos = len(self.ids.breakfast_student_list.children) + 1
+        setting =  DataJson("settings", dict())
         
         if student:
             db.register_breakfast(student.id)
@@ -80,6 +81,11 @@ class StoreScreen(Screen):
             current_time = datetime.now().strftime('%I:%M:%S %p')
             message = f"El alumno {student.nombre} {student.apellidos} registro un desayuno a las {current_time}"
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
+            chat_id = setting.add_and_get_dict_value_if_not_exist('chat_id_admin', 0)#1323264228
+            current_time = datetime.now().strftime('%d-%m-%Y %I:%M:%S %p')
+            message = f"{current_time} Total de desayunos: {total_desayunos}, Total al corte ${total_desayunos * 30}"
+            threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
+            
 
 class MiGuardianApp(MDApp):
     def build(self):
@@ -90,7 +96,7 @@ class MiGuardianApp(MDApp):
         self.event_logger = DataJson("eventRegister", {"no_student":[], "no_photo":[]})
         self.notification = TelegramNotifier()
         self.settings = DataJson("settings", dict())
-        self.screen_status = self.settings.get_dict_value('screen_status', 'HDMI')
+        self.screen_status = self.settings.add_and_get_dict_value_if_not_exist('screen_status', 'HDMI')
         #Clock.schedule_once(partial(self.refocus_ti('main', 'barcode_input')))
         
         self.sm = ScreenManager()
