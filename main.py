@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-14 00:31:02
+# @Last Modified time: 2023-09-14 00:43:54
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -280,6 +280,7 @@ class MiGuardianApp(MDApp):
                 title='Confirmar apagar',
                 text='Realmente quieres apagar el sistema miGuardian?',
                 size_hint=(0.8, 1),
+                elevation = 0,
                 buttons=[
                     MDFlatButton(
                         text='CANCELAR',
