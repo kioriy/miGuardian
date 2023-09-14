@@ -28,7 +28,7 @@
 
         MDIcon:
             id: status_icon
-            pos_hint: {'x': 0.8, 'y': 0.02}
+            pos_hint: {'x': 0.9, 'y': 0.02}
             size_hint: (None, None)
             icon: 'door-open'  # valor por defecto, cambiarás esto en el código
             theme_text_color: 'Custom'
@@ -45,11 +45,41 @@
             icon: "monitor-multiple"
             on_press: app.switch_screen()
 
-        MDFloatingActionButton:
+        MDRectangleFlatIconButton:
             icon: "food"
+            icon_size: "34sp"
+            text: "mi Tiendita"
+            #theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "black"
+            #theme_icon_color: "Custom"
+            icon_color: "white"
             md_bg_color: app.theme_cls.primary_color
             pos_hint: {"top": 0.98, "x": 0.02}
+            #set_size: (100sp, 100sp)
+            size_hint: (0.2, 0.08)
             on_press: app.switch_form()
+
+        MDRectangleFlatIconButton:
+            icon: "human-baby-changing-table"
+            icon_size: "34sp"
+            text: "Bitacora"
+            #theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "black"
+            #theme_icon_color: "Custom"
+            icon_color: "white"
+            md_bg_color: app.theme_cls.primary_color
+            pos_hint: {"top": 0.89, "x": 0.02}
+            #set_size: (100sp, 100sp)
+            size_hint: (0.2, 0.08)
+            #on_press: app.switch_form()
+
+        MDFloatingActionButton:
+            icon: 'power'
+            md_bg_color: "#FB5252"
+            pos_hint: {"top": 0.98, "x": 0.92}
+            on_release: app.shutdown_raspberry()
 
 <StoreScreen>:
     BoxLayout:

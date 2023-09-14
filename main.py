@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-12 01:49:19
+# @Last Modified time: 2023-09-14 00:31:02
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -18,8 +18,7 @@ from util.datajson import DataJson
 from util.notification import TelegramNotifier
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.uix.list import ThreeLineAvatarListItem, ImageLeftWidget
-
-
+from kivy.utils import platform
 #from util.datasync import DataSync
 import database.miguardiandb as db 
 import util.temppath as tp
@@ -29,12 +28,16 @@ import util.datasync
 import re
 from unicodedata import normalize
 from functools import partial
+from subprocess import call
+
 
 #import service.megasync
 #import database.fakedata
 
 class MainScreen(Screen):
-    pass
+    def on_enter(self, *args):
+        app = MDApp.get_running_app()
+        Clock.schedule_once(partial(app.refocus_ti, 'main', 'barcode_input'))
 
 class StoreScreen(Screen):
     def on_enter(self, *args):
@@ -270,5 +273,33 @@ class MiGuardianApp(MDApp):
             self.sm.current = "store"
         else:
             self.sm.current = "main"
+            
+    def shutdown_raspberry(self):
+        if not hasattr(self, 'shutdown_dialog'):
+            self.shutdown_dialog = MDDialog(
+                title='Confirmar apagar',
+                text='Realmente quieres apagar el sistema miGuardian?',
+                size_hint=(0.8, 1),
+                buttons=[
+                    MDFlatButton(
+                        text='CANCELAR',
+                        on_release=self.close_shutdown_dialog
+                    ),
+                    MDFlatButton(
+                        text='APAGAR',
+                        on_release=self.perform_shutdown
+                    )
+                ]
+            )
+        self.shutdown_dialog.open()
+
+    def close_shutdown_dialog(self, *args):
+        self.shutdown_dialog.dismiss()
+
+    def perform_shutdown(self, *args):
+        # Aquí es donde realmente apagas la Raspberry
+        if platform == 'linux' or platform == 'linux2':  # Puede requerir más comprobaciones según tu configuración
+            call("sudo shutdown -h now", shell=True)
+        self.close_shutdown_dialog()
 
 MiGuardianApp().run()
