@@ -38,6 +38,7 @@
         MDFloatingActionButton:
             text: "Cambiar pantalla"
             pos_hint: {'x': 0.02, 'y': 0.02}
+            elevation: 0
             #pos: '200dp','500dp'
             size_hint: (None,None)
             size: '120dp','80dp'
@@ -49,9 +50,10 @@
             icon: "food"
             icon_size: "34sp"
             text: "mi Tiendita"
+            elevation: 0
             #theme_text_color: "Custom"
             text_color: "white"
-            line_color: "black"
+            #line_color: "black"
             #theme_icon_color: "Custom"
             icon_color: "white"
             md_bg_color: app.theme_cls.primary_color
@@ -64,9 +66,11 @@
             icon: "human-baby-changing-table"
             icon_size: "34sp"
             text: "Bitacora"
+            elevation: 0
+
             #theme_text_color: "Custom"
             text_color: "white"
-            line_color: "black"
+            #line_color: "black"
             #theme_icon_color: "Custom"
             icon_color: "white"
             md_bg_color: app.theme_cls.primary_color
@@ -78,6 +82,7 @@
         MDFloatingActionButton:
             icon: 'power'
             md_bg_color: "#FB5252"
+            elevation: 0
             pos_hint: {"top": 0.98, "x": 0.92}
             on_release: app.shutdown_raspberry()
 
