@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-14 00:43:54
+# @Last Modified time: 2023-09-20 01:14:01
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -88,11 +88,14 @@ class StoreScreen(Screen):
             current_time = datetime.now().strftime('%d-%m-%Y %I:%M:%S %p')
             message = f"{current_time} Total de desayunos: {total_desayunos}, Total al corte ${total_desayunos * 30}"
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
+        else:
+            self.ids.barcode_input_store.text = ''
+            Clock.schedule_once(partial(app.refocus_ti, 'store', 'barcode_input_store'))
             
 
 class MiGuardianApp(MDApp):
     def build(self):
-        self.title = "mi Guardian v1.0"
+        self.title = "mi Guardian v1.01"
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -250,8 +253,10 @@ class MiGuardianApp(MDApp):
         self.dialog.dismiss()
 
     def switch_to_gpio(self):
+        type_display_command = self.settings.add_and_get_dict_value_if_not_exist("type_display_command", "./LCD35-show")
+        
         try:
-            subprocess.run(["sudo", "./MHS35-show"], cwd="/home/kioriy/LCD-show/")
+            subprocess.run(["sudo", f"{type_display_command}"], cwd="/home/kioriy/LCD-show/")
         except Exception as e:
             print(f"Ocurrió un error al cambiar a la pantalla GPIO: {e}")#subprocess.run(['cd LCD-show/ && sudo ./MHS35-show'], shell=True)
 

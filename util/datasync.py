@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-12 01:37:24
+# @Last Modified time: 2023-09-20 00:16:06
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -47,7 +47,7 @@ class DataSync:
         for _, record in df.iterrows():
             db.add_or_update_student(self.row_to_dict(record))
         
-        num_rows = len(self.__work_sheet.get_all_values()) - 1
+        num_rows = len(self.__work_sheet.get_all_values())
         self.config_manager.add_dict("num_row_last_register", num_rows) #self.__work_sheet.row_count)
         self.config_manager.add_dict("first_load", True)
 
@@ -57,14 +57,15 @@ class DataSync:
         num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist("num_row_last_register", 0)
         num_rows = len(self.__work_sheet.get_all_values())
         new_records = []
-        for i in range(num_row_last_register + 1, num_rows, 1):
+        for i in range(num_row_last_register, num_rows+1, 1):
             row_data = self.__work_sheet.row_values(i)
             new_records.append(self.row_to_dict(row_data))
         
         for record in new_records:
             db.add_or_update_student(record)  # Función hipotética que agrega o actualiza un registro.
 
-        return self.__work_sheet.row_count
+        self.config_manager.add_dict("num_row_last_register", num_rows)
+        #return self.__work_sheet.row_count
 
     def row_to_dict(self, row_data):
         """Convierte una fila de datos en un diccionario."""
