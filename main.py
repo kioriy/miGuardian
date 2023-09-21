@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-20 23:15:55
+# @Last Modified time: 2023-09-21 14:44:28
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -19,6 +19,7 @@ from util.notification import TelegramNotifier
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.uix.list import ThreeLineAvatarListItem, ImageLeftWidget
 from kivy.utils import platform
+from kivy.factory import Factory
 #from util.datasync import DataSync
 import database.miguardiandb as db 
 import util.temppath as tp
@@ -29,7 +30,7 @@ import re
 from unicodedata import normalize
 from functools import partial
 from subprocess import call
-
+import os
 
 #import service.megasync
 #import database.fakedata
@@ -95,6 +96,19 @@ class StoreScreen(Screen):
             
 
 class MiGuardianApp(MDApp):
+    
+    KV_FILES ={
+        os.path.join(os.getcwd(), "miguardian.kv")
+    }
+    
+    CLASSES ={
+        "MiGuardianApp": "MainScreen"
+    }
+    
+    AUTORELOADER_PATHS =[
+        (".", {"recursive": True})
+    ]
+    
     def build(self):
         self.title = "mi Guardian v1.01"
         db.setup_database()# Inicializamos la base de datos al iniciar la app
@@ -116,7 +130,18 @@ class MiGuardianApp(MDApp):
         
         #Clock.schedule_once(partial(self.refocus_ti('main', 'barcode_input')))
         
-        return self.sm#Builder.load_file('miguardian.kv')
+        return Factory.MiGuardianApp()#self.sm #Builder.load_file('miguardian.kv')
+    
+    def on_keyboard_down(self, window, keyboard, keycode, text, modifiers) -> None:
+        """
+        The method handles keyboard events.
+
+        By default, a forced restart of an application is tied to the
+        `CTRL+R` key on Windows OS and `COMMAND+R` on Mac OS.
+        """
+
+        if "meta" in modifiers or "ctrl" in modifiers and text == "r":
+            self.rebuild()
 
     def on_start(self):
         Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
@@ -178,7 +203,7 @@ class MiGuardianApp(MDApp):
 
     def register_attendance(self, student: db.Student):
             #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
-            chat_id = student.chat_id#1323264228#student.chat_id
+            chat_id = 1323264228#student.chat_id#1323264228#student.chat_id
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
             status = db.register_record_es(student.id)
