@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-12 01:49:19
+# @Last Modified time: 2023-09-20 23:05:25
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -83,7 +83,8 @@ class StoreScreen(Screen):
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
             chat_id = setting.add_and_get_dict_value_if_not_exist('chat_id_admin', 0)#1323264228
             current_time = datetime.now().strftime('%d-%m-%Y %I:%M:%S %p')
-            message = f"{current_time} Total de desayunos: {total_desayunos}, Total al corte ${total_desayunos * 30}"
+            school_name = setting.add_and_get_dict_value_if_not_exist("school_name", "SN")
+            message = f"{current_time} Total de desayunos: {total_desayunos} de {school_name}, Total al corte ${total_desayunos * 30}"
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
             
 
