@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-10-04 23:18:25
+# @Last Modified time: 2023-10-05 09:15:06
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -153,11 +153,11 @@ def register_record_es(student_id):
         # Registra la entrada
         new_attendance = Attendance(entry_time=current_time, student_id=student_id)
         db_session.add(new_attendance)
-        status = f"🌞 entrada"
+        status = f"entrada"
     else:
         # Registra la salida
         attendance.exit_time = current_time
-        status = f"🌜 salida"
+        status = f"salida"
 
     db_session.commit()
     db_session.close()
