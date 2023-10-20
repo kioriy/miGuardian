@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-10-05 20:44:45
+# @Last Modified time: 2023-10-20 01:09:43
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -24,11 +24,12 @@ import database.miguardiandb as db
 import util.temppath as tp
 import threading
 import subprocess
-import util.datasync
+from  util.datasync import DataSync
 import re
 from unicodedata import normalize
 from functools import partial
 from subprocess import call
+from util.offline import Offline
 
 
 #import service.megasync
@@ -95,7 +96,8 @@ class StoreScreen(Screen):
 
 class MiGuardianApp(MDApp):
     def build(self):
-        self.title = "mi Guardian v1.02"
+        self.offline = Offline()
+        self.title = "mi Guardian v1.03" 
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -103,7 +105,6 @@ class MiGuardianApp(MDApp):
         self.notification = TelegramNotifier()
         self.settings = DataJson("settings", dict())
         self.screen_status = self.settings.add_and_get_dict_value_if_not_exist('screen_status', 'HDMI')
-        #Clock.schedule_once(partial(self.refocus_ti('main', 'barcode_input')))
         
         self.sm = ScreenManager()
         
@@ -113,7 +114,9 @@ class MiGuardianApp(MDApp):
         self.sm.add_widget(main_screen)
         self.sm.add_widget(store_screen)
         
-        #Clock.schedule_once(partial(self.refocus_ti('main', 'barcode_input')))
+        if self.offline.status:
+            ds = DataSync()
+            ds.sync()
         
         return self.sm#Builder.load_file('miguardian.kv')
 
@@ -157,10 +160,14 @@ class MiGuardianApp(MDApp):
             if status == "entrada":
                 main_screen.ids.status_message.text = "Registro de entrada exitoso"
                 main_screen.ids.status_icon.icon = "door-open"
+                main_screen.ids.status_icon.opacity = 1
+                main_screen.ids.status_icon.disabled = False
                 main_screen.ids.status_icon.text_color = (0, 1, 0, 1)  # verde
             else:
                 main_screen.ids.status_message.text = "Registro de salida exitoso"
                 main_screen.ids.status_icon.icon = "door-closed"
+                main_screen.ids.status_icon.opacity = 1
+                main_screen.ids.status_icon.disabled = False
                 main_screen.ids.status_icon.text_color = (1, 0, 0, 1)  # rojo
         else:
             #Si el estudiante no se encuentra en la base de datos, registra el evento
@@ -190,7 +197,6 @@ class MiGuardianApp(MDApp):
             status = db.register_record_es(student.id)
             message = f"El 👨‍🎓 alumno {student.nombre} {student.apellidos} registro su {status} a las ⏰ {current_time}"
             threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
-            #self.notification.send_message(chat_id, message)
             return status
     
     def normalize_s(self, s):
@@ -314,5 +320,16 @@ class MiGuardianApp(MDApp):
         if platform == 'linux' or platform == 'linux2':  # Puede requerir más comprobaciones según tu configuración
             call("sudo shutdown -h now", shell=True)
         self.close_shutdown_dialog()
+        
+    def generate_breakfast_report(self):
+        ds = DataSync()
+        # Obtiene los registros de desayuno de la base de datos
+        breakfast_records = db.get_today_breakfast_records()
+
+        # Actualiza la hoja de cálculo de Google Sheets
+        if len(breakfast_records) > 0:
+            ds.update_breakfast(self.settings.data["spreadsheet_name_breakfast"], breakfast_records)
+
+        # Agregar aquí cualquier otra lógica necesaria después de actualizar Google Sheets
 
 MiGuardianApp().run()

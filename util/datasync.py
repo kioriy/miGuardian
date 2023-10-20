@@ -2,19 +2,21 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-20 00:16:06
+# @Last Modified time: 2023-10-16 23:46:43
 
 import gspread
 from gspread_dataframe import get_as_dataframe
+import gspread_dataframe as gd
 from util.datajson import DataJson 
 import database.miguardiandb as db  # Asumiendo que miguardiandb tiene las funciones necesarias para interacción con la BD.
 import pandas as pd
+from datetime import datetime, time, date 
 
 class DataSync:
 
     __service_account = gspread.service_account()
     __sheet = __service_account.open("8020digital")
-
+    
     def __init__(self):
         self.config_manager = DataJson("settings", dict())
         work_sheet_name = self.config_manager.data['school_name']
@@ -78,11 +80,26 @@ class DataSync:
         "chat_id": str(int(float(row_data[5])))  # Convertir a float, luego a int y luego a str
     }
 
+    def update_breakfast(self, spread_sheet_name:str, breakfast_records):
+        service_account = gspread.service_account()
+        sheet_breakfast = service_account.open(spread_sheet_name)
+        worksheet_name = f"{datetime.today().strftime('%d-%m-%y')} - {self.config_manager.data['school_name']}" 
+        
+        try:
+            work_sheet = sheet_breakfast.worksheet(worksheet_name)
+        except gspread.exceptions.WorksheetNotFound as e:
+            sheet_breakfast.add_worksheet(title=worksheet_name, rows=1000, cols=10)
+            work_sheet = sheet_breakfast.worksheet(worksheet_name)
+        # end try
+        df = pd.DataFrame(breakfast_records, columns=["Nombre", "Apellidos", "Grado", "Grupo", "Fecha", "Hora"])
+        
+        gd.set_with_dataframe(work_sheet, df)
+
 # Código de ejecución
-syncer = DataSync()
+#syncer = DataSync()
 
 # Para la primera sincronización
-syncer.sync()#syncer.initial_sync()
+#syncer.sync()#syncer.initial_sync()
 
 # Para sincronizaciones incrementales
 #LAST_SYNCED_ROW = syncer.num_rows  # Puedes guardar este valor en un archivo o en la base de datos para persistencia entre ejecuciones.
