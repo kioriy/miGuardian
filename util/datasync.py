@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-10-16 23:46:43
+# @Last Modified time: 2023-10-20 01:25:49
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -14,10 +14,12 @@ from datetime import datetime, time, date
 
 class DataSync:
 
-    __service_account = gspread.service_account()
-    __sheet = __service_account.open("8020digital")
+    #__service_account = gspread.service_account()
+    #__sheet = __service_account.open("8020digital")
     
     def __init__(self):
+        self.__service_account = gspread.service_account()
+        self.__sheet = self.__service_account.open("8020digital")
         self.config_manager = DataJson("settings", dict())
         work_sheet_name = self.config_manager.data['school_name']
         self.__work_sheet_name = work_sheet_name

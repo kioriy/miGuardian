@@ -60,6 +60,17 @@
             #size_hint: (0.15, 0.1)
             on_press: app.switch_form()
 
+        MDIcon:
+            id: internet_status_icon
+            icon: 'wifi-off'  # Icono de conexión Wi-Fi
+            theme_text_color: 'Secondary'
+            halign: 'right'
+            valign: 'bottom'
+            pos_hint: {'bottom': 1, 'right': 1}
+            opacity: 0  
+            disabled: True
+            font_size: "34sp"
+
         #MDFloatingActionButton:
         #    icon: "human-baby-changing-table"
         #    icon_size: "34sp"

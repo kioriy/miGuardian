@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-10-20 01:09:43
+# @Last Modified time: 2023-10-20 01:36:46
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -117,6 +117,12 @@ class MiGuardianApp(MDApp):
         if self.offline.status:
             ds = DataSync()
             ds.sync()
+        else:
+            internet_status_icon = main_screen.ids.internet_status_icon
+            internet_status_icon.icon = 'wifi-off'
+            #internet_status_icon.text_color = (1, 0, 0, 1)
+            internet_status_icon.opacity = 1
+            internet_status_icon.disabled = False
         
         return self.sm#Builder.load_file('miguardian.kv')
 
