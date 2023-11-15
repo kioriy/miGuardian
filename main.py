@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-10-20 01:36:46
+# @Last Modified time: 2023-11-15 02:12:47
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()

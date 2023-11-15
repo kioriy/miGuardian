@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-10-20 01:25:49
+# @Last Modified time: 2023-11-14 23:46:54
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -52,7 +52,7 @@ class DataSync:
             db.add_or_update_student(self.row_to_dict(record))
         
         num_rows = len(self.__work_sheet.get_all_values())
-        self.config_manager.add_dict("num_row_last_register", num_rows) #self.__work_sheet.row_count)
+        self.config_manager.add_dict("num_row_last_register", num_rows-1) #self.__work_sheet.row_count)
         self.config_manager.add_dict("first_load", True)
 
     def update_sync(self):
@@ -60,15 +60,24 @@ class DataSync:
         #total_rows = self.__work_sheet.row_count
         num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist("num_row_last_register", 0)
         num_rows = len(self.__work_sheet.get_all_values())
-        new_records = []
-        for i in range(num_row_last_register, num_rows+1, 1):
-            row_data = self.__work_sheet.row_values(i)
-            new_records.append(self.row_to_dict(row_data))
+        new_row_last_register: str
+        df = self.get_filtered_dataframe()
         
-        for record in new_records:
-            db.add_or_update_student(record)  # Función hipotética que agrega o actualiza un registro.
+        for indice, record in df.iterrows():
+            if indice >= num_row_last_register:
+                db.add_or_update_student(self.row_to_dict(record))
+                new_row_last_register = indice
+        #for i in range(num_row_last_register, num_rows+1, 1):
+        #    if i == num_rows:
+        #        row_data = self.__work_sheet.row_values(i)
+        #        new_records.append(self.row_to_dict(row_data))
+                #row_data = self.__work_sheet.row_values(i)
+                #new_records.append(self.row_to_dict(row_data))
+        
+        #for record in new_records:
+        #    db.add_or_update_student(record)  # Función hipotética que agrega o actualiza un registro.
 
-        self.config_manager.add_dict("num_row_last_register", num_rows)
+        self.config_manager.add_dict("num_row_last_register", new_row_last_register)
         #return self.__work_sheet.row_count
 
     def row_to_dict(self, row_data):
