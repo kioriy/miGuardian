@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-11-14 23:46:54
+# @Last Modified time: 2023-11-21 00:35:58
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -10,7 +10,7 @@ import gspread_dataframe as gd
 from util.datajson import DataJson 
 import database.miguardiandb as db  # Asumiendo que miguardiandb tiene las funciones necesarias para interacción con la BD.
 import pandas as pd
-from datetime import datetime, time, date 
+from datetime import datetime, time, date, timedelta
 
 class DataSync:
 
@@ -59,14 +59,24 @@ class DataSync:
         """Realiza una sincronización incremental desde la última fila sincronizada."""
         #total_rows = self.__work_sheet.row_count
         num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist("num_row_last_register", 0)
-        num_rows = len(self.__work_sheet.get_all_values())
-        new_row_last_register: str
+        #num_rows = len(self.__work_sheet.get_all_values())
+        new_row_last_register = 0
+        #update_rows = []
+        #status_update = False
+        
         df = self.get_filtered_dataframe()
         
         for indice, record in df.iterrows():
             if indice >= num_row_last_register:
+                #update_rows.append(self.row_to_dict(record))
                 db.add_or_update_student(self.row_to_dict(record))
                 new_row_last_register = indice
+                #status_update = True
+                
+        #for _, in update_rows:
+        #    db.add_or_update_student(self.row_to_dict(record))
+        
+        self.config_manager.add_dict("num_row_last_register", new_row_last_register)
         #for i in range(num_row_last_register, num_rows+1, 1):
         #    if i == num_rows:
         #        row_data = self.__work_sheet.row_values(i)
@@ -77,11 +87,12 @@ class DataSync:
         #for record in new_records:
         #    db.add_or_update_student(record)  # Función hipotética que agrega o actualiza un registro.
 
-        self.config_manager.add_dict("num_row_last_register", new_row_last_register)
+        
         #return self.__work_sheet.row_count
 
     def row_to_dict(self, row_data):
         """Convierte una fila de datos en un diccionario."""
+        print(f"=============={row_data[0]}==================")
         return {
         "nombre": row_data[0].lower().title(),
         "apellidos": row_data[1].lower().title(),
@@ -103,6 +114,22 @@ class DataSync:
             work_sheet = sheet_breakfast.worksheet(worksheet_name)
         # end try
         df = pd.DataFrame(breakfast_records, columns=["Nombre", "Apellidos", "Grado", "Grupo", "Fecha", "Hora"])
+        
+        gd.set_with_dataframe(work_sheet, df)
+        
+    def update_entries(self, spread_sheet_name:str, entries_exits_record):
+        service_account = gspread.service_account()
+        sheet_breakfast = service_account.open(f"Registros entradas y salidas - {spread_sheet_name}")
+        date = datetime.today().date() - timedelta(days=1)
+        worksheet_name = f"{date.strftime('%d-%m-%y')} - {self.config_manager.data['school_name']}" 
+        
+        try:
+            work_sheet = sheet_breakfast.worksheet(worksheet_name)
+        except gspread.exceptions.WorksheetNotFound as e:
+            sheet_breakfast.add_worksheet(title=worksheet_name, rows=1000, cols=10)
+            work_sheet = sheet_breakfast.worksheet(worksheet_name)
+        # end try
+        df = pd.DataFrame(entries_exits_record, columns=["Nombre", "Apellidos", "Hora entrada", "Hora salida"])
         
         gd.set_with_dataframe(work_sheet, df)
 

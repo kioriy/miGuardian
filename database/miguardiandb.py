@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-10-05 09:15:06
+# @Last Modified time: 2023-11-20 23:22:56
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -215,5 +215,22 @@ def get_today_breakfast_records():
     db_session.close()
     
     return today_records
+
+def get_entries_and_exits_by_date(target_date: date):
+    db_session = SessionLocal()
+    
+    entries_and_exits = db_session.query(
+        Student.nombre,
+        Student.apellidos,
+        Attendance.entry_time,
+        Attendance.exit_time
+    ).join(
+        Attendance,
+        Student.id == Attendance.student_id
+    ).filter(
+        Attendance.date == target_date
+    ).all()
+
+    return entries_and_exits
 
 setup_database()

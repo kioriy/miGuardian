@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-11-15 02:12:47
+# @Last Modified time: 2023-11-21 08:54:41
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -14,6 +14,7 @@ from kivymd.uix.dialog import MDDialog
 from kivy.lang import Builder
 from kivy.clock import Clock
 from datetime import datetime
+from datetime import timedelta
 from util.datajson import DataJson
 from util.notification import TelegramNotifier
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -83,7 +84,7 @@ class StoreScreen(Screen):
             chat_id = student.chat_id#1323264228#student.chat_id
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
-            message = f"El  alumno {student.nombre} {student.apellidos} registro un desayuno a las {current_time}"
+            message = f"El alumno {student.nombre} {student.apellidos} registro un desayuno a las {current_time}"
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
             chat_id = setting.add_and_get_dict_value_if_not_exist('chat_id_admin', 0)#1323264228
             current_time = datetime.now().strftime('%d-%m-%Y %I:%M:%S %p')
@@ -97,7 +98,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.03" 
+        self.title = "mi Guardian v1.04" 
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -117,6 +118,7 @@ class MiGuardianApp(MDApp):
         if self.offline.status:
             ds = DataSync()
             ds.sync()
+            self.generate_entries_exits_report()
         else:
             internet_status_icon = main_screen.ids.internet_status_icon
             internet_status_icon.icon = 'wifi-off'
@@ -203,6 +205,7 @@ class MiGuardianApp(MDApp):
             status = db.register_record_es(student.id)
             message = f"El 👨‍🎓 alumno {student.nombre} {student.apellidos} registro su {status} a las ⏰ {current_time}"
             threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
+            #threading.Thread(target=self.notification.send_message, args=(1323264228, message,)).start()
             return status
     
     def normalize_s(self, s):
@@ -337,5 +340,15 @@ class MiGuardianApp(MDApp):
             ds.update_breakfast(self.settings.data["spreadsheet_name_breakfast"], breakfast_records)
 
         # Agregar aquí cualquier otra lógica necesaria después de actualizar Google Sheets
+        
+    def generate_entries_exits_report(self):
+        ds = DataSync()
+        
+        date = datetime.today().date() - timedelta(days=1)
+        
+        entries_exits_record = db.get_entries_and_exits_by_date(date)
+        
+        if len(entries_exits_record) > 0:
+            ds.update_entries(self.settings.data["school_name"], entries_exits_record)
 
 MiGuardianApp().run()
