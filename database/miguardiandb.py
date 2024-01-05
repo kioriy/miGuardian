@@ -2,12 +2,12 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-11-20 23:22:56
+# @Last Modified time: 2024-01-05 01:59:39
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.exc import NoSuchTableError
-from datetime import datetime, time, date
+from datetime import datetime, time, date, timedelta
 
 Base = declarative_base()
 
@@ -195,7 +195,28 @@ def get_today_breakfast_records():
     db_session = SessionLocal()
     
     # Fecha actual
-    today = datetime.today().date()
+    #today = datetime.today().date()
+    #start_date = datetime(year=2024, month=1, day=1)
+    #end_date = datetime(year=2024, month=1, day=15)
+    
+    # Obtener la fecha actual
+    fecha_actual = datetime.now()
+
+    # Obtener el primer día del mes actual
+    primer_dia_mes = fecha_actual.replace(day=1)
+
+    # Obtener la fecha actual más 15 días
+    fecha_15_dias = primer_dia_mes + timedelta(days=15)
+
+    # Calcular la fecha de inicio y la fecha de fin para el rango
+    start_date = primer_dia_mes
+    end_date = fecha_15_dias
+
+    # Verificar si los primeros 15 días ya han pasado
+    if fecha_actual.day > 15:
+        # Si ya pasaron, ajusta las fechas para los 15 días siguientes
+        start_date = fecha_actual.replace(day=16)
+        end_date = fecha_actual + timedelta(days=30)
 
     # Busca registros de desayunos del día actual
     today_records = db_session.query(
@@ -209,7 +230,7 @@ def get_today_breakfast_records():
             Student, 
             Breakfast.student_id == Student.id
             ).filter(
-                Breakfast.date == today
+                Breakfast.date.between(start_date, end_date)
                 ).order_by(Breakfast.date.desc(), Breakfast.time.desc()).all()
     
     db_session.close()

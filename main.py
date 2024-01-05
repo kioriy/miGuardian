@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-11-21 08:54:41
+# @Last Modified time: 2024-01-05 01:01:38
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -81,12 +81,14 @@ class StoreScreen(Screen):
             self.load_breakfast_records() # Refrescar la lista cada vez que se añade un registro nuevo
             self.ids.barcode_input_store.text = ''
             Clock.schedule_once(partial(app.refocus_ti, 'store', 'barcode_input_store'))
-            chat_id = student.chat_id#1323264228#student.chat_id
+            #chat_id = student.chat_id#1323264228#student.chat_id
+            chat_id = 1323264228
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
             message = f"El alumno {student.nombre} {student.apellidos} registro un desayuno a las {current_time}"
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
-            chat_id = setting.add_and_get_dict_value_if_not_exist('chat_id_admin', 0)#1323264228
+            #chat_id = setting.add_and_get_dict_value_if_not_exist('chat_id_admin', 0)#1323264228
+            chat_id = setting.add_and_get_dict_value_if_not_exist(1323264228, 0)#1323264228
             current_time = datetime.now().strftime('%d-%m-%Y %I:%M:%S %p')
             school_name = setting.add_and_get_dict_value_if_not_exist("school_name", "SN")
             message = f"{current_time} Total de desayunos: {total_desayunos} de {school_name}, Total al corte ${total_desayunos * 30}"
@@ -98,7 +100,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.04" 
+        self.title = "mi Guardian v1.05" 
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -204,8 +206,8 @@ class MiGuardianApp(MDApp):
             current_time = datetime.now().strftime('%I:%M:%S %p')
             status = db.register_record_es(student.id)
             message = f"El 👨‍🎓 alumno {student.nombre} {student.apellidos} registro su {status} a las ⏰ {current_time}"
-            threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
-            #threading.Thread(target=self.notification.send_message, args=(1323264228, message,)).start()
+            #threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
+            threading.Thread(target=self.notification.send_message, args=(1323264228, message,)).start()
             return status
     
     def normalize_s(self, s):
@@ -338,6 +340,10 @@ class MiGuardianApp(MDApp):
         # Actualiza la hoja de cálculo de Google Sheets
         if len(breakfast_records) > 0:
             ds.update_breakfast(self.settings.data["spreadsheet_name_breakfast"], breakfast_records)
+            
+            self.dialog = MDDialog(title='Actualización corte de caja',
+                                text='Datos actualizados')
+            self.dialog.open()
 
         # Agregar aquí cualquier otra lógica necesaria después de actualizar Google Sheets
         
