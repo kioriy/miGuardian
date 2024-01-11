@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-01-05 12:45:33
+# @Last Modified time: 2024-01-11 11:19:34
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -86,12 +86,14 @@ class StoreScreen(Screen):
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
             message = f"El alumno {student.nombre} {student.apellidos} registro un desayuno a las {current_time}"
+            '''Mensaje para el padre de familia'''
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
             chat_id = setting.add_and_get_dict_value_if_not_exist('chat_id_admin', 0)#1323264228
             #chat_id = setting.add_and_get_dict_value_if_not_exist(1323264228, 0)#1323264228
             current_time = datetime.now().strftime('%d-%m-%Y %I:%M:%S %p')
             school_name = setting.add_and_get_dict_value_if_not_exist("school_name", "SN")
             message = f"{current_time} Total de desayunos: {total_desayunos} de {school_name}, Total al corte ${total_desayunos * 30}"
+            '''Mensaje al administrador con el total del corte de caja de los desayunos'''
             threading.Thread(target=app.notification.send_message, args=(chat_id, message,)).start()
         else:
             self.ids.barcode_input_store.text = ''
@@ -100,7 +102,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.05" 
+        self.title = "mi Guardian v1.06" 
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -335,7 +337,7 @@ class MiGuardianApp(MDApp):
     def generate_breakfast_report(self):
         ds = DataSync()
         # Obtiene los registros de desayuno de la base de datos
-        breakfast_records = db.get_today_breakfast_records()
+        breakfast_records = db.get_all_breakfast_records()
 
         # Actualiza la hoja de cálculo de Google Sheets
         if len(breakfast_records) > 0:
