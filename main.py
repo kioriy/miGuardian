@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-01-15 20:23:10
+# @Last Modified time: 2024-01-18 23:02:14
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
@@ -102,7 +102,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.07" 
+        self.title = "mi Guardian v1.08" 
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -216,6 +216,13 @@ class MiGuardianApp(MDApp):
         
         s = s.strip()
         s = s.lower()
+        
+        # Normaliza la cadena a la forma NFD de Unicode
+        s = normalize("NFD", s)
+        
+        #eliminar las ñ por las n
+        s = re.sub(r"\u006e\u0303", "n", s, flags=re.I)
+        
         # -> NFD y eliminar diacríticos
         s = re.sub(
             r"([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+", r"\1", 
