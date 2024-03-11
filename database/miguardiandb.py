@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-01-08 22:53:24
+# @Last Modified time: 2024-02-08 14:23:30
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
@@ -286,13 +286,30 @@ def get_entries_and_exits_by_date(target_date: date):
         Student.nombre,
         Student.apellidos,
         Attendance.entry_time,
-        Attendance.exit_time
+        Attendance.exit_time,
+        Attendance.date
     ).join(
         Attendance,
         Student.id == Attendance.student_id
     ).filter(
         Attendance.date == target_date
     ).all()
+
+    return entries_and_exits
+
+def get_all_entries_and_exits():
+    db_session = SessionLocal()
+    
+    entries_and_exits = db_session.query(
+        Student.nombre,
+        Student.apellidos,
+        Attendance.entry_time,
+        Attendance.exit_time,
+        Attendance.date
+    ).join(
+        Attendance,
+        Student.id == Attendance.student_id
+    ).order_by(Attendance.date.desc()).all()
 
     return entries_and_exits
 

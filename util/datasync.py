@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-01-04 22:14:17
+# @Last Modified time: 2024-03-11 11:02:07
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -120,7 +120,7 @@ class DataSync:
     def update_entries(self, spread_sheet_name:str, entries_exits_record):
         service_account = gspread.service_account()
         sheet_breakfast = service_account.open(f"Registros entradas y salidas - {spread_sheet_name}")
-        date = datetime.today().date() - timedelta(days=1)
+        date = datetime.today() #datetime.today().date() - timedelta(days=1)
         worksheet_name = f"{date.strftime('%d-%m-%y')} - {self.config_manager.data['school_name']}" 
         
         try:
@@ -129,7 +129,7 @@ class DataSync:
             sheet_breakfast.add_worksheet(title=worksheet_name, rows=1000, cols=10)
             work_sheet = sheet_breakfast.worksheet(worksheet_name)
         # end try
-        df = pd.DataFrame(entries_exits_record, columns=["Nombre", "Apellidos", "Hora entrada", "Hora salida"])
+        df = pd.DataFrame(entries_exits_record, columns=["Nombre", "Apellidos", "Hora entrada", "Hora salida", "Fecha"])
         
         gd.set_with_dataframe(work_sheet, df)
 

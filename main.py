@@ -2,16 +2,16 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-01-18 23:02:14
+# @Last Modified time: 2024-03-11 10:54:44
 
 #from kivy.support import install_twisted_reactor
 #install_twisted_reactor()
 
 from kivymd.app import MDApp
-from kivymd.uix.screen import Screen
+#from kivymd.uix.screen import Screen
 from kivymd.uix.button import MDFlatButton
 from kivymd.uix.dialog import MDDialog
-from kivy.lang import Builder
+#from kivy.lang import Builder
 from kivy.clock import Clock
 from datetime import datetime
 from datetime import timedelta
@@ -31,7 +31,6 @@ from unicodedata import normalize
 from functools import partial
 from subprocess import call
 from util.offline import Offline
-
 
 #import service.megasync
 #import database.fakedata
@@ -102,7 +101,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.08" 
+        self.title = "mi Guardian v1.09" 
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -122,7 +121,7 @@ class MiGuardianApp(MDApp):
         if self.offline.status:
             ds = DataSync()
             ds.sync()
-            self.generate_entries_exits_report()
+            self.generate_all_entries_exits_report()#self.generate_entries_exits_report()
         else:
             internet_status_icon = main_screen.ids.internet_status_icon
             internet_status_icon.icon = 'wifi-off'
@@ -365,5 +364,16 @@ class MiGuardianApp(MDApp):
         
         if len(entries_exits_record) > 0:
             ds.update_entries(self.settings.data["school_name"], entries_exits_record)
+            
+    def generate_all_entries_exits_report(self):
+        ds = DataSync()
+        
+        #date = datetime.today().date() - timedelta(days=1)
+        
+        entries_exits_record = db.get_all_entries_and_exits()# get_entries_and_exits_by_date(date)
+        
+        if len(entries_exits_record) > 0:
+            ds.update_entries(self.settings.data["school_name"], entries_exits_record)
+        
 
 MiGuardianApp().run()
