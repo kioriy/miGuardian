@@ -2,12 +2,18 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-02-08 14:23:30
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
+# @Last Modified time: 2024-04-05 19:02:56
+#from sqlalchemy.exc import NoSuchTableError
+from datetime import datetime, time, date, timedelta
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
-from sqlalchemy.exc import NoSuchTableError
-from datetime import datetime, time, date, timedelta
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
+from util.datajson import DataJson
+import json
+import os
+import shutil
+
+#from util.datajson import DataJson
 
 Base = declarative_base()
 
@@ -22,9 +28,21 @@ class Student(Base):
     grupo = Column(String, nullable=False)
     codigo = Column(String, unique=True, index=True, nullable=False)
     chat_id = Column(String)
+    turno = Column(String, nullable=False)
     # Relación con la tabla attendance
     attendances = relationship("Attendance", back_populates="student")
     breakfasts = relationship("Breakfast", back_populates="student")
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "nombre": self.nombre,
+            "apellidos": self.apellidos,
+            "grado": self.grado,
+            "grupo": self.grupo,
+            "codigo": self.codigo,
+            "chat_id": self.chat_id
+        }
 
 class Breakfast(Base):
     __tablename__ = 'breakfast'
@@ -33,9 +51,15 @@ class Breakfast(Base):
     date = Column(Date, default=datetime.today().date())
     time = Column(Time,)
     
-
     student_id = Column(Integer, ForeignKey('student.id'))
     student = relationship("Student", back_populates="breakfasts")
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "date": self.date,
+            "time": self.time
+        }
 
 # Definición de la tabla Attendance
 class Attendance(Base):
@@ -49,6 +73,15 @@ class Attendance(Base):
     
     # Relación con la tabla student
     student = relationship("Student", back_populates="attendances")
+    
+    def serialize(self):
+        return {
+            "id": self.id,
+            "date": self.date,
+            "entry_time": self.entry_time,
+            "exit_time": self.exit_time,
+            "student_id": self.student_id
+        }
 
 # Configuración de la base de datos (usando SQLite local)
 DATABASE_URL = "sqlite:///./miguardian.db"
@@ -79,6 +112,28 @@ def add_student(student_data):
     student = Student(**student_data)
     db_session.add(student)
     db_session.commit()
+    db_session.close()
+
+def updatedb():
+    db_session = SessionLocal()
+    settings = DataJson("settings", dict())
+    settings.add_and_get_dict_value_if_not_exist("status_update_db", True)
+    
+    if settings['status_update_db']:
+        today = datetime.now().strftime("%Y-%m-%d")
+        name_folder_backup = f"respaldo_{today}"
+        os.makedirs(name_folder_backup, exist_ok=True)
+        
+        #Mover una copia de la base de datos
+        shutil.copy('miguardian.db', f"{name_folder_backup}/miguardian_{today}.db")
+        
+        #realizar respaldo de las tablas de la base de datos
+        json_student_backup = DataJson(f"{name_folder_backup}/student_backup", dict())
+        students_backup = db_session.query(Student).all()
+        students_backup = list(map(lambda x: x.serialize(), students_backup))
+        json_student_backup.data = students_backup
+        json_student_backup.write_data()
+    
     db_session.close()
     
 def add_or_update_student(student_data: dict):
@@ -153,11 +208,11 @@ def register_record_es(student_id):
         # Registra la entrada
         new_attendance = Attendance(entry_time=current_time, student_id=student_id)
         db_session.add(new_attendance)
-        status = f"entrada"
+        status = "entrada"
     else:
         # Registra la salida
         attendance.exit_time = current_time
-        status = f"salida"
+        status = "salida"
 
     db_session.commit()
     db_session.close()
@@ -312,5 +367,38 @@ def get_all_entries_and_exits():
     ).order_by(Attendance.date.desc()).all()
 
     return entries_and_exits
+
+def get_noCheckIn_student():
+    db_session = SessionLocal()
+    hoy = datetime.today().date()
+    #manager_no_checkin_student = DataJson("estudiantes_sin_entrada.json", [])
+
+    # Consulta todos los estudiantes
+    todos_los_estudiantes = db_session.query(Student).all()
+    # Consulta los registros de asistencia para hoy
+    asistencias_hoy = db_session.query(Attendance).filter(Attendance.date == hoy).all()
+
+    # Crear un conjunto de ID de estudiantes con asistencias registradas hoy
+    ids_con_asistencia = {asistencia.student_id for asistencia in asistencias_hoy}
+
+    # Filtrar estudiantes sin asistencias hoy
+    estudiantes_sin_entrada = [est for est in todos_los_estudiantes if est.id not in ids_con_asistencia]
+
+    #manager_no_checkin_student.data = estudiantes_sin_entrada
+    #manager_no_checkin_student.write_data()
+    # Crear una lista para almacenar los datos de los estudiantes
+    estudiantes_sin_entrada_datos = [{
+        'nombre': est.nombre,
+        'apellidos': est.apellidos,
+        'grado': est.grado,
+        'grupo': est.grupo
+    } for est in estudiantes_sin_entrada]
+
+    # Escribir los datos en un archivo JSON
+    with open('estudiantes_sin_entrada.json', 'w') as archivo_json:
+        json.dump(estudiantes_sin_entrada_datos, archivo_json, indent=4, ensure_ascii=False)
+
+    db_session.close()
+    #return estudiantes_sin_entrada
 
 setup_database()

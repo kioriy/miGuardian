@@ -4,7 +4,8 @@
         "hdmi",
         "Hernández",
         "nombre",
-        "subcarpeta"
+        "subcarpeta",
+        "sulista"
     ],
     "workbench.colorCustomizations": {
         "[Viow Arabian - Mix]": { 
@@ -19,11 +20,13 @@
         "Webserver",
         "autoload",
         "boxlayout",
+        "checkin",
         "codigo",
         "dataframe",
         "datajson",
         "datatable",
         "diacríticos",
+        "dias",
         "dropna",
         "fakedata",
         "gaierror",
@@ -45,9 +48,12 @@
         "setdefaulttimeout",
         "sqlalchemy",
         "sqlite",
+        "sublista",
+        "sublistas",
         "syncer",
         "temppath",
         "tvservice",
+        "updatedb",
         "yagami"
     ],
     "materialkv.pythonFile": "main.py"

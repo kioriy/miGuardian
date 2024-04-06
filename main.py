@@ -2,36 +2,29 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-03-11 10:54:44
+# @Last Modified time: 2024-04-05 19:04:09
 
-#from kivy.support import install_twisted_reactor
-#install_twisted_reactor()
-
+from subprocess import call
 from kivymd.app import MDApp
-#from kivymd.uix.screen import Screen
-from kivymd.uix.button import MDFlatButton
-from kivymd.uix.dialog import MDDialog
-#from kivy.lang import Builder
 from kivy.clock import Clock
+from functools import partial
 from datetime import datetime
 from datetime import timedelta
+from kivy.utils import platform
+from util.offline import Offline
+from unicodedata import normalize
+from util.datasync import DataSync
 from util.datajson import DataJson
+from kivymd.uix.dialog import MDDialog
+from kivymd.uix.button import MDFlatButton
 from util.notification import TelegramNotifier
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivymd.uix.list import ThreeLineAvatarListItem, ImageLeftWidget
-from kivy.utils import platform
-#from util.datasync import DataSync
 import database.miguardiandb as db 
 import util.temppath as tp
 import threading
 import subprocess
-from  util.datasync import DataSync
 import re
-from unicodedata import normalize
-from functools import partial
-from subprocess import call
-from util.offline import Offline
-
 #import service.megasync
 #import database.fakedata
 
@@ -101,7 +94,8 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.09" 
+        self.title = "mi Guardian v1.09"
+        db.updatedb()
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
@@ -109,7 +103,7 @@ class MiGuardianApp(MDApp):
         self.notification = TelegramNotifier()
         self.settings = DataJson("settings", dict())
         self.screen_status = self.settings.add_and_get_dict_value_if_not_exist('screen_status', 'HDMI')
-        
+        #db.updatedb()
         self.sm = ScreenManager()
         
         main_screen = MainScreen(name="main")
@@ -374,6 +368,5 @@ class MiGuardianApp(MDApp):
         
         if len(entries_exits_record) > 0:
             ds.update_entries(self.settings.data["school_name"], entries_exits_record)
-        
 
 MiGuardianApp().run()
