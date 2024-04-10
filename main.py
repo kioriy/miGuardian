@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-05 19:04:09
+# @Last Modified time: 2024-04-09 21:50:10
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -95,7 +95,7 @@ class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
         self.title = "mi Guardian v1.09"
-        db.updatedb()
+        #db.updatedb()
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")

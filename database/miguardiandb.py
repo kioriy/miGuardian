@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-05 19:02:56
+# @Last Modified time: 2024-04-05 22:11:48
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
 from sqlalchemy.ext.declarative import declarative_base
@@ -28,7 +28,7 @@ class Student(Base):
     grupo = Column(String, nullable=False)
     codigo = Column(String, unique=True, index=True, nullable=False)
     chat_id = Column(String)
-    turno = Column(String, nullable=False)
+    #turno = Column(String, nullable=False)
     # Relación con la tabla attendance
     attendances = relationship("Attendance", back_populates="student")
     breakfasts = relationship("Breakfast", back_populates="student")
@@ -119,16 +119,18 @@ def updatedb():
     settings = DataJson("settings", dict())
     settings.add_and_get_dict_value_if_not_exist("status_update_db", True)
     
-    if settings['status_update_db']:
+    if settings.data['status_update_db']:
         today = datetime.now().strftime("%Y-%m-%d")
-        name_folder_backup = f"respaldo_{today}"
+        name_folder_backup = "respaldos"#_{today}"
         os.makedirs(name_folder_backup, exist_ok=True)
         
         #Mover una copia de la base de datos
         shutil.copy('miguardian.db', f"{name_folder_backup}/miguardian_{today}.db")
+        #renombrar la base de datos para que se vuelva a crear con las nuevas tablas y atributos
+        os.rename('miguardian.db',f'miguardian_res_{today}.db')
         
         #realizar respaldo de las tablas de la base de datos
-        json_student_backup = DataJson(f"{name_folder_backup}/student_backup", dict())
+        json_student_backup = DataJson(f"{name_folder_backup}/student_backup_{today}", dict())
         students_backup = db_session.query(Student).all()
         students_backup = list(map(lambda x: x.serialize(), students_backup))
         json_student_backup.data = students_backup

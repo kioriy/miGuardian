@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+*.db
 # C extensions
 *.so
 
@@ -13,6 +13,7 @@ miguardian_old.db
 eventRegister.json
 settings.json
 fotos/
+resplados/
 # Distribution / packaging
 .Python
 build/
