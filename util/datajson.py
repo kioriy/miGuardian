@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-07-23 01:16:34
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2023-09-12 01:43:18
+# @Last Modified time: 2024-04-22 20:37:31
 import json
 import os
 import numpy as np
@@ -51,10 +51,7 @@ class DataJson:
         return id in self.data #True if len(list(filter(lambda x: x["id"]==id, self.data))) > 0 else False
     
     def get_index(self, value: str)-> int:
-        return np.where(self.data == value) #self.data.index[f'{id}']
-    
-    def get_value(self, id: str):
-        return self.data.get(id, "false")
+        return np.where(self.data == value) #self.data.index[f'{id}']s
 
     def create_file_if_not_exist(self):
         if not os.path.isfile(f"{self.file_name}.json"):

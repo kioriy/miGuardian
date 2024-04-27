@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-09 21:50:10
+# @Last Modified time: 2024-04-22 17:52:09
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -360,12 +360,11 @@ class MiGuardianApp(MDApp):
             ds.update_entries(self.settings.data["school_name"], entries_exits_record)
             
     def generate_all_entries_exits_report(self):
+        #Creamos la instancia para de DataSync y acceder a los metodos de sincronizacion
         ds = DataSync()
-        
-        #date = datetime.today().date() - timedelta(days=1)
-        
+        #Obtenemos los datos de la base de datos
         entries_exits_record = db.get_all_entries_and_exits()# get_entries_and_exits_by_date(date)
-        
+        #Verificamos que la consulta a la base de datos nos devuelva registros
         if len(entries_exits_record) > 0:
             ds.update_entries(self.settings.data["school_name"], entries_exits_record)
 

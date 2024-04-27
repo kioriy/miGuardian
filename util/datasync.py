@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-03-11 11:02:07
+# @Last Modified time: 2024-04-22 17:52:06
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -24,9 +24,6 @@ class DataSync:
         work_sheet_name = self.config_manager.data['school_name']
         self.__work_sheet_name = work_sheet_name
         self.__work_sheet = self.__sheet.worksheet(self.__work_sheet_name)
-        #self.config_manager = DataJson("settings", dict())#{"first_load_completed": False, "total_records": 0})
-        #self.config = self.config_manager.data
-        #self.num_rows = self.__work_sheet.row_count()
         
     def sync(self):
         num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist('num_row_last_register', 0)
@@ -41,7 +38,7 @@ class DataSync:
         
     def get_filtered_dataframe(self):
         """Obtiene un DataFrame filtrado con solo las columnas necesarias."""
-        df = get_as_dataframe(self.__work_sheet, header=0)  # Considerando que la primera fila tiene los encabezados
+        df = get_as_dataframe(self.__work_sheet, header=0) #Considerando que la primera fila tiene los encabezados
         required_columns = db.student_column_name()
         return df[required_columns].dropna(how="all")
 
@@ -52,43 +49,22 @@ class DataSync:
             db.add_or_update_student(self.row_to_dict(record))
         
         num_rows = len(self.__work_sheet.get_all_values())
-        self.config_manager.add_dict("num_row_last_register", num_rows-1) #self.__work_sheet.row_count)
+        self.config_manager.add_dict("num_row_last_register", num_rows-1)
         self.config_manager.add_dict("first_load", True)
 
     def update_sync(self):
         """Realiza una sincronización incremental desde la última fila sincronizada."""
-        #total_rows = self.__work_sheet.row_count
         num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist("num_row_last_register", 0)
-        #num_rows = len(self.__work_sheet.get_all_values())
         new_row_last_register = 0
-        #update_rows = []
-        #status_update = False
-        
+
         df = self.get_filtered_dataframe()
-        
+
         for indice, record in df.iterrows():
             if indice >= num_row_last_register:
-                #update_rows.append(self.row_to_dict(record))
                 db.add_or_update_student(self.row_to_dict(record))
                 new_row_last_register = indice
-                #status_update = True
-                
-        #for _, in update_rows:
-        #    db.add_or_update_student(self.row_to_dict(record))
-        
-        self.config_manager.add_dict("num_row_last_register", new_row_last_register)
-        #for i in range(num_row_last_register, num_rows+1, 1):
-        #    if i == num_rows:
-        #        row_data = self.__work_sheet.row_values(i)
-        #        new_records.append(self.row_to_dict(row_data))
-                #row_data = self.__work_sheet.row_values(i)
-                #new_records.append(self.row_to_dict(row_data))
-        
-        #for record in new_records:
-        #    db.add_or_update_student(record)  # Función hipotética que agrega o actualiza un registro.
 
-        
-        #return self.__work_sheet.row_count
+        self.config_manager.add_dict("num_row_last_register", new_row_last_register)
 
     def row_to_dict(self, row_data):
         """Convierte una fila de datos en un diccionario."""
@@ -109,7 +85,7 @@ class DataSync:
         
         try:
             work_sheet = sheet_breakfast.worksheet(worksheet_name)
-        except gspread.exceptions.WorksheetNotFound as e:
+        except gspread.exceptions.WorksheetNotFound:
             sheet_breakfast.add_worksheet(title=worksheet_name, rows=1000, cols=10)
             work_sheet = sheet_breakfast.worksheet(worksheet_name)
         # end try
@@ -119,16 +95,17 @@ class DataSync:
         
     def update_entries(self, spread_sheet_name:str, entries_exits_record):
         service_account = gspread.service_account()
-        sheet_breakfast = service_account.open(f"Registros entradas y salidas - {spread_sheet_name}")
-        date = datetime.today() #datetime.today().date() - timedelta(days=1)
-        worksheet_name = f"{date.strftime('%d-%m-%y')} - {self.config_manager.data['school_name']}" 
-        
+        sheet_entry_and_exit = service_account.open(f"Registros entradas y salidas - {spread_sheet_name}")
+        #date = datetime.today().strftime('%d-%m-%y')
+        worksheet_name = f"{self.config_manager.data['school_name']}" 
+        #Verificamos que la hoja de calculo exista, si no la cremos y luego realizamos la exportacion
         try:
-            work_sheet = sheet_breakfast.worksheet(worksheet_name)
-        except gspread.exceptions.WorksheetNotFound as e:
-            sheet_breakfast.add_worksheet(title=worksheet_name, rows=1000, cols=10)
-            work_sheet = sheet_breakfast.worksheet(worksheet_name)
+            work_sheet = sheet_entry_and_exit.worksheet(worksheet_name)
+        except gspread.exceptions.WorksheetNotFound:
+            sheet_entry_and_exit.add_worksheet(title=worksheet_name, rows=1000, cols=10)
+            work_sheet = sheet_entry_and_exit.worksheet(worksheet_name)
         # end try
+        #Generamos el dataFrame desde los datos de la consulta de entradas y salidas
         df = pd.DataFrame(entries_exits_record, columns=["Nombre", "Apellidos", "Hora entrada", "Hora salida", "Fecha"])
         
         gd.set_with_dataframe(work_sheet, df)

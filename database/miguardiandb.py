@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-05 22:11:48
+# @Last Modified time: 2024-04-22 17:16:34
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
 from sqlalchemy.ext.declarative import declarative_base
@@ -93,7 +93,7 @@ def setup_database():
     Base.metadata.create_all(bind=engine)
 
 def student_column_name():
-    return [column.name for column in Student.__table__.columns if column.name != 'id']#return [column.name for column in Student.__table__.columns]
+    return [column.name for column in Student.__table__.columns if column.name != 'id']
     '''
     try:
         student_table = Table('student', metadata, autoload=True, autoload_with=engine)
@@ -253,28 +253,6 @@ def get_today_breakfast_records():
     
     # Fecha actual
     today = datetime.today().date()
-    #start_date = datetime(year=2024, month=1, day=1)
-    #end_date = datetime(year=2024, month=1, day=15)
-    
-    # Obtener la fecha actual
-    
-    #fecha_actual = datetime.now()
-
-    # Obtener el primer día del mes actual
-    #primer_dia_mes = fecha_actual.replace(day=1)
-
-    # Obtener la fecha actual más 15 días
-    #fecha_15_dias = primer_dia_mes + timedelta(days=15)
-
-    # Calcular la fecha de inicio y la fecha de fin para el rango
-    #start_date = primer_dia_mes
-    #end_date = fecha_15_dias
-
-    # Verificar si los primeros 15 días ya han pasado
-    #if fecha_actual.day > 15:
-        # Si ya pasaron, ajusta las fechas para los 15 días siguientes
-        #start_date = fecha_actual.replace(day=16)
-        #end_date = fecha_actual + timedelta(days=30)
 
     # Busca registros de desayunos del día actual
     today_records = db_session.query(
@@ -373,21 +351,15 @@ def get_all_entries_and_exits():
 def get_noCheckIn_student():
     db_session = SessionLocal()
     hoy = datetime.today().date()
-    #manager_no_checkin_student = DataJson("estudiantes_sin_entrada.json", [])
 
     # Consulta todos los estudiantes
     todos_los_estudiantes = db_session.query(Student).all()
     # Consulta los registros de asistencia para hoy
     asistencias_hoy = db_session.query(Attendance).filter(Attendance.date == hoy).all()
-
     # Crear un conjunto de ID de estudiantes con asistencias registradas hoy
     ids_con_asistencia = {asistencia.student_id for asistencia in asistencias_hoy}
-
     # Filtrar estudiantes sin asistencias hoy
     estudiantes_sin_entrada = [est for est in todos_los_estudiantes if est.id not in ids_con_asistencia]
-
-    #manager_no_checkin_student.data = estudiantes_sin_entrada
-    #manager_no_checkin_student.write_data()
     # Crear una lista para almacenar los datos de los estudiantes
     estudiantes_sin_entrada_datos = [{
         'nombre': est.nombre,
