@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-22 17:16:34
+# @Last Modified time: 2024-05-04 18:44:23
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
 from sqlalchemy.ext.declarative import declarative_base
@@ -94,18 +94,6 @@ def setup_database():
 
 def student_column_name():
     return [column.name for column in Student.__table__.columns if column.name != 'id']
-    '''
-    try:
-        student_table = Table('student', metadata, autoload=True, autoload_with=engine)
-        column_names = [Column.name for column in student_table.columns]
-        return column_names
-    except NoSuchTableError:
-        print("Error: La tabla 'student' no existe en la base de datos.")
-        return []
-    except Exception as e:
-        print(f"Error al obtener los nombres de columna: {e}")
-        return []
-        '''
 
 def add_student(student_data):
     db_session = SessionLocal()
@@ -114,7 +102,8 @@ def add_student(student_data):
     db_session.commit()
     db_session.close()
 
-def updatedb():
+#La intencion de la funcion, era actualizar la estructura de la base de datos
+'''def updatedb():
     db_session = SessionLocal()
     settings = DataJson("settings", dict())
     settings.add_and_get_dict_value_if_not_exist("status_update_db", True)
@@ -136,7 +125,7 @@ def updatedb():
         json_student_backup.data = students_backup
         json_student_backup.write_data()
     
-    db_session.close()
+    db_session.close()'''
     
 def add_or_update_student(student_data: dict):
     """
@@ -320,6 +309,8 @@ def get_entries_and_exits_by_date(target_date: date):
     entries_and_exits = db_session.query(
         Student.nombre,
         Student.apellidos,
+        Student.grado,
+        Student.grupo,
         Attendance.entry_time,
         Attendance.exit_time,
         Attendance.date
@@ -338,6 +329,8 @@ def get_all_entries_and_exits():
     entries_and_exits = db_session.query(
         Student.nombre,
         Student.apellidos,
+        Student.grado,
+        Student.grupo,
         Attendance.entry_time,
         Attendance.exit_time,
         Attendance.date

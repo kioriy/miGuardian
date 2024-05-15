@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-22 17:52:09
+# @Last Modified time: 2024-05-04 19:31:17
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -90,7 +90,6 @@ class StoreScreen(Screen):
         else:
             self.ids.barcode_input_store.text = ''
             Clock.schedule_once(partial(app.refocus_ti, 'store', 'barcode_input_store'))
-
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()

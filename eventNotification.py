@@ -2,20 +2,23 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2024-03-12 19:29:22
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-25 23:41:31
+# @Last Modified time: 2024-05-04 23:39:24
 from util.notification import TelegramNotifier
+from util.load_handler_logging import load_handler_logging
 from util.datasync import DataSync
 from util.datajson import DataJson
 from datetime import datetime
 from enums import ESettings
 
 import database.miguardiandb as db
+import logging
 import schedule
 import time
 
+load_handler_logging()
+
 def notification_no_check_in():
-    print("Iniciando la tarea diaria para verificar la asistencia de los alumnos...")
-    
+    logging.info("Iniciando la tarea diaria para verificar la asistencia de los alumnos...")#print("Iniciando la tarea diaria para verificar la asistencia de los alumnos...")
     # Inicializa la base de datos (asegúrate de que esto sea necesario y adecuado según tu configuración)
     db.setup_database()
     settings = DataJson("settings", dict())
@@ -51,7 +54,8 @@ def update_check_in():
     """_summary_
     Actuliza la reporte de todas las entradas y salidas en el documento de google sheets
     """
-    #Cargamos el archivo de configuracion para obtener el nombre de la escuela
+    logging.info("Iniciando la actividad para la actualización de los datos en la nube...")
+    #Cargamos el archivo de configuración para obtener el nombre de la escuela
     settings = DataJson("settings", dict())
     #Creamos la instancia para de DataSync y acceder a los metodos de sincronizacion
     ds = DataSync()
@@ -61,7 +65,19 @@ def update_check_in():
     if len(entries_exits_record) > 0:
         ds.update_entries(settings.data["school_name"], entries_exits_record)
     #Volvemos a programar la tarea en el siguiente esquema valido. 
-    reschedule(ESettings.update_check_in.name, update_check_in)
+    reschedule(ESettings.update_check_in.name, update_check_in) 
+
+def sync_photos():
+    pass
+
+def backrest_database():
+    pass
+
+def send_log():
+    pass
+
+def update_database():
+    pass
 
 def reschedule(event_schedule: str, task_fuction):
     """
@@ -69,7 +85,7 @@ def reschedule(event_schedule: str, task_fuction):
     General el siguiente esquema valido para programa la siguiente tarea
     """
     at_time = get_valid_schedule(event_schedule)
-    print(f"el siguiente esquema valido es -------> {at_time}")
+    logging.info(f"el siguiente esquema valido es {at_time}")#print(f"el siguiente esquema valido es -------> {at_time}")
     schedule.every().day.at(at_time).do(task_fuction)
     
 def get_valid_schedule(event_schedule: str):
@@ -102,6 +118,7 @@ def get_valid_schedule(event_schedule: str):
     return at_time[0].strftime("%H:%M")
 
 def main():
+    #Actualiza el siguiente horario valido segun el esquema configurado para cada evento
     reschedule(ESettings.no_check_in.name, notification_no_check_in)
     reschedule(ESettings.update_check_in.name, update_check_in)
     # Bucle infinito para ejecutar las tareas programadas
@@ -109,7 +126,7 @@ def main():
         schedule.run_pending()
         time.sleep(10)  # Espera un minuto antes de comprobar las tareas pendientes de nuevo
         ahora = datetime.now()
-        print(f"I work ... {ahora.strftime('%I:%M:%S %p')}")
+        #logging.info(f"I work ... {ahora.strftime('%I:%M:%S %p')}") #print(f"I work ... {ahora.strftime('%I:%M:%S %p')}")
 
 if __name__ == "__main__":
     main()

@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-22 17:52:06
+# @Last Modified time: 2024-04-30 19:50:07
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -106,7 +106,7 @@ class DataSync:
             work_sheet = sheet_entry_and_exit.worksheet(worksheet_name)
         # end try
         #Generamos el dataFrame desde los datos de la consulta de entradas y salidas
-        df = pd.DataFrame(entries_exits_record, columns=["Nombre", "Apellidos", "Hora entrada", "Hora salida", "Fecha"])
+        df = pd.DataFrame(entries_exits_record, columns=["Nombre","Apellidos","Grado","Grupo","Hora entrada","Hora salida","Fecha"])
         
         gd.set_with_dataframe(work_sheet, df)
 
