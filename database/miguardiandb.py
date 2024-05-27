@@ -2,16 +2,17 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-05-04 18:44:23
+# @Last Modified time: 2024-05-26 01:29:10
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime, Time, Date, Table, MetaData
-from util.datajson import DataJson
-import json
-import os
-import shutil
+from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Time, Date, MetaData, and_, or_, select #,Table, DateTime
+import pandas as pd
+#from util.datajson import DataJson
+#import json
+#import os
+#import shutil
 
 #from util.datajson import DataJson
 
@@ -344,28 +345,53 @@ def get_all_entries_and_exits():
 def get_noCheckIn_student():
     db_session = SessionLocal()
     hoy = datetime.today().date()
-
+    
+    #nueva consulta con outer join
+    query =(
+            select(
+            Student.nombre, 
+            Student.apellidos, 
+            Student.grado, 
+            Student.grupo
+            ).outerjoin(
+                Attendance, 
+                and_(
+                    Student.id == Attendance.student_id, 
+                    Attendance.date == hoy) 
+                        ).where(
+                            or_(Attendance.date.is_(None),
+                                and_(Attendance.student_id.is_(None),
+                                    Attendance.date != hoy
+                                    )
+                                )
+                            ).order_by(Student.id)
+            )
+    df = pd.read_sql_query(query, db_session.bind) #result = db_session.execute(query).all()
+    
+    db_session.close()
+            
+    return df
     # Consulta todos los estudiantes
-    todos_los_estudiantes = db_session.query(Student).all()
+    #todos_los_estudiantes = db_session.query(Student).all()
     # Consulta los registros de asistencia para hoy
-    asistencias_hoy = db_session.query(Attendance).filter(Attendance.date == hoy).all()
+    #asistencias_hoy = db_session.query(Attendance).filter(Attendance.date == hoy).all()
     # Crear un conjunto de ID de estudiantes con asistencias registradas hoy
-    ids_con_asistencia = {asistencia.student_id for asistencia in asistencias_hoy}
+    #ids_con_asistencia = {asistencia.student_id for asistencia in asistencias_hoy}
     # Filtrar estudiantes sin asistencias hoy
-    estudiantes_sin_entrada = [est for est in todos_los_estudiantes if est.id not in ids_con_asistencia]
+    #estudiantes_sin_entrada = [est for est in todos_los_estudiantes if est.id not in ids_con_asistencia]
     # Crear una lista para almacenar los datos de los estudiantes
-    estudiantes_sin_entrada_datos = [{
-        'nombre': est.nombre,
-        'apellidos': est.apellidos,
-        'grado': est.grado,
-        'grupo': est.grupo
-    } for est in estudiantes_sin_entrada]
+    #estudiantes_sin_entrada_datos = [{
+    #    'nombre': est.nombre,
+    #    'apellidos': est.apellidos,
+    #    'grado': est.grado,
+    #    'grupo': est.grupo
+    #} for est in estudiantes_sin_entrada]
 
     # Escribir los datos en un archivo JSON
-    with open('estudiantes_sin_entrada.json', 'w') as archivo_json:
-        json.dump(estudiantes_sin_entrada_datos, archivo_json, indent=4, ensure_ascii=False)
+    #with open('estudiantes_sin_entrada.json', 'w') as archivo_json:
+    #    json.dump(estudiantes_sin_entrada_datos, archivo_json, indent=4, ensure_ascii=False)
 
-    db_session.close()
+    #db_session.close()
     #return estudiantes_sin_entrada
 
 setup_database()

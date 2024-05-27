@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-05-04 19:31:17
+# @Last Modified time: 2024-05-23 10:09:53
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -93,7 +93,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.09"
+        self.title = "mi Guardian v1.10"
         #db.updatedb()
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
@@ -111,16 +111,22 @@ class MiGuardianApp(MDApp):
         self.sm.add_widget(main_screen)
         self.sm.add_widget(store_screen)
         
-        if self.offline.status:
-            ds = DataSync()
-            ds.sync()
-            self.generate_all_entries_exits_report()#self.generate_entries_exits_report()
-        else:
+        if not self.offline.status:
             internet_status_icon = main_screen.ids.internet_status_icon
             internet_status_icon.icon = 'wifi-off'
             #internet_status_icon.text_color = (1, 0, 0, 1)
             internet_status_icon.opacity = 1
             internet_status_icon.disabled = False
+            
+            #ds = DataSync()
+            #ds.sync()
+            #self.generate_all_entries_exits_report()#self.generate_entries_exits_report()
+        #else:
+            #internet_status_icon = main_screen.ids.internet_status_icon
+            #internet_status_icon.icon = 'wifi-off'
+            ##internet_status_icon.text_color = (1, 0, 0, 1)
+            #internet_status_icon.opacity = 1
+            #internet_status_icon.disabled = False
         
         return self.sm#Builder.load_file('miguardian.kv')
 
@@ -334,6 +340,7 @@ class MiGuardianApp(MDApp):
         self.close_shutdown_dialog()
         
     def generate_breakfast_report(self):
+        print("pase por aqui====+++++++@@@@@@@@@@@@@@")
         ds = DataSync()
         # Obtiene los registros de desayuno de la base de datos
         breakfast_records = db.get_all_breakfast_records()

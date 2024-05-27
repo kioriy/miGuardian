@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2024-03-12 19:29:22
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-05-04 23:39:24
+# @Last Modified time: 2024-05-26 23:22:15
 from util.notification import TelegramNotifier
 from util.load_handler_logging import load_handler_logging
 from util.datasync import DataSync
@@ -11,6 +11,7 @@ from datetime import datetime
 from enums import ESettings
 
 import database.miguardiandb as db
+import pandas as pd
 import logging
 import schedule
 import time
@@ -18,35 +19,45 @@ import time
 load_handler_logging()
 
 def notification_no_check_in():
-    logging.info("Iniciando la tarea diaria para verificar la asistencia de los alumnos...")#print("Iniciando la tarea diaria para verificar la asistencia de los alumnos...")
-    # Inicializa la base de datos (asegúrate de que esto sea necesario y adecuado según tu configuración)
+    logging.info("Iniciando la tarea diaria para verificar la asistencia de los alumnos...")
+    # Inicializa la base de datos
     db.setup_database()
+    #inicializamos el archivo de configuracion
     settings = DataJson("settings", dict())
-    # Obtiene la lista de alumnos que no han marcado asistencia hoy
-    db.get_noCheckIn_student()
-    # Utiliza DataJson para cargar los datos del archivo JSON
-    list_no_check_in_student = DataJson("estudiantes_sin_entrada", [])  # No necesitas agregar .json aquí, DataJson lo manejará
-    # Ahora 'data' contendrá la lista de estudiantes
-    list_student = list_no_check_in_student.load_data()
-    # Divide la lista de alumnos en sub-listas de 30 elementos cada una
-    sublistas_alumnos = [list_student[i:i + 30] for i in range(0, len(list_student), 30)]
-    # Construye la lista de nombres, apellidos, grados y grupos de los estudiantes
-    # Asegúrate de que cada 'alumno' en 'list_student' es un diccionario con las claves correctas
-    for indice_sulista, sublista in enumerate(sublistas_alumnos):
-        start_index = (indice_sulista * len(sublista)) if len(sublista) == 30 else ((indice_sulista) * 30 + len(sublista))
-        alumnos_nombres = [f"{indice + 1}. {alumno['nombre']} {alumno['apellidos']}-{alumno['grado']}º{alumno['grupo']}\n" 
-                            for indice, alumno in enumerate(sublista, start=start_index)]
-        # Prepara el mensaje
-        fecha_hoy = datetime.today().strftime('%Y-%m-%d')
-        if alumnos_nombres:
-            mensaje = f"Alumnos que no registraron entrada el {fecha_hoy}: \n" + "".join(alumnos_nombres)
-        else:
-            mensaje = f"Todos los alumnos han registrado entrada el {fecha_hoy}.\n"
+    #obtenemos la fecha actual
+    fecha_hoy = datetime.today().strftime('%Y-%m-%d')
+    #Inicializamos la lista de mensajes
+    list_alumnos_nombres = []
+    #Obtiene la lista de alumnos que no han marcado asistencia hoy
+    df = db.get_noCheckIn_student()
+    #Obteenemos el tamaño del dataframe
+    tamaño_df = len(df)
+    #Inicializamos la variable de mensaje del alumno
+    alumnos_nombres = ""
+    #Inicializamos el contador para cada ronda de mensajes si la catindad de alumnos es mayor a 30
+    ronda_mensajes = 1
+
+    if tamaño_df > 1:
+        #recorre todo el data frame
+        for index, alumno in df.iterrows():
+            #generamos el mensaje de cada alumno tomando los datos de cada iteracion del data frame
+            alumnos_nombres += f"{index + 1}. {alumno['nombre']} {alumno['apellidos']}-{alumno['grado']}º{alumno['grupo']}\n"
+            #El index se va a dividir entre treinta cuando el residuo sean un valor 0 va a guardar otra ronda de mensajes
+            ronda_mensajes = (index + 1) % 30
+            #Concatena el encabezado de mensaje e idexa un nuevo bloque de 30 mensajes            
+            if ronda_mensajes == 0 or (index + 1) == tamaño_df:
+                mensaje = f"Alumnos que no registraron entrada el {fecha_hoy}: \n" + "".join(alumnos_nombres)
+                list_alumnos_nombres.append(mensaje)
+    else:
+        mensaje = f"Todos los alumnos han registrado entrada el {fecha_hoy}.\n"
+        list_alumnos_nombres.append(mensaje)
+    
+    for mensaje in list_alumnos_nombres:
         # Envía el mensaje a través de Telegram
         notifier = TelegramNotifier()
         chat_id = settings.data.setdefault(ESettings.chat_id_admin.name, 0)
         notifier.send_message(chat_id, mensaje )
-        time.sleep(1)  # Pequeña pausa para evitar sobrecargar el servidor de Telegram
+        time.sleep(1)  #Pequeña pausa para evitar sobrecargar al servidor de Telegram
     
     reschedule(ESettings.no_check_in.name, notification_no_check_in)
 
