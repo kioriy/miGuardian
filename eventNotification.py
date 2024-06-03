@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2024-03-12 19:29:22
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-05-26 23:22:15
+# @Last Modified time: 2024-06-02 22:38:25
 from util.notification import TelegramNotifier
 from util.load_handler_logging import load_handler_logging
 from util.datasync import DataSync
@@ -29,7 +29,7 @@ def notification_no_check_in():
     #Inicializamos la lista de mensajes
     list_alumnos_nombres = []
     #Obtiene la lista de alumnos que no han marcado asistencia hoy
-    df = db.get_noCheckIn_student()
+    df = pd.dataframe(db.get_noCheckIn_student())
     #Obteenemos el tamaño del dataframe
     tamaño_df = len(df)
     #Inicializamos la variable de mensaje del alumno
@@ -136,7 +136,7 @@ def main():
     while True:
         schedule.run_pending()
         time.sleep(10)  # Espera un minuto antes de comprobar las tareas pendientes de nuevo
-        ahora = datetime.now()
+        #ahora = datetime.now()
         #logging.info(f"I work ... {ahora.strftime('%I:%M:%S %p')}") #print(f"I work ... {ahora.strftime('%I:%M:%S %p')}")
 
 if __name__ == "__main__":
