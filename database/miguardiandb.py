@@ -2,11 +2,11 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-05-26 01:29:10
+# @Last Modified time: 2024-07-16 18:56:15
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker, relationship
+#from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker, relationship, declarative_base
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Time, Date, MetaData, and_, or_, select #,Table, DateTime
 import pandas as pd
 #from util.datajson import DataJson
