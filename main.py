@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-08-30 00:55:38
+# @Last Modified time: 2024-09-02 22:39:11
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -93,7 +93,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.10"
+        self.title = "mi Guardian v1.10.1"
         #db.updatedb()
         db.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
@@ -115,12 +115,12 @@ class MiGuardianApp(MDApp):
             internet_status_icon = main_screen.ids.internet_status_icon
             internet_status_icon.icon = 'wifi-off'
             #internet_status_icon.text_color = (1, 0, 0, 1)
-            internet_status_icon.opacity = 1
-            internet_status_icon.disabled = False
+            internet_status_icon.opacity = 0
+            internet_status_icon.disabled = True
             
-            ds = DataSync()
-            ds.sync()
-            self.generate_all_entries_exits_report()#self.generate_entries_exits_report()
+            #ds = DataSync()
+            #ds.sync()
+            #self.generate_all_entries_exits_report()#self.generate_entries_exits_report()
         else:
             internet_status_icon = main_screen.ids.internet_status_icon
             internet_status_icon.icon = 'wifi-off'
