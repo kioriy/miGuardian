@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-04-30 19:50:07
+# @Last Modified time: 2024-09-12 20:09:06
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -35,6 +35,10 @@ class DataSync:
         elif not first_load:
             print(">>>>>CARGA INICIAL DE DATOS<<<<<<<<<<")
             self.initial_sync()
+            
+        self.sync_autorizados()
+        self.sync_alumnos_autorizados()
+        
         
     def get_filtered_dataframe(self):
         """Obtiene un DataFrame filtrado con solo las columnas necesarias."""
@@ -66,17 +70,54 @@ class DataSync:
 
         self.config_manager.add_dict("num_row_last_register", new_row_last_register)
 
+    def sync_autorizados(self):
+        """Sincroniza los datos de autorizados desde Google Sheets."""
+        worksheet_autorizados = self.__sheet.worksheet("Albert Einstein Autorizados")
+        df_autorizados = get_as_dataframe(worksheet_autorizados, header=0)
+        df_autorizados = df_autorizados.dropna(how="all")
+
+        for _, record in df_autorizados.iterrows():
+            autorizado_data = {
+                "codigo": str(int(float(record["codigo"]))),
+                "nombre": record["nombre"].lower().title(),
+                "telefono": str(record["telefono"]),
+                "chat_id": str(int(float(record["chat_id"])))
+            }
+            db.add_or_update_autorizado(autorizado_data)
+
+    def sync_alumnos_autorizados(self):
+        """Sincroniza las relaciones alumno-tutor desde Google Sheets."""
+        worksheet_alumnos_autorizados = self.__sheet.worksheet("Albert Einstein Alumnos Autorizados")
+        df_alumnos_autorizados = get_as_dataframe(worksheet_alumnos_autorizados, header=0)
+        df_alumnos_autorizados = df_alumnos_autorizados.dropna(how="all")
+
+        for _, record in df_alumnos_autorizados.iterrows():
+            codigo = str(int(float(record["codigo"])))
+            student_id = str(int(float(record["student_id"])))
+            autorizado_id = str(int(float(record["autorizado_id"])))
+            
+            #student_id = db.get_student_id_by_code(codigo_alumno)
+            #autorizado_id = db.get_autorizado_id_by_telefono(telefono_autorizado)
+            
+            if student_id and autorizado_id:
+                alumno_tutor_data = {
+                    "codigo": codigo,
+                    "student_id": student_id,
+                    "autorizado_id": autorizado_id
+                }
+                db.add_or_update_alumno_tutor(alumno_tutor_data)
+    
     def row_to_dict(self, row_data):
         """Convierte una fila de datos en un diccionario."""
         print(f"=============={row_data[0]}==================")
         return {
-        "nombre": row_data[0].lower().title(),
-        "apellidos": row_data[1].lower().title(),
-        "grado": str(int(float(row_data[2]))), #row_data[2],
-        "grupo": row_data[3],
-        "codigo": str(int(float(row_data[4]))),  # Convertir a float, luego a int y luego a str
-        "chat_id": str(int(float(row_data[5])))  # Convertir a float, luego a int y luego a str
-    }
+            "nombre": row_data[0].lower().title(),
+            "apellidos": row_data[1].lower().title(),
+            "grado": str(int(float(row_data[2]))), #row_data[2],
+            "grupo": row_data[3],
+            "codigo": str(int(float(row_data[4]))),  # Convertir a float, luego a int y luego a str
+            "chat_id": str(int(float(row_data[5])))  # Convertir a float, luego a int y luego a str
+        }
 
     def update_breakfast(self, spread_sheet_name:str, breakfast_records):
         service_account = gspread.service_account()

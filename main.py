@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-09-02 22:39:11
+# @Last Modified time: 2024-09-15 23:43:06
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -93,9 +93,9 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.10.1"
+        self.title = "mi Guardian v1.10.2"
         #db.updatedb()
-        db.setup_database()# Inicializamos la base de datos al iniciar la app
+        #cleardb.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
         #print(f">>>>>>>>>>{self.photos_path}<<<<<<<<<<<<<<<")
         self.event_logger = DataJson("eventRegister", {"no_student":[], "no_photo":[]})
@@ -118,8 +118,8 @@ class MiGuardianApp(MDApp):
             internet_status_icon.opacity = 0
             internet_status_icon.disabled = True
             
-            #ds = DataSync()
-            #ds.sync()
+            ds = DataSync()
+            ds.sync()
             #self.generate_all_entries_exits_report()#self.generate_entries_exits_report()
         else:
             internet_status_icon = main_screen.ids.internet_status_icon
@@ -165,7 +165,7 @@ class MiGuardianApp(MDApp):
                                             f"{status_photo}" )
             
             #agregar el registro de asistencia del alumno
-            status = self.register_attendance(student)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
+            self.register_attendance(student)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
             
             if status == "entrada":
                 main_screen.ids.status_message.text = "Registro de entrada exitoso"
@@ -201,7 +201,7 @@ class MiGuardianApp(MDApp):
 
     def register_attendance(self, student: db.Student):
             #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
-            chat_id = student.chat_id#1323264228#student.chat_id1515309472
+            chat_id = 1323264228#student.chat_id#1323264228#student.chat_id1515309472
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
             status = db.register_record_es(student.id)
@@ -340,7 +340,6 @@ class MiGuardianApp(MDApp):
         self.close_shutdown_dialog()
         
     def generate_breakfast_report(self):
-        print("pase por aqui====+++++++@@@@@@@@@@@@@@")
         ds = DataSync()
         # Obtiene los registros de desayuno de la base de datos
         breakfast_records = db.get_all_breakfast_records()

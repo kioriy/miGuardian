@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-07-16 18:56:15
+# @Last Modified time: 2024-09-15 23:15:02
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
 #from sqlalchemy.ext.declarative import declarative_base
@@ -31,8 +31,9 @@ class Student(Base):
     chat_id = Column(String)
     #turno = Column(String, nullable=False)
     # Relación con la tabla attendance
-    attendances = relationship("Attendance", back_populates="student")
-    breakfasts = relationship("Breakfast", back_populates="student")
+    attendance = relationship("Attendance", back_populates="student")
+    breakfast = relationship("Breakfast", back_populates="student")
+    alumnos_tutores = relationship("Alumnos_tutores", back_populates="student")
     
     def serialize(self):
         return {
@@ -45,6 +46,46 @@ class Student(Base):
             "chat_id": self.chat_id
         }
 
+class Autorizado(Base):
+    __tablename__ = 'autorizado'
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    codigo = Column(String, unique=True, index=True, nullable=False)
+    nombre = Column(String, nullable=False)
+    telefono = Column(String, nullable=False)
+    chat_id = Column(String, nullable=False)
+
+    alumnos_tutores = relationship("Alumnos_tutores", back_populates="autorizado")
+    
+    def serialize(self):
+        return{
+            "id": self.id,
+            "codigo": self.codigo,
+            "nombre": self.nombre,
+            "telefono": self.telefono,
+            "chat_id": self.chat_id
+        }
+        
+class Alumnos_tutores(Base):
+    __tablename__ = "alumnos_tutores"
+    
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    codigo = Column(String, unique=True, index=True, nullable=False)
+    student_id = Column(Integer, ForeignKey('student.id'))
+    autorizado_id = Column(Integer, ForeignKey('autorizado.id'))
+    
+    student = relationship("Student", back_populates="alumnos_tutores")
+    autorizado = relationship("Autorizado", back_populates="alumnos_tutores")
+    attendance = relationship("Attendance", back_populates="alumnos_tutores")
+    
+    def serialize(self):
+        return{
+            "id": self.id,
+            "codigo": self.codigo,
+            "student_id": self.student_id,
+            "autorizado_id": self.autorizado_id
+        }
+    
 class Breakfast(Base):
     __tablename__ = 'breakfast'
 
@@ -53,7 +94,7 @@ class Breakfast(Base):
     time = Column(Time,)
     
     student_id = Column(Integer, ForeignKey('student.id'))
-    student = relationship("Student", back_populates="breakfasts")
+    student = relationship("Student", back_populates="breakfast")
     
     def serialize(self):
         return {
@@ -71,9 +112,11 @@ class Attendance(Base):
     entry_time = Column(Time,)
     exit_time = Column(Time, default=time(0,0))
     student_id = Column(Integer, ForeignKey('student.id'))
+    alumnos_tutores_id = Column(Integer, ForeignKey('alumnos_tutores.id'))
     
     # Relación con la tabla student
-    student = relationship("Student", back_populates="attendances")
+    student = relationship("Student", back_populates="attendance")
+    alumnos_tutores = relationship("Alumnos_tutores", back_populates="attendance")
     
     def serialize(self):
         return {
@@ -81,7 +124,8 @@ class Attendance(Base):
             "date": self.date,
             "entry_time": self.entry_time,
             "exit_time": self.exit_time,
-            "student_id": self.student_id
+            "student_id": self.student_id,
+            "alumnos_tutores_id": self.alumnos_tutores_id
         }
 
 # Configuración de la base de datos (usando SQLite local)
@@ -153,13 +197,102 @@ def add_or_update_student(student_data: dict):
     except Exception as e:
         raise e
     # end try
+
+def add_or_update_autorizado(autorizado_data: dict):
+    """
+    Añade o actualiza un autorizado en la base de datos.
     
+    :param autorizado_data: Diccionario que contiene la información del autorizado.
+    """
+    db_session = SessionLocal()
+
+    existing_autorizado = db_session.query(Autorizado).filter_by(telefono=autorizado_data['telefono']).first()
+
+    try:
+        if existing_autorizado:
+            for key, value in autorizado_data.items():
+                setattr(existing_autorizado, key, value)
+        else:
+            new_autorizado = Autorizado(**autorizado_data)
+            db_session.add(new_autorizado)
+            
+        db_session.commit()
+    except Exception as e:
+        db_session.rollback()
+        raise e
+    finally:
+        db_session.close()
+        
+def add_or_update_alumno_tutor(alumno_tutor_data: dict):
+    """
+    Añade o actualiza una relación alumno-tutor en la base de datos.
+    
+    :param alumno_tutor_data: Diccionario que contiene la información de la relación alumno-tutor.
+    """
+    db_session = SessionLocal()
+
+    existing_relation = db_session.query(Alumnos_tutores).filter_by(
+        student_id=alumno_tutor_data['student_id'],
+        autorizado_id=alumno_tutor_data['autorizado_id']
+    ).first()
+
+    try:
+        if existing_relation:
+            for key, value in alumno_tutor_data.items():
+                setattr(existing_relation, key, value)
+        else:
+            new_relation = Alumnos_tutores(**alumno_tutor_data)
+            db_session.add(new_relation)
+            
+        db_session.commit()
+    except Exception as e:
+        db_session.rollback()
+        raise e
+    finally:
+        db_session.close()
+        
+def get_autorizado_id_by_telefono(telefono):
+    """
+    Obtiene el ID del autorizado basado en su teléfono.
+    
+    :param telefono: Teléfono del autorizado.
+    :return: ID del autorizado o None si no se encuentra.
+    """
+    db_session = SessionLocal()
+    autorizado = db_session.query(Autorizado).filter(Autorizado.telefono == telefono).first()
+    db_session.close()
+    return autorizado.id if autorizado else None
 
 def get_student_by_code(codigo):
     db_session = SessionLocal()
     student = db_session.query(Student).filter(Student.codigo == codigo).first()
     db_session.close()
     return student
+
+def get_autorizado_and_student_by_code(relation_code):
+    """
+    Obtiene la información del autorizado y el estudiante asociado por el código de la relación en alumnos_tutores.
+    
+    :param relation_code: Código de la relación en alumnos_tutores (sin el prefijo 't')
+    :return: Tuple (student, autorizado) o (None, None) si no se encuentra
+    """
+    db_session = SessionLocal()
+    try:
+        # Buscar la relación en alumnos_tutores por su ID
+        alumno_tutor = db_session.query(Alumnos_tutores).filter(Alumnos_tutores.id == relation_code).first()
+        
+        if alumno_tutor:
+            # Si se encuentra la relación, obtener el estudiante y el autorizado asociados
+            student = db_session.query(Student).filter(Student.id == alumno_tutor.student_id).first()
+            autorizado = db_session.query(Autorizado).filter(Autorizado.id == alumno_tutor.autorizado_id).first()
+            return student, autorizado
+        else:
+            return None, None
+    except Exception as e:
+        print(f"Error al buscar la relación alumno-tutor: {e}")
+        return None, None
+    finally:
+        db_session.close()
 
 def update_student_by_code(codigo, student_data):
     db_session = SessionLocal()
@@ -210,6 +343,48 @@ def register_record_es(student_id):
     db_session.close()
     
     return status
+
+def register_attendance_with_autorizado(student_id, autorizado_id):
+    """
+    Registra la entrada o salida de un estudiante con un autorizado.
+    
+    :param student_id: ID del estudiante
+    :param autorizado_id: ID del autorizado
+    :return: "entrada" o "salida" dependiendo del registro creado
+    """
+    db_session = SessionLocal()
+    try:
+        today = datetime.today().date()
+        attendance = db_session.query(Attendance).filter(
+            Attendance.student_id == student_id,
+            Attendance.date == today
+        ).first()
+
+        current_time = datetime.now().time().replace(microsecond=0)
+        
+        if not attendance:
+            new_attendance = Attendance(
+                entry_time=current_time, 
+                student_id=student_id, 
+                alumnos_tutores_id=db_session.query(Alumnos_tutores.id).filter_by(
+                    student_id=student_id, 
+                    autorizado_id=autorizado_id
+                ).scalar()
+            )
+            db_session.add(new_attendance)
+            status = "entrada"
+        else:
+            attendance.exit_time = current_time
+            attendance.alumnos_tutores_id = db_session.query(Alumnos_tutores.id).filter_by(
+                student_id=student_id, 
+                autorizado_id=autorizado_id
+            ).scalar()
+            status = "salida"
+
+        db_session.commit()
+        return status
+    finally:
+        db_session.close() 
 
 # Funciones relacionadas con la tabla Breakfast
 def register_breakfast(student_id):
