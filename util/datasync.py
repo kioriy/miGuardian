@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-09-12 20:09:06
+# @Last Modified time: 2024-10-07 09:39:36
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -11,6 +11,7 @@ from util.datajson import DataJson
 import database.miguardiandb as db  # Asumiendo que miguardiandb tiene las funciones necesarias para interacción con la BD.
 import pandas as pd
 from datetime import datetime, time, date, timedelta
+from enums import ESettings as property
 
 class DataSync:
 
@@ -21,24 +22,28 @@ class DataSync:
         self.__service_account = gspread.service_account()
         self.__sheet = self.__service_account.open("8020digital")
         self.config_manager = DataJson("settings", dict())
-        work_sheet_name = self.config_manager.data['school_name']
+        work_sheet_name = self.config_manager.data[property.school_name.name]
         self.__work_sheet_name = work_sheet_name
         self.__work_sheet = self.__sheet.worksheet(self.__work_sheet_name)
         
     def sync(self):
-        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist('num_row_last_register', 0)
+        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register.name, 0)
         num_rows = len(self.__work_sheet.get_all_values())
-        first_load = self.config_manager.add_and_get_dict_value_if_not_exist('first_load', False)
+        first_load = self.config_manager.add_and_get_dict_value_if_not_exist(property.first_load.name, False)
+        load_tutores = self.config_manager.add_and_get_dict_value_if_not_exist(property.load_autorizados.name, False)
+        load_alumnos_tutor = self.config_manager.add_and_get_dict_value_if_not_exist(property.load_alumnos_tutor.name, False)
+        
         if first_load and num_rows > num_row_last_register:
             print(">>>>>ACTUALIZACION DE DATOS<<<<<<<<<<")
             self.update_sync()
         elif not first_load:
             print(">>>>>CARGA INICIAL DE DATOS<<<<<<<<<<")
             self.initial_sync()
-            
-        self.sync_autorizados()
-        self.sync_alumnos_autorizados()
         
+        if load_tutores:    
+            self.sync_autorizados()
+        if load_alumnos_tutor:
+            self.sync_alumnos_autorizados()
         
     def get_filtered_dataframe(self):
         """Obtiene un DataFrame filtrado con solo las columnas necesarias."""
@@ -53,12 +58,12 @@ class DataSync:
             db.add_or_update_student(self.row_to_dict(record))
         
         num_rows = len(self.__work_sheet.get_all_values())
-        self.config_manager.add_dict("num_row_last_register", num_rows-1)
-        self.config_manager.add_dict("first_load", True)
+        self.config_manager.add_dict(property.num_row_last_register.name, num_rows-1)
+        self.config_manager.add_dict(property.first_load.name, True)
 
     def update_sync(self):
         """Realiza una sincronización incremental desde la última fila sincronizada."""
-        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist("num_row_last_register", 0)
+        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register, 0)
         new_row_last_register = 0
 
         df = self.get_filtered_dataframe()
@@ -68,15 +73,16 @@ class DataSync:
                 db.add_or_update_student(self.row_to_dict(record))
                 new_row_last_register = indice
 
-        self.config_manager.add_dict("num_row_last_register", new_row_last_register)
+        self.config_manager.add_dict(property.num_row_last_register, new_row_last_register)
 
     def sync_autorizados(self):
         """Sincroniza los datos de autorizados desde Google Sheets."""
-        worksheet_autorizados = self.__sheet.worksheet("Albert Einstein Autorizados")
+        worksheet_autorizados = self.__sheet.worksheet(f"{self.__work_sheet_name} Autorizados")
         df_autorizados = get_as_dataframe(worksheet_autorizados, header=0)
         df_autorizados = df_autorizados.dropna(how="all")
+        start_index = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register_autorizados.name, False)
 
-        for _, record in df_autorizados.iterrows():
+        for _, record in df_autorizados.iloc[start_index:].iterrows():
             autorizado_data = {
                 "codigo": str(int(float(record["codigo"]))),
                 "nombre": record["nombre"].lower().title(),
@@ -87,11 +93,12 @@ class DataSync:
 
     def sync_alumnos_autorizados(self):
         """Sincroniza las relaciones alumno-tutor desde Google Sheets."""
-        worksheet_alumnos_autorizados = self.__sheet.worksheet("Albert Einstein Alumnos Autorizados")
+        worksheet_alumnos_autorizados = self.__sheet.worksheet(f"{self.__work_sheet_name} Alumnos Autorizados")
         df_alumnos_autorizados = get_as_dataframe(worksheet_alumnos_autorizados, header=0)
         df_alumnos_autorizados = df_alumnos_autorizados.dropna(how="all")
+        start_index = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register_alumnos_tutor.name, False)
 
-        for _, record in df_alumnos_autorizados.iterrows():
+        for _, record in df_alumnos_autorizados.iloc[start_index:].iterrows():
             codigo = str(int(float(record["codigo"])))
             student_id = str(int(float(record["student_id"])))
             autorizado_id = str(int(float(record["autorizado_id"])))

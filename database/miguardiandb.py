@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-09-15 23:15:02
+# @Last Modified time: 2024-10-06 17:42:52
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
 #from sqlalchemy.ext.declarative import declarative_base
@@ -279,12 +279,12 @@ def get_autorizado_and_student_by_code(relation_code):
     db_session = SessionLocal()
     try:
         # Buscar la relación en alumnos_tutores por su ID
-        alumno_tutor = db_session.query(Alumnos_tutores).filter(Alumnos_tutores.id == relation_code).first()
+        alumno_tutor = db_session.query(Alumnos_tutores).filter(Alumnos_tutores.codigo == relation_code).first()
         
         if alumno_tutor:
             # Si se encuentra la relación, obtener el estudiante y el autorizado asociados
-            student = db_session.query(Student).filter(Student.id == alumno_tutor.student_id).first()
-            autorizado = db_session.query(Autorizado).filter(Autorizado.id == alumno_tutor.autorizado_id).first()
+            student = db_session.query(Student).filter(Student.codigo == alumno_tutor.student_id).first()
+            autorizado = db_session.query(Autorizado).filter(Autorizado.codigo == alumno_tutor.autorizado_id).first()
             return student, autorizado
         else:
             return None, None
@@ -313,7 +313,7 @@ def get_current_time_without_microseconds():
     now = datetime.now()
     return time(now.hour, now.minute, now.second)
 
-def register_record_es(student_id):
+def register_record_es(student_id, alumnos_tutores_id):
     db_session = SessionLocal()
 
     # Fecha actual
@@ -331,7 +331,7 @@ def register_record_es(student_id):
 
     if not attendance:
         # Registra la entrada
-        new_attendance = Attendance(entry_time=current_time, student_id=student_id)
+        new_attendance = Attendance(entry_time=current_time, student_id=student_id, alumnos_tutores_id=alumnos_tutores_id)
         db_session.add(new_attendance)
         status = "entrada"
     else:

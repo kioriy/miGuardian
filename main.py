@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-09-15 23:43:06
+# @Last Modified time: 2024-10-07 09:49:36
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -93,7 +93,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.10.2"
+        self.title = "mi Guardian v1.11"
         #db.updatedb()
         #cleardb.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
@@ -137,7 +137,20 @@ class MiGuardianApp(MDApp):
         main_screen = self.root.get_screen('main')
         
         barcode = main_screen.ids.barcode_input.text#self.root.ids.barcode_input.text
-        student = db.get_student_by_code(barcode)
+        alumnos_tutores_id = '999'
+        nombre_autorizado = "False"
+        mensaje_pantalla = "Alumno no encontrado"
+        
+        if barcode.startswith('t'):
+            alumnos_tutores_id = barcode[1:]
+            student, autorizado = db.get_autorizado_and_student_by_code(alumnos_tutores_id)
+            if autorizado:
+                nombre_autorizado = autorizado.nombre
+            else:
+                mensaje_pantalla = "Autorizado no registrado... ACTUALIZANDO DATOS!!\nRegistrar acceso con la credencial de estudiante"
+        else:
+            student = db.get_student_by_code(barcode)
+
         placeholder_path = f"{self.photos_path}placeholder.jpeg"
         #self.screen_status = self.settings.data['screen_status']
         
@@ -165,7 +178,7 @@ class MiGuardianApp(MDApp):
                                             f"{status_photo}" )
             
             #agregar el registro de asistencia del alumno
-            self.register_attendance(student)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
+            status = self.register_attendance(student, nombre_autorizado, alumnos_tutores_id)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
             
             if status == "entrada":
                 main_screen.ids.status_message.text = "Registro de entrada exitoso"
@@ -185,7 +198,7 @@ class MiGuardianApp(MDApp):
             list_no_student.append(barcode)
             self.event_logger.add_dict("no_student", list_no_student)
             main_screen.ids.student_photo.source = placeholder_path   # Imagen por defecto
-            main_screen.ids.student_info.text = "Estudiante no encontrado"
+            main_screen.ids.student_info.text = f"{mensaje_pantalla}"#"Estudiante no encontrado"
             chat_id = 1323264228#student.chat_id
             print(f"CHAT_ID:<<<<<<<{chat_id} alumno no existe>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
@@ -199,13 +212,18 @@ class MiGuardianApp(MDApp):
         # Mantener el foco en el MDTextField
         Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
 
-    def register_attendance(self, student: db.Student):
+    def register_attendance(self, student: db.Student, autorizado_nombre, alumnos_tutores_id):
+            mensaje_autorizado = ""
+            
+            if autorizado_nombre != "False" and autorizado_nombre.lower() != "sa":
+                mensaje_autorizado = f", por el autorizado {autorizado_nombre}"
+                
             #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
             chat_id = 1323264228#student.chat_id#1323264228#student.chat_id1515309472
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
-            status = db.register_record_es(student.id)
-            message = f"El 👨‍🎓 alumno {student.nombre} {student.apellidos} registro su {status} a las ⏰ {current_time}"
+            status = db.register_record_es(student.id, alumnos_tutores_id)
+            message = f"El 👨‍🎓 alumno {student.nombre} {student.apellidos} registro su {status} a las ⏰ {current_time}{mensaje_autorizado}"
             threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
             #threading.Thread(target=self.notification.send_message, args=(1323264228, message,)).start()
             return status
