@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2024-04-22 19:12:46
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-07 08:52:23
+# @Last Modified time: 2024-10-07 10:03:27
 from enum import Enum
 
 class ESettings(Enum):
@@ -11,7 +11,7 @@ class ESettings(Enum):
     chat_id_admin = "chat_id_admin"
     clave = "clave"
     first_load = "first_load"
-    num_row_last_register = "num_row_last_register"
+    num_row_last_register_student = "num_row_last_register_student"
     schedule = "schedule"
     school_name = "school_name"
     screen_status = "screen_status"

@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-07 09:39:36
+# @Last Modified time: 2024-10-07 10:01:20
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -27,7 +27,7 @@ class DataSync:
         self.__work_sheet = self.__sheet.worksheet(self.__work_sheet_name)
         
     def sync(self):
-        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register.name, 0)
+        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register_student.name, 0)
         num_rows = len(self.__work_sheet.get_all_values())
         first_load = self.config_manager.add_and_get_dict_value_if_not_exist(property.first_load.name, False)
         load_tutores = self.config_manager.add_and_get_dict_value_if_not_exist(property.load_autorizados.name, False)
@@ -58,12 +58,12 @@ class DataSync:
             db.add_or_update_student(self.row_to_dict(record))
         
         num_rows = len(self.__work_sheet.get_all_values())
-        self.config_manager.add_dict(property.num_row_last_register.name, num_rows-1)
+        self.config_manager.add_dict(property.num_row_last_register_student.name, num_rows-1)
         self.config_manager.add_dict(property.first_load.name, True)
 
     def update_sync(self):
         """Realiza una sincronización incremental desde la última fila sincronizada."""
-        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register, 0)
+        num_row_last_register = self.config_manager.add_and_get_dict_value_if_not_exist(property.num_row_last_register_student.name, 0)
         new_row_last_register = 0
 
         df = self.get_filtered_dataframe()
@@ -73,7 +73,7 @@ class DataSync:
                 db.add_or_update_student(self.row_to_dict(record))
                 new_row_last_register = indice
 
-        self.config_manager.add_dict(property.num_row_last_register, new_row_last_register)
+        self.config_manager.add_dict(property.num_row_last_register_student.name, new_row_last_register)
 
     def sync_autorizados(self):
         """Sincroniza los datos de autorizados desde Google Sheets."""
