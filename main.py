@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-07 09:49:36
+# @Last Modified time: 2024-10-08 11:34:57
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -93,7 +93,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.11"
+        self.title = "mi Guardian v1.11.1"
         #db.updatedb()
         #cleardb.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
@@ -219,7 +219,7 @@ class MiGuardianApp(MDApp):
                 mensaje_autorizado = f", por el autorizado {autorizado_nombre}"
                 
             #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
-            chat_id = 1323264228#student.chat_id#1323264228#student.chat_id1515309472
+            chat_id = student.chat_id#1323264228#student.chat_id1515309472
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
             status = db.register_record_es(student.id, alumnos_tutores_id)

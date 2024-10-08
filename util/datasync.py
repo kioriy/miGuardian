@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-07 10:01:20
+# @Last Modified time: 2024-10-08 11:09:40
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -90,6 +90,9 @@ class DataSync:
                 "chat_id": str(int(float(record["chat_id"])))
             }
             db.add_or_update_autorizado(autorizado_data)
+        
+        start_index = df_autorizados.shape[0]
+        self.config_manager.add_dict(property.num_row_last_register_autorizados.name, start_index)
 
     def sync_alumnos_autorizados(self):
         """Sincroniza las relaciones alumno-tutor desde Google Sheets."""
@@ -113,6 +116,9 @@ class DataSync:
                     "autorizado_id": autorizado_id
                 }
                 db.add_or_update_alumno_tutor(alumno_tutor_data)
+        
+        start_index = df_alumnos_autorizados.shape[0]
+        self.config_manager.add_dict(property.num_row_last_register_alumnos_tutor.name, start_index)
     
     def row_to_dict(self, row_data):
         """Convierte una fila de datos en un diccionario."""
