@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-08 11:34:57
+# @Last Modified time: 2024-10-17 02:04:04
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -25,6 +25,8 @@ import util.temppath as tp
 import threading
 import subprocess
 import re
+import glob
+import os
 #import service.megasync
 #import database.fakedata
 
@@ -159,8 +161,9 @@ class MiGuardianApp(MDApp):
             nnombre = self.normalize_s(student.nombre)
             napellidos = self.normalize_s(student.apellidos)
             
-            photo_path = f"{self.photos_path}{nnombre} {napellidos}.jpeg"
-            file_exist = tp.file_exist(photo_path)
+            file_exist, photo_path = self.find_photo(nnombre, napellidos)
+            #photo_path = f"{self.photos_path}{nnombre} {napellidos}.jpeg"
+            #file_exist = tp.file_exist(photo_path)
             status_photo = "" #if file_exist else "FOTOGRAFÍA DEL ALUMNO NO ENCONTRADA"
             
             if not file_exist:
@@ -390,5 +393,18 @@ class MiGuardianApp(MDApp):
         #Verificamos que la consulta a la base de datos nos devuelva registros
         if len(entries_exits_record) > 0:
             ds.update_entries(self.settings.data["school_name"], entries_exits_record)
+            
+    def find_photo(self, nnombre, napellidos):
+        # Genera el patrón para buscar cualquier extensión de imagen
+        pattern = f"{self.photos_path}{nnombre.strip()} {napellidos.strip()}.*"
+        
+        # Busca cualquier archivo que coincida con el patrón
+        photo_files = glob.glob(pattern)
+
+        # Si se encuentra un archivo, devuelve True y la ruta; de lo contrario, False y None
+        if photo_files:
+            return True, photo_files[0]  # Devuelve True y el archivo encontrado
+        else:
+            return False, None  # Devuelve False si no se encuentra ningún archivo
 
 MiGuardianApp().run()

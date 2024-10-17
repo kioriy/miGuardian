@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-22 22:31:42
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-08 11:09:40
+# @Last Modified time: 2024-10-17 00:20:53
 
 import gspread
 from gspread_dataframe import get_as_dataframe
@@ -129,7 +129,8 @@ class DataSync:
             "grado": str(int(float(row_data[2]))), #row_data[2],
             "grupo": row_data[3],
             "codigo": str(int(float(row_data[4]))),  # Convertir a float, luego a int y luego a str
-            "chat_id": str(int(float(row_data[5])))  # Convertir a float, luego a int y luego a str
+            "chat_id": str(int(float(row_data[5]))),  # Convertir a float, luego a int y luego a str
+            "turno": row_data[6].lower()
         }
 
     def update_breakfast(self, spread_sheet_name:str, breakfast_records):

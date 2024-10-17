@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 22:41:55
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-06 17:42:52
+# @Last Modified time: 2024-10-16 20:45:07
 #from sqlalchemy.exc import NoSuchTableError
 from datetime import datetime, time, date, timedelta
 #from sqlalchemy.ext.declarative import declarative_base
@@ -29,7 +29,7 @@ class Student(Base):
     grupo = Column(String, nullable=False)
     codigo = Column(String, unique=True, index=True, nullable=False)
     chat_id = Column(String)
-    #turno = Column(String, nullable=False)
+    turno = Column(String, nullable=False)
     # Relación con la tabla attendance
     attendance = relationship("Attendance", back_populates="student")
     breakfast = relationship("Breakfast", back_populates="student")
