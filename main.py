@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2024-10-17 02:04:04
+# @Last Modified time: 2024-11-06 23:06:57
 
 from subprocess import call
 from kivymd.app import MDApp
@@ -95,7 +95,7 @@ class StoreScreen(Screen):
 class MiGuardianApp(MDApp):
     def build(self):
         self.offline = Offline()
-        self.title = "mi Guardian v1.11.1"
+        self.title = "mi Guardian v1.11.2"
         #db.updatedb()
         #cleardb.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
@@ -196,24 +196,21 @@ class MiGuardianApp(MDApp):
                 main_screen.ids.status_icon.disabled = False
                 main_screen.ids.status_icon.text_color = (1, 0, 0, 1)  # rojo
         else:
-            #Si el estudiante no se encuentra en la base de datos, registra el evento
-            list_no_student = self.event_logger.data["no_student"]
-            list_no_student.append(barcode)
-            self.event_logger.add_dict("no_student", list_no_student)
             main_screen.ids.student_photo.source = placeholder_path   # Imagen por defecto
             main_screen.ids.student_info.text = f"{mensaje_pantalla}"#"Estudiante no encontrado"
-            chat_id = 1323264228#student.chat_id
-            print(f"CHAT_ID:<<<<<<<{chat_id} alumno no existe>>>>>>>")
-            current_time = datetime.now().strftime('%I:%M:%S %p')
-            #status = db.register_record_es(student.id)
-            school_name = self.settings.data["school_name"]
-            message = f"No se encontró el registro para el alumno con id {barcode} {current_time} - {school_name}"
-            threading.Thread(target=self.notification.send_message, args=(chat_id, message,)).start()
-        
+            self.notification_student_not_found(barcode)
+            
         # Reiniciar el valor del MDTextField
         main_screen.ids.barcode_input.text = ''
         # Mantener el foco en el MDTextField
         Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
+        
+    def notification_student_not_found(self, barcode):
+            current_time = datetime.now().strftime('%I:%M:%S %p')
+            #status = db.register_record_es(student.id)
+            school_name = self.settings.data["school_name"]
+            message = f"No se encontró el registro para el alumno con id {barcode} {current_time} \- {school_name}"
+            threading.Thread(target=self.notification.send_message, args=(1323264228, message,)).start()
 
     def register_attendance(self, student: db.Student, autorizado_nombre, alumnos_tutores_id):
             mensaje_autorizado = ""
@@ -222,7 +219,7 @@ class MiGuardianApp(MDApp):
                 mensaje_autorizado = f", por el autorizado {autorizado_nombre}"
                 
             #current_time = datetime.now().strftime('%H:%M:%S') # Obtener la hora actual
-            chat_id = student.chat_id#1323264228#student.chat_id1515309472
+            chat_id = student.chat_id#1323264228#student.chat_id
             print(f"CHAT_ID:<<<<<<<{chat_id}>>>>>>>")
             current_time = datetime.now().strftime('%I:%M:%S %p')
             status = db.register_record_es(student.id, alumnos_tutores_id)
