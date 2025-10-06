@@ -1,0 +1,132 @@
+<MainScreen>:
+    Screen:
+        MDTextField:
+            id: barcode_input
+            hint_text: 'Introduce el código de barras'
+            pos_hint: {'center_x': 0.5, 'center_y': 0.4}
+            size_hint: (0.7, 0.1)
+            opacity: 0.0
+            on_text_validate: app.show_student_info()
+
+        Image:
+            id: student_photo
+            pos_hint: {'center_x': 0.5, 'center_y': 0.8}
+            size_hint: (0.5, 0.5)
+            source: 'assets/placeholder.jpeg'  # Imagen por defecto
+
+        MDLabel:
+            id: student_info
+            font_size: 20
+            pos_hint: {'center_x': 0.7, 'center_y': 0.22}
+            theme_text_color: 'Primary'
+
+        MDLabel:
+            id: status_message
+            font_style: 'H6'
+            pos_hint: {'center_x': 0.7, 'center_y': 0.070}
+            theme_text_color: 'Secondary'
+
+        MDIcon:
+            id: status_icon
+            pos_hint: {'x': 0.85, 'y': 0.02}
+            size_hint: (None, None)
+            icon: 'door-open'  # valor por defecto, cambiarás esto en el código
+            theme_text_color: 'Custom'
+            font_size: "64sp"
+            text_color: (0, 1, 0, 1)  # verde por defecto, cambiarás esto en el código
+            opacity: 0  # Cambia la opacidad a 1 para hacerlo visible
+            disabled: True  # Habilita el icono
+
+        #MDFloatingActionButton:
+        #    text: "Cambiar pantalla"
+        #    pos_hint: {'x': 0.02, 'y': 0.02}
+        #    elevation: 0
+        #    #pos: '200dp','500dp'
+        #    size_hint: (None,None)
+        #    size: '120dp','80dp'
+        #    md_bg_color: "#FB5252"#app.theme_cls.primary_color 
+        #    icon: "monitor-multiple"
+        #    on_press: app.switch_screen()
+
+        MDFloatingActionButton:
+            icon: "food"
+            icon_size: "34sp"
+            #text: "mi Tiendita"
+            elevation: 0
+            text_color: "white"
+            icon_color: "white"
+            md_bg_color: app.theme_cls.primary_color
+            pos_hint: {"top": 0.98, "x": 0.02}
+            #size_hint: (0.15, 0.1)
+            on_press: app.switch_form()
+
+        MDIcon:
+            id: internet_status_icon
+            icon: 'wifi-off'  # Icono de conexión Wi-Fi
+            theme_text_color: 'Secondary'
+            halign: 'right'
+            valign: 'bottom'
+            pos_hint: {'bottom': 1, 'right': 1}
+            opacity: 0  
+            disabled: True
+            font_size: "34sp"
+
+        #MDFloatingActionButton:
+        #    icon: "human-baby-changing-table"
+        #    icon_size: "34sp"
+        #    text: "Bitacora"
+        #    elevation: 0
+        #    text_color: "white"
+        #    icon_color: "white"
+        #    md_bg_color: app.theme_cls.primary_color
+        #    pos_hint: {"top": 0.77, "x": 0.02}
+            #size_hint: (0.15, 0.1)
+            #on_press: app.switch_form()
+
+        #MDRectangleFlatIconButton:
+            #icon: "human-baby-changing-table"
+            #icon_size: "34sp"
+            #text: "Bitacora"
+            #elevation: 0
+            #text_color: "white"
+            #icon_color: "white"
+            #md_bg_color: app.theme_cls.primary_color
+            #pos_hint: {"top": 0.8, "x": 0.02}
+            #size_hint: (0.2, 0.08)
+            #on_press: app.switch_form()
+
+        MDFloatingActionButton:
+            icon: 'power'
+            md_bg_color: "#FB5252"
+            elevation: 0
+            pos_hint: {"top": 0.98, "x": 0.85}
+            on_press: app.shutdown_raspberry()
+
+        MDFloatingActionButton:
+            icon: 'sync'
+            md_bg_color: "#4CAF50"
+            elevation: 0
+            pos_hint: {"top": 0.77, "x": 0.85}
+            on_press: app.generate_all_entries_exits_report()
+
+<StoreScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+
+        MDTopAppBar:
+            title: 'mi Tiendita'
+            left_action_items: [['arrow-left', lambda x: app.switch_form()]]
+            on_action_button: app.switch_form() # Asociamos el evento on_press con el método switch_form
+            right_action_items: [['cash-register', lambda x: app.generate_breakfast_report()]]
+            
+        MDTextField:
+            id: barcode_input_store
+            hint_text: 'Introduce el código del alumno para registrar desayuno'
+            pos_hint: {'center_x': 0.5}
+            size_hint_x: 0.8
+            on_text_validate: root.register_new_breakfast(self.text)  # Esta función registrará el desayuno para el estudiant
+
+        ScrollView:
+            MDList:
+                id: breakfast_student_list
+            

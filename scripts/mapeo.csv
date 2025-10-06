@@ -1,0 +1,79 @@
+output,input
+Id,Entry ID
+eliminar,Title
+eliminar,Title (segundo)
+eliminar,GDPR Agreement
+IdTelegram,ID Telegram para notificaciones de entradas y salidas
+NombreAlumno,Nombre alumno 1
+ApellidosAlumno,Apellidos alumno 1
+CurpAlumno,CURP alumno 1
+eliminar,Seleccione la cantidad de alumnos a registrar
+NivelEscolar,Nivel escolar alumno 1
+Grado,Grado alumno 1
+Grupo,Grupo alumno 1
+TipoSangre,Tipo de sangre alumno 1
+eliminar,Divider
+eliminar,Nombre alumno 2
+eliminar,Apellidos alumno 2
+eliminar,CURP alumno 2
+eliminar,Nivel escolar alumno 2
+eliminar,Grado alumno 2
+eliminar,Grupo alumno 2
+eliminar,Tipo de sangre alumno 2
+eliminar,Divider
+eliminar,Nombre alumno 3
+eliminar,Apellidos alumno 3
+eliminar,CURP alumno 3
+eliminar,Nivel escolar alumno 3
+eliminar,Grado alumno 3
+eliminar,Grupo alumno 3
+eliminar,Tipo de sangre alumno 3
+eliminar,Nombre autorizado 1
+eliminar,Apellidos autorizado 1
+eliminar,Selecciones la cantidad de autorizado a registrar
+eliminar,Nombre autorizado 2
+eliminar,Apellidos autorizado 3
+eliminar,Divider
+eliminar,Nombre autorizado 3
+eliminar,Apellidos autorizado 2
+eliminar,GDPR Agreement (repetido)
+eliminar,Foto del alumno 1
+eliminar,Foto del alumno 2
+eliminar,Foto del alumno 3
+eliminar,Foto autorizado 1
+eliminar,Foto autorizado 2
+eliminar,Foto autorizado 3
+ClaveInstituto,Clave del instituto alumno 1
+InfoMedica,Información médica del alumno 1
+eliminar,Nombre autorizado 4
+eliminar,Apellidos autorizado 4
+eliminar,Foto autorizado 4
+eliminar,Clave del instituto alumno 2
+eliminar,Información médica del alumno 2
+eliminar,Clave del instituto alumno 3
+eliminar,Información médica del alumno 3
+Matricula,Matrícula alumno 1
+eliminar,Matrícula alumno 2
+eliminar,Matrícula alumno 3
+eliminar,Número de autorizado 1
+eliminar,Número de autorizado 2
+eliminar,Número de autorizado 3
+eliminar,Número de autorizado 4
+Domicilio,Domicilio alumno 1
+eliminar,Domicilio alumno 2
+eliminar,Domicilio alumno 3
+eliminar,Usuario
+eliminar,Estado
+eliminar,Refer URL
+eliminar,Device
+eliminar,IP address
+eliminar,Created Time
+eliminar,Modified Time
+nombre_autorizado_1,nombre_completo_autorizado_1
+nombre_autorizado_2,nombre_completo_autorizado_2
+nombre_autorizado_3,nombre_completo_autorizado_3
+nombre_autorizado_4,nombre_completo_autorizado_4
+fotografia_de_autorizado_1,foto_autorizado_1_normalizado
+fotografia_de_autorizado_2,foto_autorizado_2_normalizado
+fotografia_de_autorizado_3,foto_autorizado_3_normalizado
+fotografia_de_autorizado_4,foto_autorizado_4_normalizado
