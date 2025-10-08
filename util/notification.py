@@ -2,21 +2,13 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-23 23:46:49
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-<<<<<<< HEAD
-# @Last Modified time: 2024-08-20 18:26:28
-=======
-# @Last Modified time: 2025-07-09 22:01:23
->>>>>>> 6149fa0 (boton de sincronizacion y ventana maximizada)
+# @Last Modified time: 2025-10-08 09:01:34
 
 import requests
 
 class TelegramNotifier:
     def __init__(self):
-<<<<<<< HEAD
-        self.token = "6061799324:AAFgovrNp5ZKsl4LgojVWiGNL5tZ5BHx0fU" 
-=======
-        self.token = "6061799324:AAEcfontKz7QXUKkPHmolU24encwXrZY9gs"#"6061799324:AAFgovrNp5ZKsl4LgojVWiGNL5tZ5BHx0fU" 
->>>>>>> 6149fa0 (boton de sincronizacion y ventana maximizada)
+        self.token = "6061799324:AAEcfontKz7QXUKkPHmolU24encwXrZY9gs" 
         self.base_url = f"https://api.telegram.org/bot{self.token}/"
 
     def send_message(self, chat_id, message, image_path=None):
