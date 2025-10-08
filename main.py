@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2025-10-06 02:14:59
+# @Last Modified time: 2025-10-08 09:17:37
 # @Last Modified time: 2025-10-06 01:09:33
 
 from subprocess import call
@@ -352,6 +352,9 @@ class MiGuardianApp(MDApp):
             )
         self.shutdown_dialog.open()
 
+    def close_shutdown_dialog(self, *args):
+        self.shutdown_dialog.dismiss()
+    
     def close_report_dialog(self, *args):
         self.report_dialog.dismiss()
         Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
