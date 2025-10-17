@@ -2,7 +2,7 @@
 # @Author: Hugo Rafael Hernández Llamas
 # @Date:   2023-08-19 12:33:12
 # @Last Modified by:   Hugo Rafael Hernández Llamas
-# @Last Modified time: 2025-10-08 09:17:37
+# @Last Modified time: 2025-10-17 13:06:55
 # @Last Modified time: 2025-10-06 01:09:33
 
 from subprocess import call
@@ -98,7 +98,7 @@ class MiGuardianApp(MDApp):
     def build(self):
         Window.maximize()
         self.offline = Offline()
-        self.title = "mi Guardian v1.11.3"
+        self.title = "mi Guardian v1.11.4"
         #db.updatedb()
         #cleardb.setup_database()# Inicializamos la base de datos al iniciar la app
         self.photos_path = tp.ensure_photos_dir_exists()
@@ -146,74 +146,79 @@ class MiGuardianApp(MDApp):
         nombre_autorizado = "False"
         mensaje_pantalla = "Alumno no encontrado"
         
-        if barcode.startswith('t'):
-            alumnos_tutores_id = barcode[1:]
-            student, autorizado = db.get_autorizado_and_student_by_code(alumnos_tutores_id)
-            if autorizado:
-                nombre_autorizado = autorizado.nombre
-            else:
-                mensaje_pantalla = "Autorizado no registrado... ACTUALIZANDO DATOS!!\nRegistrar acceso con la credencial de estudiante"
+        if barcode == 's1111s':
+            self.generate_all_entries_exits_report()
+            main_screen.ids.barcode_input.text = ''
+            Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
         else:
-            student = db.get_student_by_code(barcode)
+            if barcode.startswith('t'):
+                alumnos_tutores_id = barcode[1:]
+                student, autorizado = db.get_autorizado_and_student_by_code(alumnos_tutores_id)
+                if autorizado:
+                    nombre_autorizado = autorizado.nombre
+                else:
+                    mensaje_pantalla = "Autorizado no registrado... ACTUALIZANDO DATOS!!\nRegistrar acceso con la credencial de estudiante"
+            else:
+                student = db.get_student_by_code(barcode)
 
-        placeholder_path = f"{self.photos_path}placeholder.jpeg"
-        #self.screen_status = self.settings.data['screen_status']
-        
-        if student:
-            # Genera la ruta de la foto dinámicamente y actualiza la interfaz
-            nnombre = self.normalize_s(student.nombre)
-            napellidos = self.normalize_s(student.apellidos)
+            placeholder_path = f"{self.photos_path}placeholder.jpeg"
+            #self.screen_status = self.settings.data['screen_status']
             
-            file_exist, photo_path = self.find_photo(nnombre, napellidos)
-            #photo_path = f"{self.photos_path}{nnombre} {napellidos}.jpeg"
-            #file_exist = tp.file_exist(photo_path)
-            status_photo = "" #if file_exist else "FOTOGRAFÍA DEL ALUMNO NO ENCONTRADA"
-            
-            if not file_exist:
-                #Si no existe la foto, registra el evento
-                list_no_photo = self.event_logger.data["no_photo"]
-                list_no_photo.append(barcode)
-                self.event_logger.add_dict("no_photo", list_no_photo)
-                status_photo = "SIN FOTOGRAFÍA DEL ALUMNO"
-            
-            main_screen.ids.student_photo.source = photo_path if file_exist else placeholder_path
-            main_screen.ids.student_photo.size_hint:  (1, 1)
-            main_screen.ids.student_info.text = (f"Nombre: {student.nombre} {student.apellidos}\n" 
-                                            f"Grado: {student.grado}\n" 
-                                            f"Grupo: {student.grupo}\n" 
-                                            f"{status_photo}" )
-            
-            #agregar el registro de asistencia del alumno
-            status = self.register_attendance(student, nombre_autorizado, alumnos_tutores_id)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
-            
-            if status == "entrada":
-                main_screen.ids.status_message.text = "Registro de entrada exitoso"
-                main_screen.ids.status_icon.icon = "door-open"
-                main_screen.ids.status_icon.opacity = 1
-                main_screen.ids.status_icon.disabled = False
-                main_screen.ids.status_icon.text_color = (0, 1, 0, 1)  # verde
+            if student:
+                # Genera la ruta de la foto dinámicamente y actualiza la interfaz
+                nnombre = self.normalize_s(student.nombre)
+                napellidos = self.normalize_s(student.apellidos)
+                
+                file_exist, photo_path = self.find_photo(nnombre, napellidos)
+                #photo_path = f"{self.photos_path}{nnombre} {napellidos}.jpeg"
+                #file_exist = tp.file_exist(photo_path)
+                status_photo = "" #if file_exist else "FOTOGRAFÍA DEL ALUMNO NO ENCONTRADA"
+                
+                if not file_exist:
+                    #Si no existe la foto, registra el evento
+                    list_no_photo = self.event_logger.data["no_photo"]
+                    list_no_photo.append(barcode)
+                    self.event_logger.add_dict("no_photo", list_no_photo)
+                    status_photo = "SIN FOTOGRAFÍA DEL ALUMNO"
+                
+                main_screen.ids.student_photo.source = photo_path if file_exist else placeholder_path
+                main_screen.ids.student_photo.size_hint:  (1, 1)
+                main_screen.ids.student_info.text = (f"Nombre: {student.nombre} {student.apellidos}\n" 
+                                                f"Grado: {student.grado}\n" 
+                                                f"Grupo: {student.grupo}\n" 
+                                                f"{status_photo}" )
+                
+                #agregar el registro de asistencia del alumno
+                status = self.register_attendance(student, nombre_autorizado, alumnos_tutores_id)#Clock.schedule_once(lambda dt: self.async_run(self.register_attendance(student))) 
+                
+                if status == "entrada":
+                    main_screen.ids.status_message.text = "Registro de entrada exitoso"
+                    main_screen.ids.status_icon.icon = "door-open"
+                    main_screen.ids.status_icon.opacity = 1
+                    main_screen.ids.status_icon.disabled = False
+                    main_screen.ids.status_icon.text_color = (0, 1, 0, 1)  # verde
+                else:
+                    main_screen.ids.status_message.text = "Registro de salida exitoso"
+                    main_screen.ids.status_icon.icon = "door-closed"
+                    main_screen.ids.status_icon.opacity = 1
+                    main_screen.ids.status_icon.disabled = False
+                    main_screen.ids.status_icon.text_color = (1, 0, 0, 1)  # rojo
             else:
-                main_screen.ids.status_message.text = "Registro de salida exitoso"
-                main_screen.ids.status_icon.icon = "door-closed"
-                main_screen.ids.status_icon.opacity = 1
-                main_screen.ids.status_icon.disabled = False
-                main_screen.ids.status_icon.text_color = (1, 0, 0, 1)  # rojo
-        else:
-            main_screen.ids.student_photo.source = placeholder_path   # Imagen por defecto
-            main_screen.ids.student_info.text = f"{mensaje_pantalla}"#"Estudiante no encontrado"
-            self.notification_student_not_found(barcode)
+                main_screen.ids.student_photo.source = placeholder_path   # Imagen por defecto
+                main_screen.ids.student_info.text = f"{mensaje_pantalla}"#"Estudiante no encontrado"
+                self.notification_student_not_found(barcode)
+                
+            # Reiniciar el valor del MDTextField
+            main_screen.ids.barcode_input.text = ''
+            # Mantener el foco en el MDTextField
+            Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
             
-        # Reiniciar el valor del MDTextField
-        main_screen.ids.barcode_input.text = ''
-        # Mantener el foco en el MDTextField
-        Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
-        
     def notification_student_not_found(self, barcode):
-            current_time = datetime.now().strftime('%I:%M:%S %p')
-            #status = db.register_record_es(student.id)
-            school_name = self.settings.data["school_name"]
-            message = f"No se encontró el registro para el alumno con id {barcode} {current_time} \- {school_name}"
-            threading.Thread(target=self.notification.send_message, args=(1323264228, message,)).start()
+        current_time = datetime.now().strftime('%I:%M:%S %p')
+        #status = db.register_record_es(student.id)
+        school_name = self.settings.data["school_name"]
+        message = f"No se encontró el registro para el alumno con id {barcode} {current_time} \- {school_name}"
+        threading.Thread(target=self.notification.send_message, args=(1323264228, message,)).start()
 
     def register_attendance(self, student: db.Student, autorizado_nombre, alumnos_tutores_id):
             mensaje_autorizado = ""
@@ -295,6 +300,14 @@ class MiGuardianApp(MDApp):
             Clock.unschedule(self.update_dialog_text)
             self.dialog.dismiss()
             self.revert_to_hdmi()
+            
+    def update_dialog_text_sync(self, dt):
+        self.counter -= 1
+        #self.report_dialog.text = f'Confirma en {self.counter} segundos'
+        if self.counter <= 0:
+            #Clock.unschedule(self.update_dialog_text_sync)
+            self.report_dialog.dismiss()
+            Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
 
     def dialog_close_revert(self, obj):
         Clock.unschedule(self.update_dialog_text)
@@ -403,7 +416,7 @@ class MiGuardianApp(MDApp):
             ds.update_entries(self.settings.data["school_name"], entries_exits_record)
         
         self.show_dialog_resumen_report(len(entries_exits_record))
-        
+                
         Clock.schedule_once(partial(self.refocus_ti, 'main', 'barcode_input'))
             
     def find_photo(self, nnombre, napellidos):
@@ -428,12 +441,14 @@ class MiGuardianApp(MDApp):
                 elevation = 0,
                 buttons=[
                     MDFlatButton(
-                        text='ACEPTAR',
-                        on_release=self.close_report_dialog
+                        text='CERRAR',
+                        on_release=self.dialog_close_revert
                     ),
                 ]
             )#commit
             
         self.report_dialog.open()
+        self.counter = 3
+        Clock.schedule_interval(self.update_dialog_text_sync, 1)
     
 MiGuardianApp().run()
