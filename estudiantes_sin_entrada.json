@@ -1,0 +1,3926 @@
+[
+    {
+        "nombre": "Dylan Santiago",
+        "apellidos": "López Avila",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Karen Denisse",
+        "apellidos": "Ibañez Real",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ethan Nataniel",
+        "apellidos": "Partida Ramírez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fedro Andreas",
+        "apellidos": "Rivas Gutiérrez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Karla Sofía",
+        "apellidos": "Najar Abundis",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Daniel Alessandro",
+        "apellidos": "Rivera Espinosa",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Julieta Mariah",
+        "apellidos": "Ramírez Flores",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Damian",
+        "apellidos": "Oceguera Velazquez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Leonardo Tomás",
+        "apellidos": "Zapata Rodríguez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ximena Valentina",
+        "apellidos": "Contreras Rosas",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Maria Jose",
+        "apellidos": "Carrillo López",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Diego Leonel",
+        "apellidos": "Alvarado Gutiérrez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Michelle Alejandra",
+        "apellidos": "Olazaba Acuña",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Matias Eduardo",
+        "apellidos": "Pulido Martinez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Yoel Emiliano",
+        "apellidos": "Lira Zamora",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Edwin Eduardo",
+        "apellidos": "Contreras Pedroza",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Daniel",
+        "apellidos": "Contreras Pedroza",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Salvador",
+        "apellidos": "Melendez Rodriguez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ethan Iván",
+        "apellidos": "Rivera Mireles",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Emiliano",
+        "apellidos": "Robledo Velasco",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dorian Gerardo",
+        "apellidos": "Romero Orozco",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Vanessa Sofía",
+        "apellidos": "Barajas Cervantes",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alondra Jazmín",
+        "apellidos": "Barajas Gutiérrez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Daniel",
+        "apellidos": "Leyva Solorzano",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Anabeth Gisell",
+        "apellidos": "Aguirre Martínez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Lucero Alejandra",
+        "apellidos": "Gamiño Guerrero",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Francisco Javier",
+        "apellidos": "Francisco Javier Sanchez Trujillo",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fátima Sofía",
+        "apellidos": "Leyva Solorzano",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Regina",
+        "apellidos": "Jacobo Martinez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ramsik Tadeo",
+        "apellidos": "Altamirano Salcedo",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Eder Daniel",
+        "apellidos": "Rodríguez Cárdenas",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Omar Zabdiel",
+        "apellidos": "Arroyo Bautista",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Nathan Isaac",
+        "apellidos": "Torres González",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Antonio Mateo",
+        "apellidos": "Trujillo Beleche",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ivanna Jasibe",
+        "apellidos": "Nabor Martinez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Angeles Valeria Jacqueline",
+        "apellidos": "Mendoza Guerrero",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Emily Sofia",
+        "apellidos": "Napoles Araujo",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Héctor Mateo",
+        "apellidos": "Baez García",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Raúl",
+        "apellidos": "Ramirez Valls",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Derek André",
+        "apellidos": "Ruiz Rosas",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ricardo Daniel",
+        "apellidos": "Hernandez Rodriguez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Santiago Luciano",
+        "apellidos": "Olmos Delgado",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Sofía Isabella",
+        "apellidos": "Manzano Díaz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Katherine Esther",
+        "apellidos": "Orozco Negrete",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yahel Adrián",
+        "apellidos": "Pazos Gonzalez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Sebastian",
+        "apellidos": "Isandro Ruiz",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Sofía Aylin",
+        "apellidos": "Gutiérrez Mariscal",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Matías Yoel",
+        "apellidos": "Hernández Santoyo",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Oscar Emmanuel",
+        "apellidos": "Gutierrez Aceves",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Axel Mateo",
+        "apellidos": "Sánchez Bautista",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Victor Samuel",
+        "apellidos": "Bautista Romero",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Brandon Mateo",
+        "apellidos": "Anaya González",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dante Kaled",
+        "apellidos": "López De La Cruz",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Daniel Israel",
+        "apellidos": "Córdova Hernández",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jesus Emmanuel",
+        "apellidos": "Molina Flores",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Nahomi Nicol",
+        "apellidos": "Torres Luisjuan",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Hanna Ximena",
+        "apellidos": "Rosales Ortiz",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Andry Emiliano",
+        "apellidos": "Perez Cervantes",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Regina Nicolle",
+        "apellidos": "Martínez Gómez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ahyline Ximena",
+        "apellidos": "López Zaleta",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Angel Uriel",
+        "apellidos": "Mendiola Cisneros",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Carlos Enrique",
+        "apellidos": "Mendiola Cisneros",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Athena Alexandra",
+        "apellidos": "Delgadillo Valladares",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Joshua",
+        "apellidos": "Olmedo Hernández",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Carlos Eduardo De Jesus",
+        "apellidos": "Amezcua Salcido",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Mateo",
+        "apellidos": "Picon Diaz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Grecia Antonella",
+        "apellidos": "Jaramillo Domínguez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Andrés",
+        "apellidos": "Paredes Farias",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Lenny Ximena",
+        "apellidos": "Gonzalez Herrera",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Steven Gerrard",
+        "apellidos": "Vazquez Alonso",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "León Demian",
+        "apellidos": "Garcia Navarro",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Alanna Yalil",
+        "apellidos": "Rivera Mireles",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Gabriela",
+        "apellidos": "Robledo Velasco",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Sofia Nicole",
+        "apellidos": "Paredes Padilla",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Dylan Tadeo",
+        "apellidos": "Chávez González",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Gael Isaac",
+        "apellidos": "Sánchez Reyes",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Rodrigo Amram",
+        "apellidos": "Trujillo Moya",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Oliver Jared",
+        "apellidos": "Islas Romo",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Briseyda Janai",
+        "apellidos": "Trujillo Moya",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Antonio Mateo",
+        "apellidos": "Trujillo Beleche",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Estefani Giselle",
+        "apellidos": "Ponce Ruiz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Santiago",
+        "apellidos": "Cordova Hernández",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Angel Uriel",
+        "apellidos": "Mendiola Cisneros",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Carlos Enrique",
+        "apellidos": "Mendiola Cisneros",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dara Erika Miranda",
+        "apellidos": "Gonzalez Herrera",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Valeria Estefania",
+        "apellidos": "Gracian Arce",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Melanny Michelle",
+        "apellidos": "Verdin Lara",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Julia Valentina",
+        "apellidos": "Rodríguez Barajas",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jared Azael",
+        "apellidos": "Quezada Baez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ximena Esmeralda",
+        "apellidos": "Esparza Padilla",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ivana Jocelyne",
+        "apellidos": "Barajas Gutiérrez",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Mateo Alonso",
+        "apellidos": "López Martínez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Miranda Sofía",
+        "apellidos": "Monreal Casillas",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Gabriela Chantal",
+        "apellidos": "Valencia Aguilar",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ethan Said",
+        "apellidos": "Pulido Mendoza",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Darianna Ximena",
+        "apellidos": "Cordova Cardenas",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jimena Alejandra",
+        "apellidos": "Castillo Martínez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Christopher Haziel",
+        "apellidos": "Aguilar Silva",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Sophia Daniella",
+        "apellidos": "Cordova Cardenas",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emir Daniel",
+        "apellidos": "Ortiz López",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Andrea Mariel",
+        "apellidos": "Martínez Muro",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Karol Akemi",
+        "apellidos": "Vargas Jara",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Danna Tanisha",
+        "apellidos": "Tronco Rosales",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cristopher Adán",
+        "apellidos": "Gutiérrez Carlos",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ámbar Valeria",
+        "apellidos": "Urzúa Cervantes",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Angela Estefania",
+        "apellidos": "Gutiérrez Santana",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Reyna Berenice",
+        "apellidos": "Andrade Martínez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ulises Arath",
+        "apellidos": "Gutierrez Perez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Alondra Yazmin",
+        "apellidos": "Gonzalez Ortiz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fernando Mateo",
+        "apellidos": "Celorio Martinez",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Brithany",
+        "apellidos": "Escobedo Cortes",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Sergio Aaron",
+        "apellidos": "Gutierrez Perez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Janeth Guadalupe",
+        "apellidos": "Arechiga Suarez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Cristopher Leonardo",
+        "apellidos": "Arechiga Suarez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dana Nicole",
+        "apellidos": "Hernandez Suarez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Darlyn Itzel",
+        "apellidos": "Zapata Rodríguez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fernanda Valentina",
+        "apellidos": "Ortiz Regalado",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dafne",
+        "apellidos": "Agustín Orozco",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fernando Josue",
+        "apellidos": "Flores Velasquez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Samantha Juliette",
+        "apellidos": "Lopez Rangel",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Allison Zoe",
+        "apellidos": "Chaires Ibarra",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ana Paola",
+        "apellidos": "Hernández Domínguez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "William Alberto",
+        "apellidos": "De La Cruz Flores",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Alondra Jazmín",
+        "apellidos": "Barajas Gutiérrez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Amzi Alejandro",
+        "apellidos": "Meza Lazcano",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mateo De Jesus",
+        "apellidos": "Pulido Martinez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Camila Naomi",
+        "apellidos": "Carlos Zamora",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Valentina Del Carmen",
+        "apellidos": "Ruelas Islas",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Kimberly Sinai",
+        "apellidos": "Contreras Verdia",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Paola Dannai",
+        "apellidos": "Gallegos Martinez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cristian Alejandro",
+        "apellidos": "Andrade Martínez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Silvana",
+        "apellidos": "Delgadillo Bolaños",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Vanessa Zoe",
+        "apellidos": "Ramirez Gutierrez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Yolanda Yamileth",
+        "apellidos": "Arechiga Suarez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Máximo Alexander Rodolfo",
+        "apellidos": "Partida Ramírez",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dulce María",
+        "apellidos": "Martínez Muro",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Alejandro",
+        "apellidos": "Flores Quevedo",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Elian Matías",
+        "apellidos": "López Zaleta",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fatima Romina",
+        "apellidos": "Rayas Valencia",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dorlan Nicolás",
+        "apellidos": "Arce Melendrez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Citlali Guadalupe",
+        "apellidos": "Mendoza Aguilar",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Lander Bashel",
+        "apellidos": "Vazquez Alonso",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Romina Yeraldin",
+        "apellidos": "Delgadillo Macedo",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Romina Yeraldin",
+        "apellidos": "Delgadillo Macedo",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Gerardo",
+        "apellidos": "Aguirre Arvizu",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Quetzalli",
+        "apellidos": "Pérez Diaz",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Mia Carolina",
+        "apellidos": "Loza Paredes",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mia Montserrat",
+        "apellidos": "Mercado Gazcon",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Alain Leonel",
+        "apellidos": "Pulido Mendoza",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Teresa De Jesus",
+        "apellidos": "Leal Silva",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Jorge Josué",
+        "apellidos": "Amezcua Pérez",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Sarah Mía Valeria",
+        "apellidos": "Sahagún Zambrano",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fatima María",
+        "apellidos": "Padilla Perez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fatima Paulette",
+        "apellidos": "Cardenas Vazquez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Eimy Camila",
+        "apellidos": "Loza Paredes",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Lia Araceli",
+        "apellidos": "Ortiz López",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Luna Escarlet",
+        "apellidos": "Reyes Campos",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jocelyn Alejandra",
+        "apellidos": "Águila Jiménez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ali Sinahi",
+        "apellidos": "Flores Hernandez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Edgar Emiliano",
+        "apellidos": "Aguilar Valls",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ximena Esmeralda",
+        "apellidos": "Esparza Padilla",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Juan Carlos",
+        "apellidos": "Rodríguez Barajas",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Edgar Santiago",
+        "apellidos": "Flores Silva",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Mauro Josaphat",
+        "apellidos": "Chaires Ibarra",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Christian Zooe",
+        "apellidos": "De León Morales",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Maria Valentina",
+        "apellidos": "Estrella Camacho",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yolanda Yamileth",
+        "apellidos": "Arechiga Suarez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ángel Ezequiel",
+        "apellidos": "Rodríguez Haro",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Daena Yamileth",
+        "apellidos": "Santillan Ramírez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ramiro Mateo",
+        "apellidos": "Padilla Orozco",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Ivana Irais",
+        "apellidos": "González Trejo",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dara Erika Miranda",
+        "apellidos": "Gonzalez Herrera",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dania Paola",
+        "apellidos": "Sanchez Trujillo",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Matias",
+        "apellidos": "Alvarez López",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Baruc Emiliano",
+        "apellidos": "Gómez Diaz",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Atziri Betzabe",
+        "apellidos": "Gamiño Marentes",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Christian Emmanuel",
+        "apellidos": "Ibarra Espinosa",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dominic Ramon",
+        "apellidos": "Cervantes Ruiz",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Lander Bashel",
+        "apellidos": "Vazquez Alonso",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Teresa Sinai",
+        "apellidos": "Padilla Guzmán",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Alexa Yamilet",
+        "apellidos": "Ibarra Garcia",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Vanya Guadalupe",
+        "apellidos": "Torres González",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Dayanna Naomi",
+        "apellidos": "Yáñez Acuña",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Ximena Yamani",
+        "apellidos": "Pimentel Pérez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Daylin Betzabeth",
+        "apellidos": "Hernández Contreras",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alan Gael",
+        "apellidos": "Gutiérrez Velázquez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Elías Alberto",
+        "apellidos": "Zaleta Álvarez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Camila Itzayana",
+        "apellidos": "Zaleta Álvarez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Oscar Alejandro",
+        "apellidos": "Flores Ocampo Cruz",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Daniel",
+        "apellidos": "Flores Ocampo Cruz",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Cristóbal",
+        "apellidos": "Talamantes Padilla",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Francisco Tadeo",
+        "apellidos": "Flores Aguayo",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mia Vianney",
+        "apellidos": "Garcia Garcia",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emily Denisse",
+        "apellidos": "Orozco Covarrubias",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cristóbal Said",
+        "apellidos": "Quezada Mercado",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dante Matias",
+        "apellidos": "Perez Ibañez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dante Matias",
+        "apellidos": "Perez Ibañez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mariano",
+        "apellidos": "Ramírez Gastelum",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mathias Yadiel",
+        "apellidos": "Vega González",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Marcelo Gael",
+        "apellidos": "De Luna Fernández",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emeli Michelle",
+        "apellidos": "González Galván",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Sofia",
+        "apellidos": "Nuño Rodríguez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alan Armando",
+        "apellidos": "Torres Castro",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Ángela Ximena",
+        "apellidos": "Méndez López",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jennifer Jacqueline",
+        "apellidos": "Rodríguez Valencia",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alfonso Fernando",
+        "apellidos": "Gonzalez De La Torre",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Mael Alexandre",
+        "apellidos": "Cortes Vazquez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Liliana Nicole",
+        "apellidos": "Lira Zamora",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Leonardo Daniel",
+        "apellidos": "Ramos Castro",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Julio Emmanuel",
+        "apellidos": "Juárez Mojica",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Raúl Issac",
+        "apellidos": "Cervantes Regalado",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Juan Pablo",
+        "apellidos": "Esparza Ruvalcaba",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Naim Yazid",
+        "apellidos": "Barrios Ascencio",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Romina Fernanda",
+        "apellidos": "Murillo Martínez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ximena Nahomi",
+        "apellidos": "Mora Ramírez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Emili",
+        "apellidos": "Pedroza Aparicio",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dashlyn Shantal",
+        "apellidos": "Jiménez Peña",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Lucio Emmanuel",
+        "apellidos": "Espinoza Casillas",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jesús Antonio",
+        "apellidos": "Orozco Saucedo",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Quetzalli",
+        "apellidos": "Pérez Diaz",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Aredzy Julieta",
+        "apellidos": "Murillo Martinez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Jorge Gael",
+        "apellidos": "Fernández Santiago",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iris Daniela",
+        "apellidos": "Ramos Urdiano",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dominic Yoab",
+        "apellidos": "Castellón Pérez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ambar Carmin",
+        "apellidos": "Nabor Martinez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Leonardo",
+        "apellidos": "Avila Cervantes",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dorian Cain",
+        "apellidos": "Ruiz Gutiérrez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Derek Alejandro",
+        "apellidos": "Muñoz Alvarado",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "César Alejandro",
+        "apellidos": "Hurtado Arellano",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Andrés Jonathan",
+        "apellidos": "Valencia Aguilar",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Valeria Noemi",
+        "apellidos": "Muñoz Venegas",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Gabriela Chantal",
+        "apellidos": "Valencia Aguilar",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Victoria Zoe",
+        "apellidos": "Segura Amezcua",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Hiram Mauricio",
+        "apellidos": "Vera Zaleta",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Manuel Antonio",
+        "apellidos": "Ibañez Contreras",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Julieta Mariah",
+        "apellidos": "Ramírez Flores",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jason Alejandro",
+        "apellidos": "Salgado Ibañez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Lyan Fernando",
+        "apellidos": "Medina Cortes",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Adán",
+        "apellidos": "Rodriguez Mendoza",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fatima Mariana",
+        "apellidos": "Barrera Ortega",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fernando",
+        "apellidos": "Villa Aguilar",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emiliano",
+        "apellidos": "Robledo Velasco",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Juan Marcos",
+        "apellidos": "Nabor Vázquez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Kenya Jazmin",
+        "apellidos": "Barusta Bermejo",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Rodrigo Emiliano",
+        "apellidos": "Oceguera Chavez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Erick Daniel",
+        "apellidos": "Martinez Ruiz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "José Luis",
+        "apellidos": "Jauregui Herrera",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Santiago Tadeo",
+        "apellidos": "García Chávez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Matías Adrián",
+        "apellidos": "Cruz Osegueda",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ana Carmen",
+        "apellidos": "Ramírez Bolaños",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "David",
+        "apellidos": "Diaz Romero",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Renata Marian",
+        "apellidos": "Talledo García",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cristopher Matías",
+        "apellidos": "Cervantes Cortes",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Valeria",
+        "apellidos": "Gracia Tronco",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Iker Alexis",
+        "apellidos": "Romero Sánchez",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Renata Valentina",
+        "apellidos": "Villegas Ruiz",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Liam Alexander",
+        "apellidos": "Gomez Avila",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dylan Daniel",
+        "apellidos": "Pérez Infante",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Andrea Alice",
+        "apellidos": "Gonzalez De La Cruz",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Kiara Yamileth",
+        "apellidos": "Aceves Jaramillo",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Christopher Josue",
+        "apellidos": "Nava Orozco",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Erick Missael",
+        "apellidos": "Mercado Sánchez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ingrid Valentina",
+        "apellidos": "Valls Avalos",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Axel Alfredo",
+        "apellidos": "Reyes Campos",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dantte Isaias",
+        "apellidos": "Gomez Partida",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ingrid Jacqueline",
+        "apellidos": "Fonseca García",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Abril Natzai",
+        "apellidos": "Íñiguez Chavez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Oscar Mauricio",
+        "apellidos": "Íñiguez Chavez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Stephan Alonso",
+        "apellidos": "Gutierrez Garcia",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Justin Emiliano",
+        "apellidos": "Reyes Candelario",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Jorge Ricardo",
+        "apellidos": "Guzmán De Anda",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Cecilia Analy",
+        "apellidos": "García Larios",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Cristian André",
+        "apellidos": "Urzúa Lopez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fernanda Citlaty",
+        "apellidos": "Vázquez Molina",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ian",
+        "apellidos": "Guevara Arroyo",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alexis Dazaeth",
+        "apellidos": "Nuñez Herrera",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "María Fernanda",
+        "apellidos": "Cervantes Hernández",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Renata Nicole",
+        "apellidos": "Castillon Huizar",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Lenin Tadeo",
+        "apellidos": "Navarro Marquez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Josgarth",
+        "apellidos": "Trujeque Neri",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Eduardo Emmanuel",
+        "apellidos": "Chavarin López",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yoali",
+        "apellidos": "Guevara Arroyo",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Óscar Yaret",
+        "apellidos": "Romeo Contreras",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Samara Yaraileth",
+        "apellidos": "Hernández Martinez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Daphne Geraldine",
+        "apellidos": "Hernández Martinez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Arturo Nicolás",
+        "apellidos": "Navarro Chávez",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yamilen Guadalupe",
+        "apellidos": "Lara López",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Jennifer Desiree",
+        "apellidos": "Mendoza Guerrero",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Suri Alessandra",
+        "apellidos": "Torres Lozano",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Elias Santiago",
+        "apellidos": "Gómez Pérez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Renata Jaqueline",
+        "apellidos": "Castillo Lamas",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Brayan Alejandro",
+        "apellidos": "Águila Jiménez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Héctor José",
+        "apellidos": "Gutiérrez Lamas",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Oscar Daniel",
+        "apellidos": "Gutiérrez Lamas",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Bruno Alejandro",
+        "apellidos": "Estrada Alvarado",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Francisco Emmanuel",
+        "apellidos": "Diaz Gómez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Zoe Yaretzy",
+        "apellidos": "Ruiz Gamiño",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mia Yexalen",
+        "apellidos": "Muñoz Sanchez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Antonio Nicolas",
+        "apellidos": "Celis Trujillo",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Miguel Angel",
+        "apellidos": "Rojas Gascon",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Romina Zoe",
+        "apellidos": "Gutiérrez Ortiz",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Renata Natali",
+        "apellidos": "Miranda Alvarez",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Camila Kiabeth",
+        "apellidos": "Martinez Sanchez",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Kimberly Michelle",
+        "apellidos": "Jiménez Lugo",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Valentina",
+        "apellidos": "Moreno Soto",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Valloleth Anastasia",
+        "apellidos": "Calderón Mejia",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Danna Ximena",
+        "apellidos": "Cortes Mariscal",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Victor Hugo",
+        "apellidos": "Alvarez Rivera",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Hector Daniel",
+        "apellidos": "Meza Villa",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Leah Fiona",
+        "apellidos": "Cruz García",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Edgar Gael",
+        "apellidos": "Cruz García",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ximena Novaly",
+        "apellidos": "Nava Cuevas",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Mateo Israel",
+        "apellidos": "Pacheco Dueñas",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Travis Israel",
+        "apellidos": "Cisneros Flores",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Zeyn Nathaniel",
+        "apellidos": "Gómez Oceguera",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Uriel",
+        "apellidos": "Olmedo Hernández",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Vanessa Abigail",
+        "apellidos": "García Tomas",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ariana Michelle",
+        "apellidos": "Sánchez Utrilla",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Katherine Dannae",
+        "apellidos": "Garcia Andrade",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Teresa Ayelen",
+        "apellidos": "Gonzalez Salazar",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Santiago Gibran",
+        "apellidos": "Martín García",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dafne Korina",
+        "apellidos": "Escobedo Cortes",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Kaleo Itzae",
+        "apellidos": "Ruiz González",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Amy Eleonor",
+        "apellidos": "Navarro Mariscal",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Axel Iván",
+        "apellidos": "Quezada Camacho",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Melissa Nicole",
+        "apellidos": "Silva Padilla",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Erandy",
+        "apellidos": "Chávez Salas",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Anthony Mateo",
+        "apellidos": "Arias Sandoval",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Melissa Anahid",
+        "apellidos": "Ruiz Rosas",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Angélica Sofía",
+        "apellidos": "Gonzalez Martínez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yaretzi Guadalupe",
+        "apellidos": "Aceves Martinez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Valeria Guadalupe",
+        "apellidos": "Ramirez Bermudez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Jessica Solange",
+        "apellidos": "Vitela Vázquez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Joan Alejandro",
+        "apellidos": "González Gerónimo",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mateo",
+        "apellidos": "Agüero Ramirez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Luciana",
+        "apellidos": "Corona Sierra",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alexia Camila",
+        "apellidos": "Durón Gutiérrez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ana Laura",
+        "apellidos": "Gómez Martínez",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Fernanda Mayte",
+        "apellidos": "Luna Camacho",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Daniela Montserrat",
+        "apellidos": "Luna Camacho",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Hansel Rafael",
+        "apellidos": "Gutierrez Ortiz",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Jimena Yamileth",
+        "apellidos": "Bachomo Piña",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ximena Daniela",
+        "apellidos": "Martinez Cruz",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Natania Zoe",
+        "apellidos": "Del Río Chávez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Damiana Merlot",
+        "apellidos": "Mendoza Téllez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dariel Jeancarlo",
+        "apellidos": "Toscano Vázquez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Elias Javier",
+        "apellidos": "Carmona Benavidez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Gibran Gamaliel",
+        "apellidos": "Salas Ibarra",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dylan",
+        "apellidos": "Aguila Hernández",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Santiago Leonel",
+        "apellidos": "Diaz Mojica",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Joel",
+        "apellidos": "Diaz Mojica",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Lia Michelle",
+        "apellidos": "Ramírez Torres",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Elias Azael",
+        "apellidos": "Andrade Celis",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Thiago Zaid",
+        "apellidos": "Patiño Toscano",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Valeria Nicole",
+        "apellidos": "Garcia Ramirez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Amelia Catalina",
+        "apellidos": "Jiménez Sánchez",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Armando Ezequiel",
+        "apellidos": "Lomelí Larios",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Pablo Guadalupe",
+        "apellidos": "Diaz Lara",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Máximo Gael",
+        "apellidos": "Perez Ibarra",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alexa Dayana",
+        "apellidos": "Estrada Domínguez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Daniel Alejandro",
+        "apellidos": "Verdín Lara",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Génesis Alondra",
+        "apellidos": "Gutiérrez Manzo",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Isaac Mateo",
+        "apellidos": "Salgado Valladares",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Daniela Ximena",
+        "apellidos": "Arias Delgadillo",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Damaris Manelyk",
+        "apellidos": "González Sandoval",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Braulio Gael",
+        "apellidos": "Gonzalez Munguia",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Marco Polo",
+        "apellidos": "Gracian Arce",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Rodrigo Yael",
+        "apellidos": "Gutiérrez Barrón",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alisson Yorleit",
+        "apellidos": "Flores Ibañez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Sofia",
+        "apellidos": "Torres Monsisvais",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Rodrigo Caleb",
+        "apellidos": "Almanza Valdivia",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Santiago Joseph",
+        "apellidos": "González Geronimo",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alexia Ivanna",
+        "apellidos": "Jiménez Mercado",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Derek Omar",
+        "apellidos": "Arellano Baez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Matias Francisco",
+        "apellidos": "Herrera Hernandez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Arianna Mariel",
+        "apellidos": "Nabor Martinez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Opochtli Santiago",
+        "apellidos": "Jiménez Uribe",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cielo",
+        "apellidos": "Olmedo Hernández",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Quetzally Michelle",
+        "apellidos": "Lopez Mayorga",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Christopher Arturo",
+        "apellidos": "Zamora Reyes",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ian Samuel",
+        "apellidos": "Garcia Bolaños",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Natalia  Alejandra",
+        "apellidos": "Gallegos Martinez",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Leonardo Kaleb",
+        "apellidos": "García Avila",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Maibeth Loredmy",
+        "apellidos": "Gómez Nolazco",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Lia Camila",
+        "apellidos": "Soto Morales",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Zoe Yamilet",
+        "apellidos": "García Muñoz",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Nahomi Nicol",
+        "apellidos": "Torres Luisjuan",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ámbar Valeria",
+        "apellidos": "Urzúa Cervantes",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alondra Yazmin",
+        "apellidos": "Gonzalez Ortiz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Danna Tanisha",
+        "apellidos": "Tronco Rosales",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Christopher Haziel",
+        "apellidos": "Aguilar Silva",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Juan Marcos",
+        "apellidos": "Nabor Vázquez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Citlali Guadalupe",
+        "apellidos": "Mendoza Aguilar",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Alexis",
+        "apellidos": "Romero Sánchez",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Valeria",
+        "apellidos": "Gracia Tronco",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Anthony Mateo",
+        "apellidos": "Arias Delgadillo",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Fatima Paulette",
+        "apellidos": "Cardenas Vazquez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Lucio Emmanuel",
+        "apellidos": "Espinoza Casillas",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Matias",
+        "apellidos": "Alvarez López",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ximena Nicole",
+        "apellidos": "Ramos Flores",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Atziri Betzabe",
+        "apellidos": "Gamiño Marentes",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dania Paola",
+        "apellidos": "Sanchez Trujillo",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Juan Pablo",
+        "apellidos": "Esparza Ruvalcaba",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Vanya Guadalupe",
+        "apellidos": "Torres González",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Ashley Yamileth",
+        "apellidos": "Acevedo Flores",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Francisco Melek",
+        "apellidos": "Aguilar Silva",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ileana Alejandra",
+        "apellidos": "Del Alto Ramírez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Carlos Daniel",
+        "apellidos": "García Navarro",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Victoria Regina",
+        "apellidos": "Gonzalez Balvaneda",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Santos Surem",
+        "apellidos": "Herrera Cervantes",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Sofia Daniela",
+        "apellidos": "López De La Cruz",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Danna Sinai",
+        "apellidos": "Ortiz López",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Giovanni Mateo",
+        "apellidos": "Rosales Gómez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Liam Andre",
+        "apellidos": "Camacho Aguilar",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Regina Elizabeth",
+        "apellidos": "Camacho Solorio",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Matteo",
+        "apellidos": "Espindola Dominguez",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Matias Alejandro",
+        "apellidos": "García Larios",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yeremi Moisés",
+        "apellidos": "Ibarra Mancillas",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yaslei Yamileth",
+        "apellidos": "Lopez Lopez",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ximena Janeth",
+        "apellidos": "Núñez Sánchez",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Thiago Alonso",
+        "apellidos": "Ocegueda Coronado",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Roman Dario",
+        "apellidos": "Portillo Garcia",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Romina Lizeth",
+        "apellidos": "Rico Luna",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Leonardo",
+        "apellidos": "Avila Cervantes",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Maria Jose",
+        "apellidos": "Carrillo López",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dylan Santiago",
+        "apellidos": "López Avila",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Michelle Alejandra",
+        "apellidos": "Olazaba Acuña",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Matias Eduardo",
+        "apellidos": "Pulido Martinez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Francisco Javier",
+        "apellidos": "Sanchez Trujillo",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Leonardo Tomás",
+        "apellidos": "Zapata Rodríguez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ramsik Tadeo",
+        "apellidos": "Altamirano Salcedo",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Edwin Eduardo",
+        "apellidos": "Contreras Pedroza",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Daniel",
+        "apellidos": "Contreras Pedroza",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Matías Yoel",
+        "apellidos": "Hernández Santoyo",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Salvador",
+        "apellidos": "Melendez Rodriguez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ivanna Jasibe",
+        "apellidos": "Nabor Martinez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Katherine Esther",
+        "apellidos": "Orozco Negrete",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Yahel Adrián",
+        "apellidos": "Pazos González",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dorian Gerardo",
+        "apellidos": "Romero Orozco",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Eder Daniel",
+        "apellidos": "Rodríguez Cárdenas",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Raúl",
+        "apellidos": "Ramirez Valls",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Derek André",
+        "apellidos": "Ruiz Rosas",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Axel Mateo",
+        "apellidos": "Sánchez Bautista",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Carlos Eduardo De Jesus",
+        "apellidos": "Amezcua Salcido",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dominic Yoab",
+        "apellidos": "Castellón Pérez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Sophia Daniella",
+        "apellidos": "Cordova Cardenas",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Grecia Antonella",
+        "apellidos": "Jaramillo Domínguez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ambar Carmin",
+        "apellidos": "Nabor Martinez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Liam Alexander",
+        "apellidos": "Gomez Avila",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Andrés",
+        "apellidos": "Paredes Farias",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Andry Emiliano",
+        "apellidos": "Perez Cervantes",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cristóbal Said",
+        "apellidos": "Quezada Mercado",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fernando",
+        "apellidos": "Villa Aguilar",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Renata Marian",
+        "apellidos": "Talledo García",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Gael Isaac",
+        "apellidos": "Sánchez Reyes",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Reyna Berenice",
+        "apellidos": "Andrade Martínez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Valeria Estefania",
+        "apellidos": "Gracian Arce",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Darianna Ximena",
+        "apellidos": "Cordova Cardenas",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Brithany",
+        "apellidos": "Escobedo Cortes",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Victoria Danissa",
+        "apellidos": "Cisneros Aguilar",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Andrea Mariel",
+        "apellidos": "Martínez Muro",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ethan Said",
+        "apellidos": "Pulido Mendoza",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emir Daniel",
+        "apellidos": "Ortiz López",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mariano",
+        "apellidos": "Ramírez Gastelum",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Karol Akemi",
+        "apellidos": "Vargas Jara",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cristopher Leonardo",
+        "apellidos": "Arechiga Suarez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Janeth Guadalupe",
+        "apellidos": "Arechiga Suarez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "William Alberto",
+        "apellidos": "De La Cruz Flores",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Samantha Juliette",
+        "apellidos": "Lopez Rangel",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Amzi Alejandro",
+        "apellidos": "Meza Lazcano",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Christopher Josue",
+        "apellidos": "Nava Orozco",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Nataly Yisel",
+        "apellidos": "Olazaba Acuña",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fernanda Valentina",
+        "apellidos": "Ortiz Regalado",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mateo De Jessus",
+        "apellidos": "Pulido Martinez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mathias Yadiel",
+        "apellidos": "Vega González",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Darlyn Itzel",
+        "apellidos": "Zapata Rodríguez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Cristian Alejandro",
+        "apellidos": "Andrade Martínez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Naim Yazid",
+        "apellidos": "Barrios Ascencio",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Kimberly Sinai",
+        "apellidos": "Contreras Verdia",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mael Alexandre",
+        "apellidos": "Cortes Vazquez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jennifer Jacqueline",
+        "apellidos": "Rodríguez Valencia",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Romina",
+        "apellidos": "Salcido López",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alan Manuel",
+        "apellidos": "Arevalo Martínez",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Kenya Jazmin",
+        "apellidos": "Barusta Bermejo",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Camila Alejandra",
+        "apellidos": "Bernal García",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Matías Adrián",
+        "apellidos": "Cruz Osegueda",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Erick Gerson",
+        "apellidos": "González Cortes",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Cristian Efraín",
+        "apellidos": "Ibañez Contreras",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fatima Romina",
+        "apellidos": "Rayas Valencia",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Zoé",
+        "apellidos": "Rosales Hernández",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Angel Tadeo",
+        "apellidos": "Toscano Araujo",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Alfonso Fernando",
+        "apellidos": "Gonzalez De La Torre",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Teresa De Jesus",
+        "apellidos": "Lealsilva",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Jocelyn Alejandra",
+        "apellidos": "Águila Jiménez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Edgar Emiliano",
+        "apellidos": "Aguilar Valls",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Manuel Antonio",
+        "apellidos": "Ibañez Contreras",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Eimy Camila",
+        "apellidos": "Loza Paredes",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jesús Antonio",
+        "apellidos": "Orozco Saucedo",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emili",
+        "apellidos": "Pedroza Aparicio",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Luna Escarlet",
+        "apellidos": "Reyes Campos",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ximena Estefania",
+        "apellidos": "Torres Hernandez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mauro Josaphat",
+        "apellidos": "Chaires Ibarra",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Raúl Issac",
+        "apellidos": "Cervantes Regalado",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ángel Ezequiel",
+        "apellidos": "Rodríguez Haro",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Baruc Emiliano",
+        "apellidos": "Gómez Diaz",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Christian Emmanuel",
+        "apellidos": "Ibarra Espinosa",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dylan Daniel",
+        "apellidos": "Pérez Infante",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "José Luis",
+        "apellidos": "Jauregui Herrera",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Lyan Fernando",
+        "apellidos": "Medina Cortes",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Lia Araceli",
+        "apellidos": "Ortiz López",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Ximena Yamani",
+        "apellidos": "Pimentel Pérez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Dayanna Naomi",
+        "apellidos": "Yáñez Acuña",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Santiago Tadeo",
+        "apellidos": "García Chávez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Christian Zooe",
+        "apellidos": "De León Morales",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Emeli Michelle",
+        "apellidos": "González Galván",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Sofia",
+        "apellidos": "Nuño Rodríguez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mateo Nicolas",
+        "apellidos": "Nuño Rodríguez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Steven Gerrard",
+        "apellidos": "Vazquez Alonso",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Juan Carlos",
+        "apellidos": "Rodríguez Barajas",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mateo Alonso",
+        "apellidos": "López Martínez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jürgen Eitan",
+        "apellidos": "Romero Contreras",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ashley Evangeline",
+        "apellidos": "Vazquez Alonso",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Héctor Mateo",
+        "apellidos": "Baez García",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Regina",
+        "apellidos": "Jacobo Martinez",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Julia Valentina",
+        "apellidos": "Rodríguez Barajas",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "David",
+        "apellidos": "Diaz Romero",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Denisse Yared",
+        "apellidos": "Cisneros Vargas",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Luis Esteban",
+        "apellidos": "Orozco Saucedo",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Regina",
+        "apellidos": "Paredes Farias",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dorian Cain",
+        "apellidos": "Ruiz Gutiérrez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Nathan Isaac",
+        "apellidos": "Torres González",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dafne",
+        "apellidos": "Agustín Orozco",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Angela Estefania",
+        "apellidos": "Gutierrez Santana",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Angela Ximena",
+        "apellidos": "Garcia Martínez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Samuel Elías",
+        "apellidos": "Vázquez Delgado",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Sebastian",
+        "apellidos": "Ruiz",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Omar Zabdiel",
+        "apellidos": "Arroyo Bautista",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Karen Denisse",
+        "apellidos": "Ibañez Real",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Angeles Valeria Jacqueline",
+        "apellidos": "Mendoza Guerrero",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Fernando",
+        "apellidos": "Ramírez Vergara",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Santiago Damian",
+        "apellidos": "Rodríguez Haro",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Liliana Nicole",
+        "apellidos": "Lira Zamora",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fatima Mariana",
+        "apellidos": "Barrera Ortega",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Daniel",
+        "apellidos": "Leyva Solorzano",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Alejandro",
+        "apellidos": "Flores Quevedo",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Rodrigo Amram",
+        "apellidos": "Trujillo Moya",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Gianna Mayte",
+        "apellidos": "Rodríguez Quintero",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Kaleo Itzae",
+        "apellidos": "Ruiz González",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Lia Michelle",
+        "apellidos": "Ramírez Torres",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alisson Yorleit",
+        "apellidos": "Flores Ibañez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Marcelo Gael",
+        "apellidos": "De Luna Fernández",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Yoali",
+        "apellidos": "Guevara Arroyo",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Abril Natzai",
+        "apellidos": "Íñiguez Chavez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Samara Yaraileth",
+        "apellidos": "Hernández Martinez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dayanna Naomi",
+        "apellidos": "Yáñez Acuña",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Estefani Giselle",
+        "apellidos": "Ponce Ruiz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ivana Jocelyne",
+        "apellidos": "Barajas Gutiérrez",
+        "grado": "5",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Ximena Valentina",
+        "apellidos": "Contreras Rosas",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dantte Isaias",
+        "apellidos": "Gomez Partida",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ian",
+        "apellidos": "Guevara Arroyo",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ariana Michelle",
+        "apellidos": "Sánchez Utrilla",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Damian",
+        "apellidos": "Oceguera Velazquez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Michelle Alejandra",
+        "apellidos": "Olazaba Acuña",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alexis Dazaeth",
+        "apellidos": "Nuñez Herrera",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Angeles Valeria Jacqueline",
+        "apellidos": "Mendoza Guerrero",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Erick Daniel",
+        "apellidos": "Martinez Ruiz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Oscar Mauricio",
+        "apellidos": "Íñiguez Chavez",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Daphne Geraldine",
+        "apellidos": "Hernández Martinez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Valentina",
+        "apellidos": "Moreno Soto",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Daniel Alessandro",
+        "apellidos": "Rivera Espinosa",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fernando Josue",
+        "apellidos": "Flores Velasquez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Ana Paola",
+        "apellidos": "Hernández Domínguez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Aredzy Julieta",
+        "apellidos": "Murillo Martinez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Joshua",
+        "apellidos": "Olmedo Hernández",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emily Sofia",
+        "apellidos": "Napoles Araujo",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Cristopher Adán",
+        "apellidos": "Gutiérrez Carlos",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ian Said",
+        "apellidos": "Romero Contreras",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Josué Eliazar",
+        "apellidos": "Vázquez Delgado",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Hansel Ariel",
+        "apellidos": "García Muñoz",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Amzi Alejandro",
+        "apellidos": "Meza Lazcano",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Regina",
+        "apellidos": "Paredes Farias",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Íker Santiago",
+        "apellidos": "Mora Jiménez",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Luis Esteban",
+        "apellidos": "Orozco Saucedo",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Paulo Alexander",
+        "apellidos": "Bolaños Téllez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emilio Jacob",
+        "apellidos": "Angel Valente",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Elian Alejandro",
+        "apellidos": "Mora Jiménez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Diego",
+        "apellidos": "Garcia Méndez",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Yorel Aaron Israel",
+        "apellidos": "Acosta Zambrano",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Valentino Fernando",
+        "apellidos": "Prieto Martínez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alan Manuel",
+        "apellidos": "Arevalo Martínez",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Edrick Alejandro",
+        "apellidos": "Martinez Flores",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Elián Tadeo",
+        "apellidos": "Martinez Flores",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Elian Octavio",
+        "apellidos": "Lepe Naranjo",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Bruno Alejandro",
+        "apellidos": "Estrada Alvarado",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Justin Emiliano",
+        "apellidos": "Reyes Candelario",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Daniel",
+        "apellidos": "Flores Ocampo Cruz",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Iker Rafael",
+        "apellidos": "Gutiérrez García",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Mateo",
+        "apellidos": "Picon Diaz",
+        "grado": "4",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mia Vianney",
+        "apellidos": "Garcia Garcia",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emiliano",
+        "apellidos": "Robledo Velasco",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Sofía Aylin",
+        "apellidos": "Gutiérrez Mariscal",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Oscar Emmanuel",
+        "apellidos": "Gutierrez Aceves",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Josue Baruc",
+        "apellidos": "Arellano Del Zas",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Esteban Nicolás",
+        "apellidos": "Martinez Villafan",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Leonardo Daniel",
+        "apellidos": "Ramos Castro",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Santiago Luciano",
+        "apellidos": "Olmos Delgado",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Dulce María",
+        "apellidos": "Martínez Muro",
+        "grado": "5",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Romina Fernanda",
+        "apellidos": "Murillo Martínez",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Cristopher Matías",
+        "apellidos": "Cervantes Cortes",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dana Nicole",
+        "apellidos": "Hernandez Suarez",
+        "grado": "6",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Jose Maria",
+        "apellidos": "Diaz De Sandi Navarro",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emilio Gael",
+        "apellidos": "Diaz Ramirez",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Elias Nicolas",
+        "apellidos": "Limon Gomez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Victor Emmanuel",
+        "apellidos": "Salgado González",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Carol Rubi",
+        "apellidos": "Gonzalez Quintero",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Marcus Demian",
+        "apellidos": "Venegas Gutierrez",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Lluvia Yareli",
+        "apellidos": "Amezcua Gutierrez",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Karla Itzayan",
+        "apellidos": "Barusta Bermejo",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Liam Alonso",
+        "apellidos": "Perez Gutierrez",
+        "grado": "1",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Mateo Gael",
+        "apellidos": "González Alexander",
+        "grado": "6",
+        "grupo": "C"
+    },
+    {
+        "nombre": "Jonathan Daniel",
+        "apellidos": "Martínez Arroyo",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker Daniel",
+        "apellidos": "Medina Márquez",
+        "grado": "3",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Oscar Leonardo",
+        "apellidos": "Ruiz",
+        "grado": "5",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Maria De Jesus",
+        "apellidos": "Ruiz",
+        "grado": "6",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Araceli",
+        "apellidos": "Pulido Hernandez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dulce Maria",
+        "apellidos": "Días Sigala",
+        "grado": "4",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Noelia Liliani",
+        "apellidos": "Ramirez Verdugo",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emma Julieta",
+        "apellidos": "Mercado Conchas",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Paula Sofía",
+        "apellidos": "Catedral Hernández",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Dylan Santiago",
+        "apellidos": "Sandoval Avila",
+        "grado": "1",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Elfega Dayana",
+        "apellidos": "Macias Becerra",
+        "grado": "2",
+        "grupo": "B"
+    },
+    {
+        "nombre": "Annia Nicole",
+        "apellidos": "Arizmendi De La Torre",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Iker André",
+        "apellidos": "Cruz Ramírez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Leah",
+        "apellidos": "González Arreola",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Alexis Isaias",
+        "apellidos": "García Díaz",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Derek Mateo",
+        "apellidos": "Campos Chávez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Daleyza",
+        "apellidos": "Diaz Rios",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Santiago",
+        "apellidos": "Ochoa Vazquez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Daniela",
+        "apellidos": "Perez Sánchez",
+        "grado": "2",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Jimena Alessandra",
+        "apellidos": "Oliva Vazquez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ana Victoria",
+        "apellidos": "De La Paz Villegas",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Edahi Martín",
+        "apellidos": "González Dorado",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Mariano",
+        "apellidos": "González Flores",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fernando Efraim",
+        "apellidos": "González González",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Liam Mateo",
+        "apellidos": "Limón Mercado",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Luis Eduardo",
+        "apellidos": "Otamendi Munguía",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "André Nicolás",
+        "apellidos": "Guzmán Arroyo",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Oliver Damian",
+        "apellidos": "Gutierrez Luquin",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Diego Isaac",
+        "apellidos": "Arroyo Martínez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Ian Santiago",
+        "apellidos": "De La Hoya Perez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Luis Mateo",
+        "apellidos": "Orozco Tostado",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Regina",
+        "apellidos": "Perez Sánchez",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Emiliano",
+        "apellidos": "Serratos Guerrero",
+        "grado": "3",
+        "grupo": "A"
+    },
+    {
+        "nombre": "Fernanda  Samara",
+        "apellidos": "Ramirez Lira",
+        "grado": "3",
+        "grupo": "A"
+    }
+]

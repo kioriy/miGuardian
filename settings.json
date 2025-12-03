@@ -1,0 +1,27 @@
+{
+    "chat_id_admin": 0,
+    "clave": "14EES0462A",
+    "first_load": true,
+    "load_alumnos_tutor": false,
+    "load_autorizados": false,
+    "num_row_last_register_alumnos_tutor": 0,
+    "num_row_last_register_autorizados": 0,
+    "num_row_last_register_student": 967,
+    "schedule": [
+        {
+            "no_check_in": [
+                "08:20",
+                "23:27",
+                "22:29"
+            ],
+            "update_check_in": [
+                "00:18"
+            ]
+        }
+    ],
+    "school_name": "Secundaria Foranea 8",
+    "screen_status": "HDMI",
+    "spreadsheet_name_breakfast": "Corte desayunos albert-Castillito",
+    "status_update_db": false,
+    "type_display_command": "./LCD35-show"
+}

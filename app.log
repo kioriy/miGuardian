@@ -1,0 +1,21 @@
+{"time": "2025-07-09 21:03:30,545", "name": "root", "level": "INFO", "message": "Iniciando la tarea diaria para verificar la asistencia de los alumnos..."}
+{"time": "2025-07-09 21:03:30,546", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "BEGIN (implicit)"}
+{"time": "2025-07-09 21:03:30,551", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "PRAGMA main.table_info(\"student\")"}
+{"time": "2025-07-09 21:03:30,554", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "[raw sql] ()"}
+{"time": "2025-07-09 21:03:30,561", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "PRAGMA main.table_info(\"autorizado\")"}
+{"time": "2025-07-09 21:03:30,565", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "[raw sql] ()"}
+{"time": "2025-07-09 21:03:30,572", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "PRAGMA main.table_info(\"alumnos_tutores\")"}
+{"time": "2025-07-09 21:03:30,597", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "[raw sql] ()"}
+{"time": "2025-07-09 21:03:30,600", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "PRAGMA main.table_info(\"breakfast\")"}
+{"time": "2025-07-09 21:03:30,602", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "[raw sql] ()"}
+{"time": "2025-07-09 21:03:30,605", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "PRAGMA main.table_info(\"attendance\")"}
+{"time": "2025-07-09 21:03:30,615", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "[raw sql] ()"}
+{"time": "2025-07-09 21:03:30,626", "name": "sqlalchemy.engine.Engine", "level": "INFO", "message": "COMMIT"}
+{"time": "2025-07-09 21:57:56,501", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "Starting new HTTPS connection (1): api.telegram.org:443"}
+{"time": "2025-07-09 21:57:59,052", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "https://api.telegram.org:443 \"POST /bot6061799324:AAFgovrNp5ZKsl4LgojVWiGNL5tZ5BHx0fU/sendMessage HTTP/1.1\" 401 58"}
+{"time": "2025-07-09 22:00:10,944", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "Starting new HTTPS connection (1): api.telegram.org:443"}
+{"time": "2025-07-09 22:00:12,056", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "https://api.telegram.org:443 \"POST /bot6061799324:AAFgovrNp5ZKsl4LgojVWiGNL5tZ5BHx0fU/sendPhoto HTTP/1.1\" 401 58"}
+{"time": "2025-07-09 22:00:12,066", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "Starting new HTTPS connection (1): api.telegram.org:443"}
+{"time": "2025-07-09 22:00:12,619", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "https://api.telegram.org:443 \"POST /bot6061799324:AAFgovrNp5ZKsl4LgojVWiGNL5tZ5BHx0fU/sendMessage HTTP/1.1\" 401 58"}
+{"time": "2025-07-09 22:01:50,246", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "Starting new HTTPS connection (1): api.telegram.org:443"}
+{"time": "2025-07-09 22:01:51,413", "name": "urllib3.connectionpool", "level": "DEBUG", "message": "https://api.telegram.org:443 \"POST /bot6061799324:AAFgovrNp5ZKsl4LgojVWiGNL5tZ5BHx0fU/sendMessage HTTP/1.1\" 401 58"}

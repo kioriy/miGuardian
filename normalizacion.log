@@ -1,0 +1,5 @@
+2025-08-18 19:56:52,495 - INFO - === INICIANDO PROCESO DE NORMALIZACIÓN ===
+2025-08-18 19:56:52,495 - INFO - Cargando archivo de entrada: input.xlsx
+2025-08-18 19:56:52,496 - ERROR - Error al cargar archivos: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
+2025-08-18 19:56:52,496 - ERROR - Error en el proceso: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
+2025-08-18 19:56:52,496 - ERROR - Error en la ejecución: Missing optional dependency 'openpyxl'.  Use pip or conda to install openpyxl.
